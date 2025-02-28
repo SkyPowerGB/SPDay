@@ -1,0 +1,14 @@
+{
+  "name": "spday",
+  "version": "1.0.0",
+  "description": "sync personal day  -manage personal data -track productivity",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Bruno Posavec",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

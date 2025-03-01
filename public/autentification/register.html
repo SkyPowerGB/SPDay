@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registracija</title>
+    <link href="style.css" rel="stylesheet" />
+
+
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.js"
+    integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"
+  ></script>
+
+  </head>
+  <body>
+    <div class="div-container">
+      <form class="form-col-container">
+
+        <div class="div-form-part-col">
+          <label id="userNameLbl"  >Korisnicko ime:*</label>
+          <input id="userNameInput"  />
+        </div>
+
+        <div class="div-form-part-col">
+          <label id="emailLbl">Email:*</label>
+          <input id="emailInput"  />
+        </div>
+
+        <div class="div-form-part-col">
+          <label id="pswrdLbl" >Lozinka:*</label>
+          <input id="pswrdInput" type="password" />
+        </div>
+
+        <div class="div-form-part-col">
+          <label id="rptPswrdLbl" >Ponoviti Lozinku*:</label>
+          <input id="rptPswrdInput" type="password" />
+        </div>
+
+        <div class="div-form-part-col">
+          <div class="div-form-part-row">
+            <button id="backToLoginBtn" type="button">Nazad na prijavu</button>
+            <button id="createAccBtn" type="button">Kreiraj račun</button>
+            
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <script src="registersrcipt.js"></script>
+  </body>
+
+</html>

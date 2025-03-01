@@ -1,0 +1,53 @@
+
+
+/*
+---------------------------- register form
+*/
+
+.div-container{
+    width: 100%;
+    height: 90vh;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: center;
+    
+}
+.form-col-container{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+
+}
+.div-form-part-col{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.div-form-part-col input{
+    height: 30px;
+    font-size: large;
+}
+.div-form-part-row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.div-container{
+    width: 100%;
+}
+.div-container button{
+    width: 50%;
+    padding: 10px;
+
+  
+}
+.div-container button:first-child{
+    margin-right: 10px;
+}
+
+/*
+----------------------------
+*/

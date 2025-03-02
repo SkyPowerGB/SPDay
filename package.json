@@ -10,9 +10,13 @@
   "author": "Bruno Posavec",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
-    "mysql2": "^3.12.0"
+    "express-validator": "^7.2.1",
+    "mysql2": "^3.12.0",
+    "sanitize-html": "^2.14.0",
+    "validator": "^13.12.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"

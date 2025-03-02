@@ -13,7 +13,7 @@ window.addEventListener("load",(e)=>{
         username: $('#userNameInput').val(),
         email: $('#emailInput').val(),
         password: $('#pswrdInput').val(),
-        passowrdRpt:$('#rptPswrdInput').val()
+        passwordRpt:$('#rptPswrdInput').val()
     };
 
    

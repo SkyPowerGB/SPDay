@@ -3,6 +3,7 @@ const sanitize = require("sanitize-html");
 const userModel = require("../models/user");
 const bcrypt = require("bcrypt");
 
+
 async function register(req, res,next) {
   const data = req.body;
   let valid = true;
@@ -95,9 +96,12 @@ async function authorizeUser(req, res, next) {
     if (!isPasswordValid) {
         console.log("incorect password");
       return res.redirect("/autentification/login.html");
+    }else{
+
+      req.session.userId=user.user_account_id;
     }
 
-   
+      
     next();
 
   } catch (error) {

@@ -22,7 +22,7 @@ window.addEventListener("load",(e)=>{
         type: 'POST',
         data: formData, 
         success: function (response) {
-           
+                window.location.href="/autentification/login.html",
             console.log(response);
         },
         error: function (xhr, status, error) {

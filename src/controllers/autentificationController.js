@@ -3,7 +3,7 @@ const sanitize = require("sanitize-html");
 const userModel = require("../models/user");
 const bcrypt = require("bcrypt");
 
-async function register(req, res) {
+async function register(req, res,next) {
   const data = req.body;
   let valid = true;
   const errors = [];
@@ -34,8 +34,13 @@ async function register(req, res) {
     valid = false;
     errors.push("Passwords do not match.");
   }
+  
+  
+
 
   if (!valid) {
+    console.log("validation fail");
+    console.log(errors);
     return res.status(400).json({
       message: "Validation failed.",
       errors: errors,
@@ -44,7 +49,7 @@ async function register(req, res) {
 
   if (valid) {
     try {
-     
+         console.log("validation succesful");
         const salt = await bcrypt.genSalt(10); 
         
    
@@ -54,10 +59,9 @@ async function register(req, res) {
         const result = await userModel.createUser(username, email, hashedPassword);
 
         
-        res.status(200).json({
-            message: "Registration successful.",
-            user: { username, email },
-        });
+       
+        return res.redirect("/autentification/login.html");
+
     } catch (err) {
         
         console.error('Error during registration:', err);
@@ -70,6 +74,40 @@ async function register(req, res) {
 
  
 }
+
+
+async function authorizeUser(req, res, next) {
+  try {
+    
+    console.log(req.body);
+
+   
+    const user = await userModel.getUserData(req.body.email_username);
+    
+    if (!user) {
+     
+      return res.redirect("/autentification/login.html"); 
+    }
+
+   
+    const isPasswordValid = await bcrypt.compare(req.body.password, user.password_hash);
+
+    if (!isPasswordValid) {
+        console.log("incorect password");
+      return res.redirect("/autentification/login.html");
+    }
+
+   
+    next();
+
+  } catch (error) {
+  
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+}
+
+
 module.exports = {
-  register,
+  register,authorizeUser
 };

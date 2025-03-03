@@ -7,4 +7,12 @@ async function createUser(username,email,passwordHash){
     return result;
 }
 
-module.exports={createUser}
+async function getUserData(usrnm_email) {
+    if(usrnm_email==null){return null;}
+    const query = "SELECT * FROM user_account WHERE email = ? OR username = ? LIMIT 1";
+    const [rows] = await db.execute(query, [usrnm_email, usrnm_email]);
+    return rows.length ? rows[0] : null;
+}
+
+
+module.exports={createUser,getUserData}

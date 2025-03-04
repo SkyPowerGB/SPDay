@@ -1,10 +1,18 @@
 const express =require("express");
 const path = require('path');
 const app=express();
+const session = require('express-session');
 const appConfig=require("./config/appconfig");
 const registerRoute=require("./routes/autentification/register");
 const loginRoute=require("./routes/autentification/login");
+const homeRoute=require("./routes/home/home");
 
+app.use(session({
+    secret: 'fddkdo3i3o219',  
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }  
+  }));
 
 app.set('view engine','ejs');
 app.use(express.json());
@@ -12,7 +20,12 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.static(path.join(__dirname, '..', 'public'))); 
 app.use('/autentification', registerRoute);
 app.use('/autentification',loginRoute);
+app.use("/",homeRoute);
+
+
 app.get("/",(req,res)=>{
     res.redirect('/autentification/login.html');
 });
+
+
 app.listen(appConfig.PORT,()=>{console.log("server begin: http://localhost:"+appConfig.PORT)});

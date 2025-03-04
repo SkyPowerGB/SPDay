@@ -3,7 +3,7 @@ const sanitize = require("sanitize-html");
 const userModel = require("../models/user");
 const bcrypt = require("bcrypt");
 
-
+const session = require('express-session');
 async function register(req, res,next) {
   const data = req.body;
   let valid = true;
@@ -76,11 +76,10 @@ async function register(req, res,next) {
  
 }
 
-
 async function authorizeUser(req, res, next) {
   try {
     
-    console.log(req.body);
+ 
 
    
     const user = await userModel.getUserData(req.body.email_username);
@@ -99,6 +98,7 @@ async function authorizeUser(req, res, next) {
     }else{
 
       req.session.userId=user.user_account_id;
+      res.redirect("/home");
     }
 
       

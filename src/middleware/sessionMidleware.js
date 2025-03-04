@@ -9,3 +9,5 @@ const authenticateSession = (req, res, next) => {
       return res.redirect("/autentification/login.html");
     }
   };
+
+  module.exports={authenticateSession}

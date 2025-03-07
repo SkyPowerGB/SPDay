@@ -2,10 +2,13 @@ const express =require("express");
 const path = require('path');
 const app=express();
 const session = require('express-session');
+
 const appConfig=require("./config/appconfig");
+
 const registerRoute=require("./routes/autentification/register");
 const loginRoute=require("./routes/autentification/login");
 const homeRoute=require("./routes/home/home");
+const medicalRoute=require("./routes/medical/medical");
 
 app.use(session({
     secret: 'fddkdo3i3o219',  
@@ -17,9 +20,12 @@ app.use(session({
 app.set('view engine','ejs');
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
+
 app.use(express.static(path.join(__dirname, '..', 'public'))); 
+
 app.use('/autentification', registerRoute);
 app.use('/autentification',loginRoute);
+app.use('/',medicalRoute);
 app.use("/",homeRoute);
 
 

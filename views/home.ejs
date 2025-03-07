@@ -4,56 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="style.css" rel="stylesheet">
+    <link href="../commonStyles.css" rel="stylesheet">
 </head>
 <body>
-
-    <div class="navbar-div-container">
-        <div class="navbar-logo">
-         
-                <a href="/Home"><i></i></a>
-          
-        </div>
-
-        <ul class="navbar-ul">
-
-            <li>
-                <div class="navbar-element-div">
-                    <a href="/Home">Home</a>
-                 
-                </div>
-            </li>
-            <li>
-                <div class="navbar-element-div">
-                    <a href="/Financial">Financial</a>
-                 
-                </div>
-            </li>
-            <li>
-                <div class="navbar-element-div" >
-                    <a href="/Medical">Medical</a>
-                </div>
-            </li>
-
-            <li>
-                <div class="navbar-element-div" >
-                    <a href="/Productivity ">Productivity</a>
-                </div>
-            </li>
-
-            <li>
-                <div class="navbar-element-div" >
-                    <a href="/Diary ">Diary</a>
-                </div>
-            </li>
-
-        </ul>
-
-        <div class="navbar-hamburger">
-            <button>☰</button>
-          </div>
-
-    </div>
+<%- include("partials/navbar.ejs") %>
+   
 
 </body>
 </html>

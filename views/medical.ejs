@@ -10,35 +10,151 @@
   <body>
     <%- include("./partials/navbar") %>
 
+    <div></div>
+
     <div class="content-columns-container">
-     
-        <div>
-          <div><button>Termini</button></div>
-          <div><button>Grupe</button></div>
-          <div><button>Postavke</button></div>
-          <div><a>Izvoz podataka</a></div>
+      <div class="sidebar-div">
+        <div class="sidebar-container"><button>Termini</button></div>
+        <div class="sidebar-container"><button>Grupe</button></div>
+        <div class="sidebar-container">
+          <button id="btnAddAppoitment">Dodaj Termin</button>
         </div>
+        <div class="sidebar-container">
+          <button id="btnAddGroup">Dodaj Grupu</button>
+        </div>
+        <div class="sidebar-container"><button>Postavke</button></div>
+        <div class="sidebar-container">
+          <a href="medicalDataExport">Izvoz podataka</a>
+        </div>
+      </div>
 
-        <div>
-          <form>
-            <input type="time" />
-            <input />
-            <select></select>
-            <input />
-            <button>Dodaj termin</button>
-          </form>
-
-          <div>
-            <form>
-              <input />
-              <button>Dodaj grupu</button>
-            </form>
+      <div id="appoitmentAddForm" class="hidden popup-container">
+        <div class="form-container">
+          <div class="form-close-button-container">
+            <button id="btnCloseAppoitmentAddForm">X</button>
           </div>
-          
+
+          <form class="form-body-container">
+            <div class="form-element-wrapper-col">
+              <div class="form-element-wrapper-row">
+                <label>Datum termina</label>
+              </div>
+            </div>
+
+            <div class="form-element-wrapper-col">
+              <div class="form-element-wrapper-row">
+                <div class="form-element-wrapper-row-ext">
+                  <input id="formDateInput" disabled />
+                </div>
+                <div class="container-form-row-btn">
+                  <button id="formDateSelect" type="button">📅</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-element-wrapper-col">
+              <div class="form-element-wrapper-row">
+                <label>Opis termina</label>
+              </div>
+              <div class="form-element-wrapper-row">
+                <input />
+              </div>
+            </div>
+
+            <div class="form-element-wrapper-col">
+              <div class="form-element-wrapper-row">
+                <label>Grupa termina</label>
+              </div>
+              <div class="form-element-wrapper-row">
+                <select></select>
+              </div>
+            </div>
+
+            <div class="form-element-wrapper-col">
+              <div class="form-element-wrapper-row">
+                <button id="formSendBtnAppoitment">Dodaj termin</button>
+              </div>
+            </div>
+          </form>
         </div>
+      </div>
 
+      <div id="appoitmentAddGroupForm" class="hidden popup-container">
+        <div class="form-container">
+          <div class="form-close-button-container">
+            <button id="bntCloseAppoitmentAddGroupForm">X</button>
+          </div>
+
+          <form
+            method="POST"
+            action="/Medical/AppoitmentGroup"
+            class="form-body-container"
+          >
+            <div class="form-element-wrapper-col">
+              <input name="id" type="hidden" value="0">
+              <div class="form-element-wrapper-row">
+                <label>Naziv grupe</label>
+              </div>
+              <div class="form-element-wrapper-row">
+                <input name="groupName" />
+              </div>
+            </div>
+
+            <div class="form-element-wrapper-col">
+              <div class="form-element-wrapper-row">
+                <button id="formSendBtnAppoitment">Dodaj grupu</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Opis Termina</th>
+              <th>Datum termina</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>id</td>
+              <td>opis</td>
+              <td>datum</td>
+              <td><button>uredi</button></td>
+              <td><button>izbrisi</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Grupa Termina</th>
+
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>id</td>
+              <td>opis</td>
+
+              <td><button>uredi</button></td>
+              <td><button>izbrisi</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-
-
+    <script src="script.js"></script>
   </body>
 </html>

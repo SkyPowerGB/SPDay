@@ -66,7 +66,16 @@
                 <label>Grupa termina</label>
               </div>
               <div class="form-element-wrapper-row">
-                <select></select>
+
+                <select>
+                  <% if (groups && groups.length > 0) { %>
+                    <% groups.forEach(group => { %>
+                      <option><%= group.appointment_group %></option>
+                    <% }) %>
+                  <% } else { %>
+                    <option disabled>No groups found</option>
+                  <% } %>
+                </select>
               </div>
             </div>
 

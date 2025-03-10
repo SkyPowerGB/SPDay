@@ -5,9 +5,8 @@ const sessionManger=require("../../middleware/sessionMidleware");
 
 
 
-router.get("/Medical",sessionManger.authenticateSession,(req,res)=>{
+router.get("/Medical",sessionManger.authenticateSession,controller.loadPage,(req,res)=>{
     
-    res.render("medical");
 });
 
 router.post("/Medical/AppoitmentGroup",sessionManger.authenticateSession,controller.addEditAppoitmentGroup,(req,res)=>{

@@ -5,10 +5,13 @@ const session = require('express-session');
 
 const appConfig=require("./config/appconfig");
 
+const auttentificate=require("./middleware/sessionMidleware");
+
 const registerRoute=require("./routes/autentification/register");
 const loginRoute=require("./routes/autentification/login");
 const homeRoute=require("./routes/home/home");
 const medicalRoute=require("./routes/medical/medical");
+
 
 app.use(session({
     secret: 'fddkdo3i3o219',  

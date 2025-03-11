@@ -1,4 +1,7 @@
+
+
 window.addEventListener("load",(e)=>{
+
 
     console.log("loaded");
      const btnAddGroup=document.getElementById("btnAddGroup");
@@ -10,7 +13,28 @@ window.addEventListener("load",(e)=>{
      const btnCloseAppoitmentAddForm=document.getElementById("btnCloseAppoitmentAddForm");
      
      const bntCloseAppoitmentAddGroupForm=document.getElementById("bntCloseAppoitmentAddGroupForm");
+
+     const formDateSelect =document.getElementById("formDateSelect");
+     const formDateInput=document.getElementById("formDateInput");
+
+     
+   let picker = flatpickr(formDateInput, {
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      time_24hr: true,
+      defaultDate: new Date(),
+      onClose: function(selectedDates, dateStr) {
+          selectedDate.textContent = "Odabrano: " + dateStr;
+      }
+  });
+
+  formDateSelect.addEventListener("click",()=>{
+
+   picker.open();
+  });
+
   
+
      btnAddGroup.addEventListener("click",()=>{
     showAppoitmentGrpForm();
       hideAppoitmentForm();

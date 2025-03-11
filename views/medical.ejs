@@ -3,9 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Medicinski</title>
     <link href="../commonStyles.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   </head>
   <body>
     <%- include("./partials/navbar") %>
@@ -44,7 +50,7 @@
             <div class="form-element-wrapper-col">
               <div class="form-element-wrapper-row">
                 <div class="form-element-wrapper-row-ext">
-                  <input id="formDateInput" disabled />
+                  <input id="formDateInput" name="appointmentDate" />
                 </div>
                 <div class="container-form-row-btn">
                   <button id="formDateSelect" type="button">📅</button>
@@ -57,7 +63,7 @@
                 <label>Opis termina</label>
               </div>
               <div class="form-element-wrapper-row">
-                <input />
+                <input name="appointmentDesc" />
               </div>
             </div>
 
@@ -66,14 +72,12 @@
                 <label>Grupa termina</label>
               </div>
               <div class="form-element-wrapper-row">
-
-                <select>
-                  <% if (groups && groups.length > 0) { %>
-                    <% groups.forEach(group => { %>
-                      <option><%= group.appointment_group %></option>
-                    <% }) %>
-                  <% } else { %>
-                    <option disabled>No groups found</option>
+                <select name="appointmentGroup">
+                  <% if (groups && groups.length > 0) { %> <%
+                  groups.forEach(group => { %>
+                  <option><%= group.appointment_group %></option>
+                  <% }) %> <% } else { %>
+                  <option disabled>No groups found</option>
                   <% } %>
                 </select>
               </div>
@@ -100,7 +104,7 @@
             class="form-body-container"
           >
             <div class="form-element-wrapper-col">
-              <input name="id" type="hidden" value="0">
+              <input name="id" type="hidden" value="0" />
               <div class="form-element-wrapper-row">
                 <label>Naziv grupe</label>
               </div>

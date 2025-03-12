@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const homecontroller=require("../../controllers/homecontroller");
+const homecontroller=require("../../controllers/home/homecontroller");
 const sessionManger=require("../../middleware/sessionMidleware");
 
 

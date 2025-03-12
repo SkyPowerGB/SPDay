@@ -1,5 +1,5 @@
 const express = require('express');
-const controller=require('../../controllers/medicalController');
+const controller=require('../../controllers/medical/medicalController');
 const router = express.Router();
 const sessionManger=require("../../middleware/sessionMidleware");
 
@@ -13,5 +13,8 @@ router.post("/Medical/AppoitmentGroup",sessionManger.authenticateSession,control
     
     res.redirect("/Medical");
 });
+
+router.post("/Medical/AppointmentsAddEdit",controller.addEditAppointments);
+
 
 module.exports=router;

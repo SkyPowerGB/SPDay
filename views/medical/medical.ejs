@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   </head>
   <body>
-    <%- include("./partials/navbar") %>
+    <%- include("../partials/navbar") %>
 
     <div></div>
 
@@ -40,7 +40,8 @@
             <button id="btnCloseAppoitmentAddForm">X</button>
           </div>
 
-          <form class="form-body-container">
+          <form method="POST" action="/Medical/AppointmentsAddEdit" class="form-body-container">
+            <input  name="appointmentId" type="hidden" value="0">
             <div class="form-element-wrapper-col">
               <div class="form-element-wrapper-row">
                 <label>Datum termina</label>
@@ -75,7 +76,7 @@
                 <select name="appointmentGroup">
                   <% if (groups && groups.length > 0) { %> <%
                   groups.forEach(group => { %>
-                  <option><%= group.appointment_group %></option>
+                  <option value=" <%=group.appointment_group_id %>" ><%= group.appointment_group %></option>
                   <% }) %> <% } else { %>
                   <option disabled>No groups found</option>
                   <% } %>
@@ -134,13 +135,17 @@
             </tr>
           </thead>
           <tbody>
+            <%  %>
             <tr>
+             
               <td>id</td>
               <td>opis</td>
               <td>datum</td>
               <td><button>uredi</button></td>
               <td><button>izbrisi</button></td>
+           
             </tr>
+            <% %>
           </tbody>
         </table>
       </div>

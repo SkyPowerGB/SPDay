@@ -1,4 +1,4 @@
-const db=require("../config/db");
+const db=require("../../config/db");
 const sanitize = require("sanitize-html");
 
 async function addGroup(uid,groupname){

@@ -1,6 +1,6 @@
 const validator = require("validator");
 const sanitize = require("sanitize-html");
-const userModel = require("../models/user");
+const userModel = require("../../models/user");
 const bcrypt = require("bcrypt");
 
 const session = require('express-session');

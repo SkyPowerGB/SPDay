@@ -12,14 +12,15 @@ async function createNewAppoitment(appointId,date,desc,group,uid){
     return result; 
 };
 
-async function getAllAppointmnets(userId){
-    try{
-    let querry="select * from appointments where user_account_id=?";
-    const [rows]=await db.execute(querry,[userId]);
-    return rows;
-    }catch(e){
+async function  getAllAppointments(userId) {
+    try {
+        let query = "CALL getAllAppointments(?)";
+        const [results] = await db.query(query, [userId]); 
+        return results[0] || results; 
+    } catch (e) {
+        console.error(e);
         return null;       
     }
 }
 
-module.exports={createNewAppoitment,getAllAppointmnets}
+module.exports={createNewAppoitment,getAllAppointments}

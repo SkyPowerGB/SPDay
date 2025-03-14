@@ -11,7 +11,8 @@ async function loadPage(req, res, next) {
         }
 
         const data = await appointGroupModel.getGroups(userId); 
-        const appoitmentsData=await model.getAllAppointmnets(userId);
+        const appoitmentsData=await model.getAllAppointments(userId);
+        
 
         appoitmentsData.forEach(element => {
           let dt = element.appointment_date_time;

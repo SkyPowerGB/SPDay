@@ -128,13 +128,16 @@
         </div>
       </div>
 
+
+      <!--TABLICA Termina  -->
       <div>
         <table>
           <thead>
             <tr>
-              <th></th>
-              <th>Opis Termina</th>
+              <th>id</th>
+              <th>Naslov Termina</th>
               <th>Datum termina</th>
+              <th>Grupa termina</th>
               <th></th>
               <th></th>
             </tr>
@@ -144,11 +147,16 @@
               appoitmentsData.forEach(function(appointment){   %>
             <tr id="<%="appointmentTableRow_"+appointment.appointment_id %>">
              
-              <td><%= appointment.appointment_id %></td>
-              <td><%= appointment.appointment_desc %></td>
-              <td><%= appointment.formatted_date %></td>
-              <td><button value="<%= appointment.appointment_id %>" class="btn-table-edit   hidden" >uredi</button></td>
-              <td><button value="" class="btn-table-edit  hidden"   >izbrisi</button></td>
+              <td ><%= appointment.appointment_id %></td>
+              <td id="<%="appointmentTableRow_descData_"+appointment.appointment_id %>" ><%= appointment.appointment_desc %></td>
+              <td  ><%= appointment.formatted_date %> 
+                <input id="<%="appointmentTableRow_dateData_"+appointment.appointment_id %>" value="<%= appointment.formatted_date %> " type="hidden"> </td>
+
+                <td ><%= appointment.appointment_group %></td>
+
+
+              <td><button    value="<%= appointment.appointment_id %>" class="btn-table-edit btn-appointment-table-edit  hidden" >uredi</button></td>
+              <td><button    value="<%= appointment.appointment_id %>" class="btn-table-edit  btn-appointment-table-delete  hidden"   >izbrisi</button></td>
            
             </tr>
             <% });} %>
@@ -156,6 +164,8 @@
         </table>
       </div>
 
+
+      <!--TABLICA Grupa  -->
       <div>
         <table>
           <thead>
@@ -168,13 +178,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>id</td>
-              <td>opis</td>
-
-              <td><button>uredi</button></td>
-              <td><button>izbrisi</button></td>
-            </tr>
+            <% if (groups && groups.length > 0) { %> <%
+                  
+                  groups.forEach(group => { %>
+                    <tr>
+                      <td ><%= group.appointment_group_id %></td>
+                      <td><%= group.appointment_group %></td>
+                
+                      
+                  <td><button class="btn-table-edit  btn-appointment-grp-table-edit  hidden">uredi</button></td>
+                  <td><button class="btn-table-edit  btn-appointment-grp-table-delete   hidden">izbrisi</button></td>
+                </tr>
+                  <% }) }%> 
+        
           </tbody>
         </table>
       </div>

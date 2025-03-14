@@ -20,6 +20,9 @@
 
     <div class="content-columns-container">
       <div class="sidebar-div">
+        <div class="sidebar-container">
+          <button id="btnEdit">Uredi</button>
+        </div>
         <div class="sidebar-container"><button>Termini</button></div>
         <div class="sidebar-container"><button>Grupe</button></div>
         <div class="sidebar-container">
@@ -32,6 +35,8 @@
         <div class="sidebar-container">
           <a href="medicalDataExport">Izvoz podataka</a>
         </div>
+      
+        
       </div>
 
       <div id="appoitmentAddForm" class="hidden popup-container">
@@ -135,17 +140,18 @@
             </tr>
           </thead>
           <tbody>
-            <%  %>
-            <tr>
+            <% if (appoitmentsData && appoitmentsData.length > 0){
+              appoitmentsData.forEach(function(appointment){   %>
+            <tr id="<%="appointmentTableRow_"+appointment.appointment_id %>">
              
-              <td>id</td>
-              <td>opis</td>
-              <td>datum</td>
-              <td><button>uredi</button></td>
-              <td><button>izbrisi</button></td>
+              <td><%= appointment.appointment_id %></td>
+              <td><%= appointment.appointment_desc %></td>
+              <td><%= appointment.formatted_date %></td>
+              <td><button value="<%= appointment.appointment_id %>" class="btn-table-edit   hidden" >uredi</button></td>
+              <td><button value="" class="btn-table-edit  hidden"   >izbrisi</button></td>
            
             </tr>
-            <% %>
+            <% });} %>
           </tbody>
         </table>
       </div>
@@ -172,6 +178,8 @@
           </tbody>
         </table>
       </div>
+
+
     </div>
     <script src="script.js"></script>
   </body>

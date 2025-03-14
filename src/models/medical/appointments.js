@@ -8,7 +8,7 @@ async function createNewAppoitment(appointId,date,desc,group,uid){
     const querry="select createEditAppointments(?,?,?,?,?);";
 
 
-    const [result] = await db.execute(querry, [appointId,date,desc,group,uid]);
+    const [result] = await db.execute(querry, [appointId,desc,date,group,uid]);
     return result; 
 };
 

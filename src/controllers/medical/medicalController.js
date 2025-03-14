@@ -1,6 +1,8 @@
 const session = require("express-session");
 const model=require("../../models/medical/appointments");
 const appointGroupModel=require("../../models/medical/appoitment_group");
+const moment = require('moment');
+
 async function loadPage(req, res, next) {
     try {
         const userId = req.session.userId; 
@@ -10,9 +12,15 @@ async function loadPage(req, res, next) {
 
         const data = await appointGroupModel.getGroups(userId); 
         const appoitmentsData=await model.getAllAppointmnets(userId);
-       
+
+        appoitmentsData.forEach(element => {
+          let dt = element.appointment_date_time;
+          element.formatted_date = moment(dt).format('DD.MM.YYYY HH:mm'); 
+      });
+      
       
         res.render("medical/medical", { groups: data,appoitmentsData:appoitmentsData }); 
+        
     } catch (error) {
         console.error(error);
         res.status(500).send("Error loading page.");

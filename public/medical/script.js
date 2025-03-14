@@ -17,6 +17,18 @@ window.addEventListener("load",(e)=>{
      const formDateSelect =document.getElementById("formDateSelect");
      const formDateInput=document.getElementById("formDateInput");
 
+     const editButtons = document.getElementsByClassName("btn-table-edit");
+     const editSidebarBtn = document.getElementById("btnEdit");
+     
+     editSidebarBtn.addEventListener("click", () => {
+         Array.from(editButtons).forEach(element => {
+             if (element.classList.contains("hidden")) {
+                 element.classList.remove("hidden");  
+             } else {
+                 element.classList.add("hidden");
+             }
+         });
+     });
      
    let picker = flatpickr(formDateInput, {
       enableTime: true,

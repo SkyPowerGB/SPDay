@@ -16,8 +16,12 @@ async function loadPage(req, res, next) {
 
         appoitmentsData.forEach(element => {
           let dt = element.appointment_date_time;
+          
+
           element.formatted_date = moment(dt).format('DD.MM.YYYY HH:mm'); 
-      });
+        
+          element.inputFormat =new Date (element.appointment_date_time).toISOString().slice(0, 16).replace("T", " ");
+        });
       
       
         res.render("medical/medical", { groups: data,appoitmentsData:appoitmentsData }); 

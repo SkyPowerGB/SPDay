@@ -39,6 +39,7 @@
         
       </div>
 
+         <!--FORMA Termina  -->
       <div id="appoitmentAddForm" class="hidden popup-container">
         <div class="form-container">
           <div class="form-close-button-container">
@@ -46,7 +47,7 @@
           </div>
 
           <form method="POST" action="/Medical/AppointmentsAddEdit" class="form-body-container">
-            <input  name="appointmentId" type="hidden" value="0">
+            <input id="appointFormIdInput" name="appointmentId" type="hidden" value="0">
             <div class="form-element-wrapper-col">
               <div class="form-element-wrapper-row">
                 <label>Datum termina</label>
@@ -69,7 +70,7 @@
                 <label>Opis termina</label>
               </div>
               <div class="form-element-wrapper-row">
-                <input name="appointmentDesc" />
+                <input id="appointmentDesc" name="appointmentDesc" />
               </div>
             </div>
 
@@ -78,7 +79,7 @@
                 <label>Grupa termina</label>
               </div>
               <div class="form-element-wrapper-row">
-                <select name="appointmentGroup">
+                <select id="appointFormAppointGroupSelect" name="appointmentGroup">
                   <% if (groups && groups.length > 0) { %> <%
                   groups.forEach(group => { %>
                   <option value=" <%=group.appointment_group_id %>" ><%= group.appointment_group %></option>
@@ -98,6 +99,8 @@
         </div>
       </div>
 
+       <!--FORMA  GRUPI Termina  -->
+      
       <div id="appoitmentAddGroupForm" class="hidden popup-container">
         <div class="form-container">
           <div class="form-close-button-container">
@@ -150,9 +153,12 @@
               <td ><%= appointment.appointment_id %></td>
               <td id="<%="appointmentTableRow_descData_"+appointment.appointment_id %>" ><%= appointment.appointment_desc %></td>
               <td  ><%= appointment.formatted_date %> 
-                <input id="<%="appointmentTableRow_dateData_"+appointment.appointment_id %>" value="<%= appointment.formatted_date %> " type="hidden"> </td>
+                <input id="<%="appointmentTableRow_dateData_"+appointment.appointment_id %>"
+                 value="<%= appointment.inputFormat %> " type="hidden"> </td>
 
-                <td ><%= appointment.appointment_group %></td>
+                <td 
+                id="<%="appointmentTableRow_groupData_"+appointment.appointment_id %>"
+                ><%= appointment.appointment_group %></td>
 
 
               <td><button    value="<%= appointment.appointment_id %>" class="btn-table-edit btn-appointment-table-edit  hidden" >uredi</button></td>

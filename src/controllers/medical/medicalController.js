@@ -13,15 +13,15 @@ async function loadPage(req, res, next) {
         const data = await appointGroupModel.getGroups(userId); 
         const appoitmentsData=await model.getAllAppointments(userId);
         
-
         appoitmentsData.forEach(element => {
           let dt = element.appointment_date_time;
-          
-
+      
+          // Display format for the UI (DD.MM.YYYY HH:mm)
           element.formatted_date = moment(dt).format('DD.MM.YYYY HH:mm'); 
-        
-          element.inputFormat =new Date (element.appointment_date_time).toISOString().slice(0, 16).replace("T", " ");
-        });
+      
+          // Input format for backend (YYYY-MM-DD HH:mm)
+          element.inputFormat = moment(dt).format('YYYY-MM-DD HH:mm'); // Corrected 'YYY' to 'YYYY'
+      });
       
       
         res.render("medical/medical", { groups: data,appoitmentsData:appoitmentsData }); 
@@ -50,6 +50,7 @@ let appointId=req.body.appointmentId;
 let date=req.body.appointmentDate;
 let desc=req.body.appointmentDesc;
 let groupId=req.body.appointmentGroup;
+
 model.createNewAppoitment(appointId,date,desc,groupId,  req.session.userId);
 
 

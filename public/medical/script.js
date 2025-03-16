@@ -31,15 +31,34 @@ window.addEventListener("load", (e) => {
     "btn-appointment-table-edit"
   );
 
+  let picker = flatpickr(formDateInput, {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true,
+    defaultDate: new Date(),
+    onClose: function (selectedDates, dateStr) {
+      selectedDate.textContent = "Odabrano: " + dateStr;
+    },
+  });
+
+
   Array.from(appointmentTableEditButtons).forEach((btn) => {
     btn.addEventListener("click", () => {
       let desc=  document.getElementById("appointmentTableRow_descData_"+btn.value).innerHTML;
       let date=document.getElementById("appointmentTableRow_dateData_"+btn.value).value;
       let groupNm=document.getElementById("appointmentTableRow_groupData_"+btn.value).innerHTML;
-      formDateInput.value=date;
+      picker.setDate(date); 
 
       appointFormIdInput.value=btn.value;
-      appointFormAppointGroupSelect.value=groupNm;
+
+      const options = appointFormAppointGroupSelect.options;
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].textContent === groupNm) {
+          appointFormAppointGroupSelect.selectedIndex = i; 
+          break;
+        }
+      }
+  
       appointFormDescInput.value=desc;
       
         showAppoitmentForm();
@@ -56,15 +75,6 @@ window.addEventListener("load", (e) => {
     });
   });
 
-  let picker = flatpickr(formDateInput, {
-    enableTime: true,
-    dateFormat: "Y-m-d H:i",
-    time_24hr: true,
-    defaultDate: new Date(),
-    onClose: function (selectedDates, dateStr) {
-      selectedDate.textContent = "Odabrano: " + dateStr;
-    },
-  });
 
   formDateSelect.addEventListener("click", () => {
     picker.open();

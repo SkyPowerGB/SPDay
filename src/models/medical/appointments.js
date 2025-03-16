@@ -8,9 +8,12 @@ async function createNewAppoitment(appointId,date,desc,group,uid){
 
 //  appointId INT,  appointDesc TEXT, appointDate DATETIME, groupID INT, userId INT    
     const querry="select createEditAppointments(?,?,?,?,?);";
-    const dateFormated= moment(date).format('YYYY-MM-DD HH:mm').trim(); 
+    console.log(`dateinput: ${date}`);
 
-    const [result] = await db.execute(querry, [appointId,desc,dateFormated,group,uid]);
+ 
+
+
+    const [result] = await db.execute(querry, [appointId,desc,date,group,uid]);
     return result; 
 };
 

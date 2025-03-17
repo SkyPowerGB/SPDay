@@ -1,5 +1,5 @@
 const session = require("express-session");
-const model=require("../../models/medical/appointments");
+const appointmentModel=require("../../models/medical/appointments");
 const appointGroupModel=require("../../models/medical/appoitment_group");
 const moment = require('moment');
 
@@ -11,16 +11,16 @@ async function loadPage(req, res, next) {
         }
 
         const data = await appointGroupModel.getGroups(userId); 
-        const appoitmentsData=await model.getAllAppointments(userId);
+        const appoitmentsData=await appointmentModel.getAllAppointments(userId);
         
         appoitmentsData.forEach(element => {
           let dt = element.appointment_date_time;
       
-          // Display format for the UI (DD.MM.YYYY HH:mm)
+          
           element.formatted_date = moment(dt).format('DD.MM.YYYY HH:mm'); 
       
-          // Input format for backend (YYYY-MM-DD HH:mm)
-          element.inputFormat = moment(dt).format('YYYY-MM-DD HH:mm'); // Corrected 'YYY' to 'YYYY'
+
+          element.inputFormat = moment(dt).format('YYYY-MM-DD HH:mm');
       });
       
       
@@ -51,9 +51,26 @@ let date=req.body.appointmentDate;
 let desc=req.body.appointmentDesc;
 let groupId=req.body.appointmentGroup;
 
-model.createNewAppoitment(appointId,date,desc,groupId,  req.session.userId);
+appointmentModel.createNewAppoitment(appointId,date,desc,groupId,  req.session.userId);
 
 
 }
 
-module.exports = { addEditAppoitmentGroup ,loadPage,addEditAppointments};
+
+async function deleteAppointments(req,res,next){ 
+console.log(req.body);
+ let result=req.body;
+ let id=result.deleteElementId;
+ let type=result.deleteElementType;
+  if(type=="appointment"){
+
+    await appointmentModel.deleteAppointment(id);
+  }
+
+
+
+  res.redirect("/Medical");
+ }
+
+
+module.exports = { addEditAppoitmentGroup ,loadPage,addEditAppointments,deleteAppointments};

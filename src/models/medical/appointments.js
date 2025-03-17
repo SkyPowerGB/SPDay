@@ -29,7 +29,9 @@ async function  getAllAppointments(userId) {
 }
 
 async function deleteAppointment(id) {
-    
+    sql="delete from appointments where appointment_id=?";
+    const [result] = await db.execute(sql, [id]);
+    return result;
 }
 
-module.exports={createNewAppoitment,getAllAppointments}
+module.exports={createNewAppoitment,getAllAppointments,deleteAppointment}

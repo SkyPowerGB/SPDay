@@ -19,6 +19,7 @@
     <div></div>
 
     <div class="content-columns-container">
+
       <div class="sidebar-div">
         <div class="sidebar-container">
           <button id="btnEdit">Uredi</button>
@@ -132,6 +133,7 @@
       </div>
 
 
+
       <!--TABLICA Termina  -->
       <div>
         <table>
@@ -201,7 +203,27 @@
         </table>
       </div>
 
+      <div id="deletePopupForm" class="hidden popup-container">
+        <div class="form-container">
 
+        <form  method="POST" action="/Medical/AppointmentsDelete" class="form-body-container">
+          <input id="deleteElementId" name="deleteElementId" type="hidden">
+          <input id="deleteElementType" name="deleteElementType" type="hidden">
+
+          <div class="form-element-wrapper-col">
+          <p id="deleteWarningMsg"></p>
+          
+          
+          <div class="form-element-wrapper-row">
+            <button id="popupCancelDeleteBtn" type="button">Odustani</button>
+          <button id="popupDeleteBtn" type="submit">Izbriši</button>
+     
+          </div>  
+        </div>
+          </form>
+        </div>
+
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

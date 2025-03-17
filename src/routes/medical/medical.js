@@ -17,4 +17,8 @@ router.post("/Medical/AppoitmentGroup",sessionManger.authenticateSession,control
 router.post("/Medical/AppointmentsAddEdit",controller.addEditAppointments);
 
 
+router.post("/Medical/AppointmentsDelete",controller.deleteAppointments);
+
+
+
 module.exports=router;

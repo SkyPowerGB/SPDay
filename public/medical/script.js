@@ -19,17 +19,29 @@ window.addEventListener("load", (e) => {
   const formDateSelect = document.getElementById("formDateSelect");
 
   const formDateInput = document.getElementById("formDateInput");
-  const appointFormIdInput=document.getElementById("appointFormIdInput");
-  const appointFormDescInput=document.getElementById("appointmentDesc");
-  const appointFormAppointGroupSelect=document.getElementById("appointFormAppointGroupSelect");
+  const appointFormIdInput = document.getElementById("appointFormIdInput");
+  const appointFormDescInput = document.getElementById("appointmentDesc");
+  const appointFormAppointGroupSelect = document.getElementById(
+    "appointFormAppointGroupSelect"
+  );
 
+  const closeDeleteePopup = document.getElementById("popupCancelDeleteBtn");
+
+  
 
   const editButtons = document.getElementsByClassName("btn-table-edit");
   const editSidebarBtn = document.getElementById("btnEdit");
+  const deletePopupForm = document.getElementById("deletePopupForm");
+
+
 
   const appointmentTableEditButtons = document.getElementsByClassName(
     "btn-appointment-table-edit"
   );
+  const appointmentTableDeleteButtons = document.getElementsByClassName(
+    "btn-appointment-table-delete"
+  );
+
 
   let picker = flatpickr(formDateInput, {
     enableTime: true,
@@ -44,25 +56,41 @@ window.addEventListener("load", (e) => {
 
   Array.from(appointmentTableEditButtons).forEach((btn) => {
     btn.addEventListener("click", () => {
-      let desc=  document.getElementById("appointmentTableRow_descData_"+btn.value).innerHTML;
-      let date=document.getElementById("appointmentTableRow_dateData_"+btn.value).value;
-      let groupNm=document.getElementById("appointmentTableRow_groupData_"+btn.value).innerHTML;
-      picker.setDate(date); 
+      let desc = document.getElementById(
+        "appointmentTableRow_descData_" + btn.value
+      ).innerHTML;
+      let date = document.getElementById(
+        "appointmentTableRow_dateData_" + btn.value
+      ).value;
+      let groupNm = document.getElementById(
+        "appointmentTableRow_groupData_" + btn.value
+      ).innerHTML;
+      picker.setDate(date);
 
-      appointFormIdInput.value=btn.value;
+      appointFormIdInput.value = btn.value;
 
       const options = appointFormAppointGroupSelect.options;
       for (let i = 0; i < options.length; i++) {
         if (options[i].textContent === groupNm) {
-          appointFormAppointGroupSelect.selectedIndex = i; 
+          appointFormAppointGroupSelect.selectedIndex = i;
           break;
         }
       }
-  
-      appointFormDescInput.value=desc;
-      
-        showAppoitmentForm();
+
+      appointFormDescInput.value = desc;
+
+      showAppoitmentForm();
     });
+  });
+  Array.from(appointmentTableDeleteButtons).forEach((btn) => {
+    btn.addEventListener("click", () => {
+      showDeletePopup(btn.value, "appointment","Da li ste sigurni da želite da obrišete termin?");
+    });
+  });
+
+
+  closeDeleteePopup.addEventListener("click", () => {
+    hideDeletePopup();
   });
 
   editSidebarBtn.addEventListener("click", () => {
@@ -74,7 +102,6 @@ window.addEventListener("load", (e) => {
       }
     });
   });
-
 
   formDateSelect.addEventListener("click", () => {
     picker.open();
@@ -98,11 +125,11 @@ window.addEventListener("load", (e) => {
     hideAppoitmentGrpForm();
   });
 
-  function showAppoitmentForm(id, date,groupNm, desc) {
-    formDateInput.value=date;
-    appointFormDescInput.value=desc;
-    appointFormIdInput.value=id;
-    appointFormAppointGroupSelect.value=groupNm;
+  function showAppoitmentForm(id, date, groupNm, desc) {
+    formDateInput.value = date;
+    appointFormDescInput.value = desc;
+    appointFormIdInput.value = id;
+    appointFormAppointGroupSelect.value = groupNm;
     showAppoitmentForm();
   }
 
@@ -126,4 +153,23 @@ window.addEventListener("load", (e) => {
       appoitmentAddGroupForm.classList.add("hidden");
     }
   }
+
+  function showDeletePopup(id, type,msg) {
+    if (deletePopupForm.classList.contains("hidden")){
+      deletePopupForm.classList.remove("hidden");
+    }
+    document.getElementById("deleteWarningMsg").textContent = msg;  
+    document.getElementById("deleteElementId").value = id;
+    document.getElementById("deleteElementType").value = type;
+  }
+
+  function hideDeletePopup() {
+    if (!deletePopupForm.classList.contains("hidden")){
+      deletePopupForm.classList.add("hidden");
+
+    }
+   
+  }
+
+
 });

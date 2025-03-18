@@ -19,7 +19,6 @@
     <div></div>
 
     <div class="content-columns-container">
-
       <div class="sidebar-div">
         <div class="sidebar-container">
           <button id="btnEdit">Uredi</button>
@@ -36,19 +35,26 @@
         <div class="sidebar-container">
           <a href="medicalDataExport">Izvoz podataka</a>
         </div>
-      
-        
       </div>
 
-         <!--FORMA Termina  -->
+      <!--FORMA Termina  -->
       <div id="appoitmentAddForm" class="hidden popup-container">
         <div class="form-container">
           <div class="form-close-button-container">
             <button id="btnCloseAppoitmentAddForm">X</button>
           </div>
 
-          <form method="POST" action="/Medical/AppointmentsAddEdit" class="form-body-container">
-            <input id="appointFormIdInput" name="appointmentId" type="hidden" value="0">
+          <form
+            method="POST"
+            action="/Medical/AppointmentsAddEdit"
+            class="form-body-container"
+          >
+            <input
+              id="appointFormIdInput"
+              name="appointmentId"
+              type="hidden"
+              value="0"
+            />
             <div class="form-element-wrapper-col">
               <div class="form-element-wrapper-row">
                 <label>Datum termina</label>
@@ -80,10 +86,15 @@
                 <label>Grupa termina</label>
               </div>
               <div class="form-element-wrapper-row">
-                <select id="appointFormAppointGroupSelect" name="appointmentGroup">
+                <select
+                  id="appointFormAppointGroupSelect"
+                  name="appointmentGroup"
+                >
                   <% if (groups && groups.length > 0) { %> <%
                   groups.forEach(group => { %>
-                  <option value=" <%=group.appointment_group_id %>" ><%= group.appointment_group %></option>
+                  <option value=" <%=group.appointment_group_id %>">
+                    <%= group.appointment_group %>
+                  </option>
                   <% }) %> <% } else { %>
                   <option disabled>No groups found</option>
                   <% } %>
@@ -100,8 +111,8 @@
         </div>
       </div>
 
-       <!--FORMA  GRUPI Termina  -->
-      
+      <!--FORMA  GRUPI Termina  -->
+
       <div id="appoitmentAddGroupForm" class="hidden popup-container">
         <div class="form-container">
           <div class="form-close-button-container">
@@ -114,13 +125,13 @@
             class="form-body-container"
           >
             <div class="form-element-wrapper-col">
-              <input name="id" type="hidden" value="0" />
+              <input id="appointGrpPopupForm-id" name="id" type="hidden" value="0" />
               <div class="form-element-wrapper-row">
                 <label>Naziv grupe</label>
               </div>
               <div class="form-element-wrapper-row">
-                <input name="groupName" />
-              </div>
+                <input   id="appointGrpPopupForm-grpNm" name="groupName" />
+              </div> 
             </div>
 
             <div class="form-element-wrapper-col">
@@ -132,97 +143,35 @@
         </div>
       </div>
 
-
-
-      <!--TABLICA Termina  -->
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>id</th>
-              <th>Naslov Termina</th>
-              <th>Datum termina</th>
-              <th>Grupa termina</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% if (appoitmentsData && appoitmentsData.length > 0){
-              appoitmentsData.forEach(function(appointment){   %>
-            <tr id="<%="appointmentTableRow_"+appointment.appointment_id %>">
-             
-              <td ><%= appointment.appointment_id %></td>
-              <td id="<%="appointmentTableRow_descData_"+appointment.appointment_id %>" ><%= appointment.appointment_desc %></td>
-              <td  ><%= appointment.formatted_date %> 
-                <input id="<%="appointmentTableRow_dateData_"+appointment.appointment_id %>"
-                 value="<%= appointment.inputFormat %> " type="hidden"> </td>
-
-                <td 
-                id="<%="appointmentTableRow_groupData_"+appointment.appointment_id %>"
-                ><%= appointment.appointment_group %></td>
-
-
-              <td><button    value="<%= appointment.appointment_id %>" class="btn-table-edit btn-appointment-table-edit  hidden" >uredi</button></td>
-              <td><button    value="<%= appointment.appointment_id %>" class="btn-table-edit  btn-appointment-table-delete  hidden"   >izbrisi</button></td>
-           
-            </tr>
-            <% });} %>
-          </tbody>
-        </table>
-      </div>
-
-
-      <!--TABLICA Grupa  -->
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Grupa Termina</th>
-
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% if (groups && groups.length > 0) { %> <%
-                  
-                  groups.forEach(group => { %>
-                    <tr>
-                      <td ><%= group.appointment_group_id %></td>
-                      <td><%= group.appointment_group %></td>
-                
-                      
-                  <td><button class="btn-table-edit  btn-appointment-grp-table-edit  hidden">uredi</button></td>
-                  <td><button class="btn-table-edit  btn-appointment-grp-table-delete   hidden">izbrisi</button></td>
-                </tr>
-                  <% }) }%> 
-        
-          </tbody>
-        </table>
-      </div>
+      <%- include("./parts/appoint_table") %> <%-
+      include("./parts/appoint_grp_table") %>
 
       <div id="deletePopupForm" class="hidden popup-container">
         <div class="form-container">
+          <form
+            method="POST"
+            action="/Medical/AppointmentsDelete"
+            class="form-body-container"
+          >
+            <input id="deleteElementId" name="deleteElementId" type="hidden" />
+            <input
+              id="deleteElementType"
+              name="deleteElementType"
+              type="hidden"
+            />
 
-        <form  method="POST" action="/Medical/AppointmentsDelete" class="form-body-container">
-          <input id="deleteElementId" name="deleteElementId" type="hidden">
-          <input id="deleteElementType" name="deleteElementType" type="hidden">
+            <div class="form-element-wrapper-col">
+              <p id="deleteWarningMsg"></p>
 
-          <div class="form-element-wrapper-col">
-          <p id="deleteWarningMsg"></p>
-          
-          
-          <div class="form-element-wrapper-row">
-            <button id="popupCancelDeleteBtn" type="button">Odustani</button>
-          <button id="popupDeleteBtn" type="submit">Izbriši</button>
-     
-          </div>  
-        </div>
+              <div class="form-element-wrapper-row">
+                <button id="popupCancelDeleteBtn" type="button">
+                  Odustani
+                </button>
+                <button id="popupDeleteBtn" type="submit">Izbriši</button>
+              </div>
+            </div>
           </form>
         </div>
-
       </div>
     </div>
     <script src="script.js"></script>

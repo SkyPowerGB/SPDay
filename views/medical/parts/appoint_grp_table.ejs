@@ -1,0 +1,38 @@
+<!--TABLICA Grupa  -->
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Grupa Termina</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (groups && groups.length > 0) { %> <% groups.forEach(function(group)
+      { %>
+      <tr>
+        <td><%= group.appointment_group_id %></td>
+        <td id="<%= 'appointGrpData-name' + group.appointment_group_id %>"> <%= group.appointment_group %>  </td>
+        <td>
+          <button
+            value="<%= group.appointment_group_id %>"
+            class="btn-table-edit btn-appointment-grp-table-edit hidden"
+          >
+            uredi
+          </button>
+        </td>
+        <td>
+          <button
+            value="<%= group.appointment_group_id %>"
+            class="btn-table-edit btn-appointment-grp-table-delete hidden"
+          >
+            izbrisi
+          </button>
+        </td>
+      </tr>
+      <% }); %> <% } %>
+    </tbody>
+  </table>
+</div>

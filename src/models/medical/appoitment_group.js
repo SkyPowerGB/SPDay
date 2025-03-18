@@ -20,8 +20,8 @@ async function getGroups(uid) {
 
 async function updateGroup(gid,data){
     const query="update appointment_group set appointment_group=? where appointment_group_id=?;";
-    let datas=sanitize(data);
-    const [result] = await db.execute(query, [gid,datas]);
+ 
+    const [result] = await db.execute(query, [data,gid]);
     return result;
 }
 

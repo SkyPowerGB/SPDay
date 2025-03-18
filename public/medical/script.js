@@ -25,24 +25,6 @@ window.addEventListener("load", (e) => {
     "appointFormAppointGroupSelect"
   );
 
-  const closeDeleteePopup = document.getElementById("popupCancelDeleteBtn");
-
-  
-
-  const editButtons = document.getElementsByClassName("btn-table-edit");
-  const editSidebarBtn = document.getElementById("btnEdit");
-  const deletePopupForm = document.getElementById("deletePopupForm");
-
-
-
-  const appointmentTableEditButtons = document.getElementsByClassName(
-    "btn-appointment-table-edit"
-  );
-  const appointmentTableDeleteButtons = document.getElementsByClassName(
-    "btn-appointment-table-delete"
-  );
-
-
   let picker = flatpickr(formDateInput, {
     enableTime: true,
     dateFormat: "Y-m-d H:i",
@@ -52,6 +34,47 @@ window.addEventListener("load", (e) => {
       selectedDate.textContent = "Odabrano: " + dateStr;
     },
   });
+
+  const closeDeleteePopup = document.getElementById("popupCancelDeleteBtn");
+
+  
+
+  const editButtons = document.getElementsByClassName("btn-table-edit");
+  const editSidebarBtn = document.getElementById("btnEdit");
+  const deletePopupForm = document.getElementById("deletePopupForm");
+
+  const appointmentGrpTabEditBtns = document.getElementsByClassName("btn-appointment-grp-table-edit");
+  const appointmentGrpTabDeleteBtns = document.getElementsByClassName("btn-appointment-grp-table-delete");
+
+  Array.from(appointmentGrpTabEditBtns).forEach((btn) => {
+  btn.addEventListener("click", () => {
+     
+    console.log(btn.value);
+    const appointGrpId=btn.value;
+    const appointGrpData=document.getElementById("appointGrpData-name"+appointGrpId).innerHTML;
+ 
+    showAppointmentGrpForm(appointGrpId,appointGrpData);
+
+   });
+
+
+  });
+
+  Array.from(appointmentGrpTabDeleteBtns).forEach((btn) => {
+    btn.addEventListener("click", () => { 
+      showDeletePopup(btn.value, "appointment_group","Da li ste sigurni da želite da obrišete grupu?");
+      
+
+    });
+  });
+
+
+  const appointmentTableEditButtons = document.getElementsByClassName(
+    "btn-appointment-table-edit"
+  );
+  const appointmentTableDeleteButtons = document.getElementsByClassName(
+    "btn-appointment-table-delete"
+  );
 
 
   Array.from(appointmentTableEditButtons).forEach((btn) => {
@@ -87,6 +110,9 @@ window.addEventListener("load", (e) => {
       showDeletePopup(btn.value, "appointment","Da li ste sigurni da želite da obrišete termin?");
     });
   });
+  
+
+
 
 
   closeDeleteePopup.addEventListener("click", () => {
@@ -133,6 +159,7 @@ window.addEventListener("load", (e) => {
     showAppoitmentForm();
   }
 
+
   function showAppoitmentForm() {
     if (appoitmentAddForm.classList.contains("hidden")) {
       appoitmentAddForm.classList.remove("hidden");
@@ -143,6 +170,16 @@ window.addEventListener("load", (e) => {
       appoitmentAddForm.classList.add("hidden");
     }
   }
+
+
+  function showAppointmentGrpForm(id, name) { 
+
+    document.getElementById("appointGrpPopupForm-id").value = id;
+    document.getElementById("appointGrpPopupForm-grpNm").value = name;
+
+    showAppoitmentGrpForm();
+  }
+
   function showAppoitmentGrpForm() {
     if (appoitmentAddGroupForm.classList.contains("hidden")) {
       appoitmentAddGroupForm.classList.remove("hidden");
@@ -153,6 +190,8 @@ window.addEventListener("load", (e) => {
       appoitmentAddGroupForm.classList.add("hidden");
     }
   }
+
+
 
   function showDeletePopup(id, type,msg) {
     if (deletePopupForm.classList.contains("hidden")){

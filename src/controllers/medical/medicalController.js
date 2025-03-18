@@ -34,10 +34,19 @@ async function loadPage(req, res, next) {
 
 async function addEditAppoitmentGroup(req, res, next) {
   try {
+    let gid= req.body.id;
+    let data=req.body.groupName;
+
+    if(gid==0){
     const restult = await appointGroupModel.addGroup(
       req.session.userId,
-      req.body.groupName
-    );
+      data
+    
+    );}else{
+       
+      const result=await appointGroupModel.updateGroup(req.body.id,data);
+      
+    }
   } catch (e) {}
 
   next();
@@ -65,12 +74,16 @@ console.log(req.body);
   if(type=="appointment"){
 
     await appointmentModel.deleteAppointment(id);
+  }else{
+    await appointGroupModel.deleteGroup(id);
   }
 
 
 
   res.redirect("/Medical");
  }
+
+
 
 
 module.exports = { addEditAppoitmentGroup ,loadPage,addEditAppointments,deleteAppointments};

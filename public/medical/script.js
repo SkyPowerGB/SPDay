@@ -111,9 +111,22 @@ window.addEventListener("load", (e) => {
     });
   });
   
+ 
+ const btnAppointToggle=document.getElementById("btnAppointToggle");
+ const btnGroupsToggle=document.getElementById("btnGroupsToggle");
+
+ const appointGrpTableContainer=document.getElementById("appointGrpTableContainer");
+ const appointTableContainer=document.getElementById("appointTableContainer");
 
 
-
+ btnAppointToggle.addEventListener("click",()=>{
+    hideAppointmentGrpTable();
+    showAppointmentTable();
+ });
+ btnGroupsToggle.addEventListener("click",()=>{
+    hideAppointmentTable();
+    showAppointmentGrpTable();
+  });
 
   closeDeleteePopup.addEventListener("click", () => {
     hideDeletePopup();
@@ -191,7 +204,26 @@ window.addEventListener("load", (e) => {
     }
   }
 
-
+function showAppointmentTable(){
+  if(appointTableContainer.classList.contains("hidden")){
+    appointTableContainer.classList.remove("hidden");
+  }
+}
+function hideAppointmentTable(){
+  if(!appointTableContainer.classList.contains("hidden")){
+    appointTableContainer.classList.add("hidden");
+  }
+}
+function showAppointmentGrpTable(){
+  if(appointGrpTableContainer.classList.contains("hidden")){
+    appointGrpTableContainer.classList.remove("hidden");
+  }
+}  
+function hideAppointmentGrpTable(){
+  if(!appointGrpTableContainer.classList.contains("hidden")){
+    appointGrpTableContainer.classList.add("hidden");
+  }
+}
 
   function showDeletePopup(id, type,msg) {
     if (deletePopupForm.classList.contains("hidden")){

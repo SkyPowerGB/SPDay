@@ -1,10 +1,11 @@
    <!--TABLICA Termina  -->
 <!--TABLICA Termina  -->
-<div>
+<div  id="appointTableContainer">
+  <h1>Termini</h1>
   <table>
     <thead>
       <tr>
-        <th>id</th>
+    
         <th>Naslov Termina</th>
         <th>Datum termina</th>
         <th>Grupa termina</th>
@@ -16,7 +17,7 @@
       <% if (appoitmentsData && appoitmentsData.length > 0) { %>
         <% appoitmentsData.forEach(function(appointment) { %>
           <tr id="<%= 'appointmentTableRow_' + appointment.appointment_id %>">
-            <td><%= appointment.appointment_id %></td>
+          
             <td id="<%= 'appointmentTableRow_descData_' + appointment.appointment_id %>">
               <%= appointment.appointment_desc %>
             </td>

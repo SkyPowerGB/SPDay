@@ -1,9 +1,10 @@
 <!--TABLICA Grupa  -->
-<div>
+<div id="appointGrpTableContainer" class="hidden">
+  <h1>Grupe Termina</h1>
   <table>
     <thead>
       <tr>
-        <th></th>
+        
         <th>Grupa Termina</th>
         <th></th>
         <th></th>
@@ -13,7 +14,7 @@
       <% if (groups && groups.length > 0) { %> <% groups.forEach(function(group)
       { %>
       <tr>
-        <td><%= group.appointment_group_id %></td>
+       
         <td id="<%= 'appointGrpData-name' + group.appointment_group_id %>"> <%= group.appointment_group %>  </td>
         <td>
           <button

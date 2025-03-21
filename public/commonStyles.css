@@ -102,3 +102,71 @@ font-size: xx-large;
     left: 40%;
     top:30%;
 }
+
+
+
+
+
+.table-container{
+  flex: 1;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+   padding-right: 1%;
+   padding-left: 1%;
+}
+.table-display-data{
+    width: 100%;
+    border: none;
+
+    border-collapse: collapse;
+    
+}
+.table-display-data thead{
+margin-bottom: 20px;
+background-color: rgb(181, 202, 255);
+font-size: large;   box-shadow: none;
+
+
+}
+.table-display-data-hader-row th{
+ 
+     padding-top: 10px;
+     padding-bottom: 10px;
+}
+.table-display-data-body-row {
+
+    padding: 0;
+    height: 50px;
+}
+.table-display-data-body-row td{
+    background-color: rgb(207, 228, 255);
+    font-size: large;
+
+
+     border-bottom: 2px solid rgb(131, 164, 198);
+}
+.table-display-data-body-row button{
+    width: 99%;
+ height: 50px;
+ margin: auto;
+    border: none;
+    font-weight: bolder;
+
+}
+.table-data-edit-td button{
+   
+    padding: 0;
+    background-color: rgb(181, 213, 255);
+    cursor: pointer;
+}
+.table-data-edit-td button:hover{
+    background-color: rgb(236, 244, 255);
+}
+.table-data-delete-td button{
+    background-color: rgb(253, 177, 177);
+   cursor: pointer;
+}
+.table-data-delete-td button:hover{
+    background-color: rgb(255, 237, 237);
+}

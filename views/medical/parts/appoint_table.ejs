@@ -1,10 +1,10 @@
    <!--TABLICA Termina  -->
 <!--TABLICA Termina  -->
-<div  id="appointTableContainer">
+<div  id="appointTableContainer" class="table-container">
   <h1>Termini</h1>
-  <table>
-    <thead>
-      <tr>
+  <table class="table-display-data">
+    <thead >
+      <tr class="table-display-data-hader-row">
     
         <th>Naslov Termina</th>
         <th>Datum termina</th>
@@ -16,7 +16,7 @@
     <tbody>
       <% if (appoitmentsData && appoitmentsData.length > 0) { %>
         <% appoitmentsData.forEach(function(appointment) { %>
-          <tr id="<%= 'appointmentTableRow_' + appointment.appointment_id %>">
+          <tr  class="table-display-data-body-row" id="<%= 'appointmentTableRow_' + appointment.appointment_id %>">
           
             <td id="<%= 'appointmentTableRow_descData_' + appointment.appointment_id %>">
               <%= appointment.appointment_desc %>
@@ -31,13 +31,13 @@
             <td id="<%= 'appointmentTableRow_groupData_' + appointment.appointment_id %>">
               <%= appointment.appointment_group %>
             </td>
-            <td>
+            <td class="table-data-edit-td">
               <button value="<%= appointment.appointment_id %>" 
                 class="btn-table-edit btn-appointment-table-edit hidden">
                 uredi
               </button>
             </td>
-            <td>
+            <td class="table-data-delete-td">
               <button value="<%= appointment.appointment_id %>" 
                 class="btn-table-edit btn-appointment-table-delete hidden">
                 izbrisi

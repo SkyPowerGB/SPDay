@@ -1,0 +1,31 @@
+  <!--FORMA  GRUPI Termina  -->
+
+  <div id="appoitmentAddGroupForm" class="hidden popup-container">
+    <div class="form-container">
+      <div class="form-close-button-container">
+        <button id="bntCloseAppoitmentAddGroupForm">X</button>
+      </div>
+
+      <form
+        method="POST"
+        action="/Medical/AppoitmentGroup"
+        class="form-body-container"
+      >
+        <div class="form-element-wrapper-col">
+          <input id="appointGrpPopupForm-id" name="id" type="hidden" value="0" />
+          <div class="form-element-wrapper-row">
+            <label>Naziv grupe</label>
+          </div>
+          <div class="form-element-wrapper-row">
+            <input   id="appointGrpPopupForm-grpNm" name="groupName" />
+          </div> 
+        </div>
+
+        <div class="form-element-wrapper-col">
+          <div class="form-element-wrapper-row">
+            <button id="formSendBtnAppoitment">Dodaj grupu</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

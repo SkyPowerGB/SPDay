@@ -1,9 +1,9 @@
 <!--TABLICA Grupa  -->
-<div id="appointGrpTableContainer" class="hidden">
+<div id="appointGrpTableContainer" class="hidden table-container" >
   <h1>Grupe Termina</h1>
-  <table>
+  <table class="table-display-data">
     <thead>
-      <tr>
+      <tr class="table-display-data-hader-row">
         
         <th>Grupa Termina</th>
         <th></th>
@@ -13,10 +13,10 @@
     <tbody>
       <% if (groups && groups.length > 0) { %> <% groups.forEach(function(group)
       { %>
-      <tr>
+      <tr  class="table-display-data-body-row">
        
         <td id="<%= 'appointGrpData-name' + group.appointment_group_id %>"> <%= group.appointment_group %>  </td>
-        <td>
+        <td class="table-data-edit-td">
           <button
             value="<%= group.appointment_group_id %>"
             class="btn-table-edit btn-appointment-grp-table-edit hidden"
@@ -24,7 +24,7 @@
             uredi
           </button>
         </td>
-        <td>
+        <td class="table-data-delete-td">
           <button
             value="<%= group.appointment_group_id %>"
             class="btn-table-edit btn-appointment-grp-table-delete hidden"

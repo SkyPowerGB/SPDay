@@ -1,0 +1,27 @@
+<div id="underbarContainer" class="hidden">
+  <div class="form-underbar-container">
+    <form
+      method="post"
+      action="/Medical/DataExport"
+      class="form-underbar"
+    >
+      <label>Datum od:</label>
+      <input id="inputDateFrom" name="inputDateFrom" />
+      <label>do:</label>
+      <input id="inputDateTo" name="inputDateTo" />
+      <label>Grupe odaberi u tabeli:</label>
+      <input id="inputGroupNmList" name="inputGroupNmList" disabled />
+
+      <input
+        id="inputGroupIdList"
+        name="inputGroupIdList"
+        type="hidden"
+      />
+      <button type="submit">Preuzmi PDF</button>
+    </form>
+    <button
+      id="underbarCloseBtn"
+      class="underbar-close-button"
+    ></button>
+  </div>
+</div>

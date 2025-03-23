@@ -98,7 +98,11 @@ async function authorizeUser(req, res, next) {
     }else{
 
       req.session.userId=user.user_account_id;
-      res.redirect("/home");
+      const redirectUrl = req.session.returnTo || '/home'; 
+      delete req.session.returnTo; 
+    
+      res.redirect(redirectUrl); 
+   
     }
 
       

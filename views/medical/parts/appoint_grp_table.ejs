@@ -8,6 +8,7 @@
         <th>Grupa Termina</th>
         <th></th>
         <th></th>
+        <th id="groupsHeaderRowSelectGrps" class="hidden">Odaberi</th>
       </tr>
     </thead>
     <tbody>
@@ -31,6 +32,9 @@
           >
             izbrisi
           </button>
+        </td>
+        <td id="<%= 'appointGrpDatExporChckBx-' + group.appointment_group_id %>" class="table-dat-exoport-select-group-td  hidden">
+          <input type="checkbox" value="<%= group.appointment_group_id %>" class="table-checkbox ">
         </td>
       </tr>
       <% }); %> <% } %>

@@ -16,16 +16,17 @@
   <body>
     <%- include("../partials/navbar") %>
 
-    <div></div>
-
     <div class="content-columns-container">
-
       <div class="sidebar-div">
         <div class="sidebar-container">
           <button id="btnEdit">Uredi</button>
         </div>
-        <div class="sidebar-container"><button id="btnAppointToggle">Termini</button></div>
-        <div class="sidebar-container"><button id="btnGroupsToggle">Grupe</button></div>
+        <div class="sidebar-container">
+          <button id="btnAppointToggle">Termini</button>
+        </div>
+        <div class="sidebar-container">
+          <button id="btnGroupsToggle">Grupe</button>
+        </div>
         <div class="sidebar-container">
           <button id="btnAddAppoitment">Dodaj Termin</button>
         </div>
@@ -34,21 +35,23 @@
         </div>
         <div class="sidebar-container"><button>Postavke</button></div>
         <div class="sidebar-container">
-          <a href="medicalDataExport">Izvoz podataka</a>
+          <button id="btnExportData">Izvoz podataka</button>
         </div>
       </div>
 
+      <div class="content-row-container">
+   
 
-      <%- include("./parts/appoint_group_form") %>
+        <%- include("./parts/underbar") %>
 
-      <%- include("./parts/appoint_form") %> 
-    
-      <%- include("./parts/appoint_table") %> 
 
-      <%-include("./parts/appoint_grp_table") %>
+        <%- include("./parts/appoint_group_form") %>
+        <%- include("./parts/appoint_form") %>
+        <%- include("./parts/appoint_table")  %> 
+        <%- include("./parts/appoint_grp_table") %>
+        <%- include("./parts/delete_form") %>
 
-    
-      <%- include("./parts/delete_form") %> 
+      </div>
     </div>
     <script src="script.js"></script>
   </body>

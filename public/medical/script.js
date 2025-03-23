@@ -1,12 +1,32 @@
 window.addEventListener("load", (e) => {
   console.log("loaded");
+
+   // variables---------------------------------------------------------------------
+   let dataExportActive=false;
+
+  // sidebar buttons---------------------------------------------------------------------
+
   const btnAddGroup = document.getElementById("btnAddGroup");
   const btnAddAppoitment = document.getElementById("btnAddAppoitment");
+  const btnExportData = document.getElementById("btnExportData");
+
+  // TOGGABLE elements------------------------------------------------------------------
+
+  const appointGrpTableContainer = document.getElementById(
+    "appointGrpTableContainer"
+  );
+  const appointTableContainer = document.getElementById(
+    "appointTableContainer"
+  );
 
   const appoitmentAddForm = document.getElementById("appoitmentAddForm");
   const appoitmentAddGroupForm = document.getElementById(
     "appoitmentAddGroupForm"
   );
+
+  const underbarContainer = document.getElementById("underbarContainer");
+
+  //------------------------------------------------------------------------------------------
 
   const btnCloseAppoitmentAddForm = document.getElementById(
     "btnCloseAppoitmentAddForm"
@@ -37,37 +57,38 @@ window.addEventListener("load", (e) => {
 
   const closeDeleteePopup = document.getElementById("popupCancelDeleteBtn");
 
-  
-
   const editButtons = document.getElementsByClassName("btn-table-edit");
   const editSidebarBtn = document.getElementById("btnEdit");
   const deletePopupForm = document.getElementById("deletePopupForm");
 
-  const appointmentGrpTabEditBtns = document.getElementsByClassName("btn-appointment-grp-table-edit");
-  const appointmentGrpTabDeleteBtns = document.getElementsByClassName("btn-appointment-grp-table-delete");
+  const appointmentGrpTabEditBtns = document.getElementsByClassName(
+    "btn-appointment-grp-table-edit"
+  );
+  const appointmentGrpTabDeleteBtns = document.getElementsByClassName(
+    "btn-appointment-grp-table-delete"
+  );
 
   Array.from(appointmentGrpTabEditBtns).forEach((btn) => {
-  btn.addEventListener("click", () => {
-     
-    console.log(btn.value);
-    const appointGrpId=btn.value;
-    const appointGrpData=document.getElementById("appointGrpData-name"+appointGrpId).innerHTML;
- 
-    showAppointmentGrpForm(appointGrpId,appointGrpData);
+    btn.addEventListener("click", () => {
+      console.log(btn.value);
+      const appointGrpId = btn.value;
+      const appointGrpData = document.getElementById(
+        "appointGrpData-name" + appointGrpId
+      ).innerHTML;
 
-   });
-
-
-  });
-
-  Array.from(appointmentGrpTabDeleteBtns).forEach((btn) => {
-    btn.addEventListener("click", () => { 
-      showDeletePopup(btn.value, "appointment_group","Da li ste sigurni da želite da obrišete grupu?");
-      
-
+      showAppointmentGrpForm(appointGrpId, appointGrpData);
     });
   });
 
+  Array.from(appointmentGrpTabDeleteBtns).forEach((btn) => {
+    btn.addEventListener("click", () => {
+      showDeletePopup(
+        btn.value,
+        "appointment_group",
+        "Da li ste sigurni da želite da obrišete grupu?"
+      );
+    });
+  });
 
   const appointmentTableEditButtons = document.getElementsByClassName(
     "btn-appointment-table-edit"
@@ -75,7 +96,6 @@ window.addEventListener("load", (e) => {
   const appointmentTableDeleteButtons = document.getElementsByClassName(
     "btn-appointment-table-delete"
   );
-
 
   Array.from(appointmentTableEditButtons).forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -107,23 +127,53 @@ window.addEventListener("load", (e) => {
   });
   Array.from(appointmentTableDeleteButtons).forEach((btn) => {
     btn.addEventListener("click", () => {
-      showDeletePopup(btn.value, "appointment","Da li ste sigurni da želite da obrišete termin?");
+      showDeletePopup(
+        btn.value,
+        "appointment",
+        "Da li ste sigurni da želite da obrišete termin?"
+      );
     });
   });
-  
- 
- const btnAppointToggle=document.getElementById("btnAppointToggle");
- const btnGroupsToggle=document.getElementById("btnGroupsToggle");
 
- const appointGrpTableContainer=document.getElementById("appointGrpTableContainer");
- const appointTableContainer=document.getElementById("appointTableContainer");
+  const btnAppointToggle = document.getElementById("btnAppointToggle");
+  const btnGroupsToggle = document.getElementById("btnGroupsToggle");
 
+  // data export -------------------------------------------------------------------------
+  let idList = [];
+  let groupNmList = [];
 
- btnAppointToggle.addEventListener("click",()=>{
+  const appointGrpTabDataExportChckBx =
+    document.getElementsByClassName("table-checkbox");
+  const appointGrpTabDataExportChckBxTd = document.getElementsByClassName(
+    "table-dat-exoport-select-group-td"
+  );
+  const groupsHeaderRowSelectGrps = document.getElementById(
+    "groupsHeaderRowSelectGrps"
+  );
+
+  btnExportData.addEventListener("click", () => {
+    {
+      if(dataExportActive){hideDataExport();dataExportActive=false;return;}
+      showDataExport();
+      dataExportActive=true;
+    }
+  });
+
+  //----------------------------------------------
+
+  Array.from(appointGrpTabDataExportChckBx).forEach((chckBx) => {
+    chckBx.addEventListener("change", (e) => {
+      if (this.checked) {
+      } else {
+      }
+    });
+  });
+
+  btnAppointToggle.addEventListener("click", () => {
     hideAppointmentGrpTable();
     showAppointmentTable();
- });
- btnGroupsToggle.addEventListener("click",()=>{
+  });
+  btnGroupsToggle.addEventListener("click", () => {
     hideAppointmentTable();
     showAppointmentGrpTable();
   });
@@ -164,6 +214,8 @@ window.addEventListener("load", (e) => {
     hideAppoitmentGrpForm();
   });
 
+
+  // FORM functions---------------------------------------------------------------------
   function showAppoitmentForm(id, date, groupNm, desc) {
     formDateInput.value = date;
     appointFormDescInput.value = desc;
@@ -171,7 +223,6 @@ window.addEventListener("load", (e) => {
     appointFormAppointGroupSelect.value = groupNm;
     showAppoitmentForm();
   }
-
 
   function showAppoitmentForm() {
     if (appoitmentAddForm.classList.contains("hidden")) {
@@ -184,9 +235,7 @@ window.addEventListener("load", (e) => {
     }
   }
 
-
-  function showAppointmentGrpForm(id, name) { 
-
+  function showAppointmentGrpForm(id, name) {
     document.getElementById("appointGrpPopupForm-id").value = id;
     document.getElementById("appointGrpPopupForm-grpNm").value = name;
 
@@ -204,43 +253,127 @@ window.addEventListener("load", (e) => {
     }
   }
 
-function showAppointmentTable(){
-  if(appointTableContainer.classList.contains("hidden")){
-    appointTableContainer.classList.remove("hidden");
-  }
-}
-function hideAppointmentTable(){
-  if(!appointTableContainer.classList.contains("hidden")){
-    appointTableContainer.classList.add("hidden");
-  }
-}
-function showAppointmentGrpTable(){
-  if(appointGrpTableContainer.classList.contains("hidden")){
-    appointGrpTableContainer.classList.remove("hidden");
-  }
-}  
-function hideAppointmentGrpTable(){
-  if(!appointGrpTableContainer.classList.contains("hidden")){
-    appointGrpTableContainer.classList.add("hidden");
-  }
-}
-
-  function showDeletePopup(id, type,msg) {
-    if (deletePopupForm.classList.contains("hidden")){
+  function showDeletePopup(id, type, msg) {
+    if (deletePopupForm.classList.contains("hidden")) {
       deletePopupForm.classList.remove("hidden");
     }
-    document.getElementById("deleteWarningMsg").textContent = msg;  
+    document.getElementById("deleteWarningMsg").textContent = msg;
     document.getElementById("deleteElementId").value = id;
     document.getElementById("deleteElementType").value = type;
   }
 
   function hideDeletePopup() {
-    if (!deletePopupForm.classList.contains("hidden")){
+    if (!deletePopupForm.classList.contains("hidden")) {
       deletePopupForm.classList.add("hidden");
-
     }
-   
+  }
+
+  // table functions---------------------------------------------------------------------
+
+  function showAppointmentTable() {
+     hideDataExport();
+    if (appointTableContainer.classList.contains("hidden")) {
+      appointTableContainer.classList.remove("hidden");
+    }
+  }
+  function hideAppointmentTable() {
+    if (!appointTableContainer.classList.contains("hidden")) {
+      appointTableContainer.classList.add("hidden");
+    }
+  }
+  function showAppointmentGrpTable() {
+    if(dataExportActive){hideDataExport();}
+    if (appointGrpTableContainer.classList.contains("hidden")) {
+      appointGrpTableContainer.classList.remove("hidden");
+    }
+  }
+  function hideAppointmentGrpTable() {
+    if (!appointGrpTableContainer.classList.contains("hidden")) {
+      appointGrpTableContainer.classList.add("hidden");
+    }
+  }
+
+  //------------------------------------------------------------------------------------------
+  //data export functions----------------------------------------------------------------
+
+  function showDataExport() {
+    showChckBoxes();
+    showUnderbar();
+    showAppointmentGrpTable();
+    hideAppointmentTable();
+    dataExportActive=true;
+  }
+
+  function hideDataExport() {
+    hideChckBoxes();
+    hideUnderbar();
+    dataExportActive=false;
+  }
+
+  function showUnderbar() {
+    if (underbarContainer.classList.contains("hidden")) {
+      underbarContainer.classList.remove("hidden");
+    }
+  }
+  function hideUnderbar() {
+    if (!underbarContainer.classList.contains("hidden")) {
+      underbarContainer.classList.add("hidden");
+    }
   }
 
 
+  function addIdToList(id) {
+    if (doesIdExist(id)) {
+      return;
+    }
+    idList.push(id);
+  }
+
+  function doesIdExist(id) {
+    return idList.includes(id);
+  }
+  function removeIdFromList(id) {
+    if (doesIdExist(id)) {
+      idList.splice(idList.indexOf(id), 1);
+    }
+  }
+  function getStringList() {
+    let out = "";
+    idList.forEach((element) => {
+      out += element + ",";
+    });
+    return out;
+  }
+
+  function showChckBoxes() {
+    showChckBoxesTh();
+    Array.from(appointGrpTabDataExportChckBxTd).forEach((td) => {
+      if (td.classList.contains("hidden")) {
+        td.classList.remove("hidden");
+      }
+    });
+  }
+  function hideChckBoxes() {
+    hideChckBoxesTh();
+    Array.from(appointGrpTabDataExportChckBxTd).forEach((td) => {
+      if (!td.classList.contains("hidden")) {
+        td.classList.add("hidden");
+      }});
+    
+  }
+
+  function showChckBoxesTh() {
+    if (groupsHeaderRowSelectGrps.classList.contains("hidden")) {
+      groupsHeaderRowSelectGrps.classList.remove("hidden");
+    }
+  }
+  function hideChckBoxesTh() {
+    if (!groupsHeaderRowSelectGrps.classList.contains("hidden")) {
+      groupsHeaderRowSelectGrps.classList.add("hidden");
+    }
+  }
+
+
+
+  //---------------------------------------------------------------------------------------
 });

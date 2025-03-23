@@ -91,7 +91,7 @@ cursor: pointer;
   border:none;
   
 }
-/*------------------------------------------------------*/
+/*--------------------sidebar----------------------------------*/
 .sidebar-div{
     width: 150px;
     display: flex;
@@ -138,3 +138,41 @@ cursor: pointer;
     background-color: rgb(129, 129, 129);
 }
 
+/*-----------------------------------------------------*/
+
+.form-underbar-container{
+    width: 100%;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+   
+    align-items: center;
+    justify-content: center;
+}
+.form-underbar{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(116, 116, 116);
+    color: white;
+}
+.form-underbar label{
+    margin-left: 10px;
+}
+.form-underbar button{
+    margin-left: 10px;
+}
+.underbar-close-button{
+
+    width: 100%;
+   border: none;
+   cursor: pointer;
+   height: 20px;
+   background-color: rgb(171, 171, 171);
+}
+.underbar-close-button:hover{
+    background-color: rgb(197, 196, 196);
+}

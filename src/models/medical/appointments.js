@@ -4,6 +4,7 @@ const db=require("../../config/db");
 const moment = require('moment');
 
 
+
 async function createNewAppoitment(appointId,date,desc,group,uid){
 
 //  appointId INT,  appointDesc TEXT, appointDate DATETIME, groupID INT, userId INT    
@@ -41,4 +42,4 @@ async function getAllAppointmentsFromToByGroup(groupId,FromDate,ToDate){
 
 }
 
-module.exports={createNewAppoitment,getAllAppointments,deleteAppointment}
+module.exports={createNewAppoitment,getAllAppointments,deleteAppointment,getAllAppointmentsFromToByGroup}

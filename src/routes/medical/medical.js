@@ -3,8 +3,6 @@ const controller=require('../../controllers/medical/medicalController');
 const router = express.Router();
 const sessionManger=require("../../middleware/sessionMidleware");
 
-
-
 router.get("/Medical",sessionManger.authenticateSession,controller.loadPage,(req,res)=>{
     
 });

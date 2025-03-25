@@ -2,6 +2,9 @@ const session = require("express-session");
 const appointmentModel=require("../../models/medical/appointments");
 const appointGroupModel=require("../../models/medical/appoitment_group");
 const moment = require('moment');
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
+
 
 async function loadPage(req, res, next) {
     try {
@@ -85,10 +88,43 @@ console.log(req.body);
 
 
 async function dataExport(req,res,next){
+  console.log("Data Export");
 console.log(req.body);
+data= req.body;
+const grpIdList=data.inputGroupIdList;
+const FromDate=data.inputDateFrom;
+const ToDate=data.inputDateTo;
+let pdfName=data.inputPDFname;
+const doc = new PDFDocument();
+doc.pipe(res);
+res.setHeader('Content-Type', 'application/pdf');
+res.setHeader('Content-Disposition', `attachment; filename="${pdfName}.pdf"`);
 
+if(pdfName==""){
+  pdfName="export_unnamed";
+}
 
-return res.redirect("/Medical");
+for(i=0;i<grpIdList.length;i++){
+  if(grpIdList[i]==","||grpIdList[i]==" "){
+    continue;
+  }
+
+  let grpId=parseInt(grpIdList[i]);
+  let result=await appointmentModel.getAllAppointmentsFromToByGroup(parseInt(grpId),FromDate,ToDate);
+  result.forEach(element => {
+    doc.fontSize(16).text(`Grupa ID: ${grpId}`, { underline: true });
+    let formattedDate = moment(element.appointment_date_time).format(
+      "DD.MM.YYYY HH:mm"
+    );
+    doc.fontSize(12).text(`Termin: ${element.appointment_desc} - Datum: ${formattedDate}`)
+
+  });
+
+  console.log(result);
+
+}
+  doc.end();
+
 
 }
 

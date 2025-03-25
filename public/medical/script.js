@@ -10,6 +10,14 @@ window.addEventListener("load", (e) => {
   const btnAddAppoitment = document.getElementById("btnAddAppoitment");
   const btnExportData = document.getElementById("btnExportData");
 
+  // other buttons--------------------------------------------------------------------- 
+  const underbarCloseBtn=document.getElementById("underbarCloseBtn");
+
+  //---other buttons events---------------------------------------------------------------------------------------
+  underbarCloseBtn.addEventListener("click",()=>{hideDataExport()});
+
+
+
   // TOGGABLE elements------------------------------------------------------------------
 
   const appointGrpTableContainer = document.getElementById(
@@ -45,7 +53,8 @@ window.addEventListener("load", (e) => {
     "appointFormAppointGroupSelect"
   );
 
-  let picker = flatpickr(formDateInput, {
+
+  const picker = flatpickr(formDateInput, {
     enableTime: true,
     dateFormat: "Y-m-d H:i",
     time_24hr: true,
@@ -54,6 +63,10 @@ window.addEventListener("load", (e) => {
       selectedDate.textContent = "Odabrano: " + dateStr;
     },
   });
+
+
+
+ 
 
   const closeDeleteePopup = document.getElementById("popupCancelDeleteBtn");
 
@@ -142,8 +155,12 @@ window.addEventListener("load", (e) => {
   let idList = [];
   let groupNmList = [];
 
-  const appointGrpTabDataExportChckBx =
-    document.getElementsByClassName("table-checkbox");
+
+  const inputGroupIdList=document.getElementById("inputGroupIdList");
+  const inputGroupNmList=document.getElementById("inputGroupNmList");
+
+  const appointGrpTabDataExportChckBx = document.getElementsByClassName("table-checkbox");
+    
   const appointGrpTabDataExportChckBxTd = document.getElementsByClassName(
     "table-dat-exoport-select-group-td"
   );
@@ -159,12 +176,37 @@ window.addEventListener("load", (e) => {
     }
   });
 
+
+  const dateInputFrom = flatpickr(document.getElementById("inputDateFrom"), {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true,
+    defaultDate: new Date(),
+    onClose: function (selectedDates, dateStr) {
+      selectedDate.textContent = "Odabrano: " + dateStr;
+    },
+  });
+
+  const dateInputTo = flatpickr(document.getElementById("inputDateTo"), {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
+    time_24hr: true,
+    defaultDate: new Date(),
+    onClose: function (selectedDates, dateStr) {
+      selectedDate.textContent = "Odabrano: " + dateStr;
+    },
+  });
+  
+
   //----------------------------------------------
 
   Array.from(appointGrpTabDataExportChckBx).forEach((chckBx) => {
     chckBx.addEventListener("change", (e) => {
-      if (this.checked) {
+      if (e.target.checked) {
+        addIdToList(chckBx.value);
+       
       } else {
+        removeIdFromList(chckBx.value); 
       }
     });
   });
@@ -321,29 +363,42 @@ window.addEventListener("load", (e) => {
     }
   }
 
+  function getNameOfGroupById(id) {  
+
+    const appointGrpData = document.getElementById("appointGrpData-name"+id);
+    return appointGrpData.innerHTML.trim();
+  }
+
+  function addNameOfGroupToList(name) {
+    inputGroupNmList.value += name + ",";
+  }
+  function removeNameOfGroupFromList(name) { 
+
+    inputGroupNmList.value = inputGroupNmList.value.replace(name + ",", "");
+  }
+
 
   function addIdToList(id) {
     if (doesIdExist(id)) {
       return;
     }
-    idList.push(id);
+    addNameOfGroupToList(getNameOfGroupById(id));
+    inputGroupIdList.value += id + ",";
   }
 
   function doesIdExist(id) {
-    return idList.includes(id);
+
+    return (inputGroupIdList.value).includes(id);
   }
+
   function removeIdFromList(id) {
+
     if (doesIdExist(id)) {
-      idList.splice(idList.indexOf(id), 1);
+      removeNameOfGroupFromList(getNameOfGroupById(id));
+      inputGroupIdList.value = inputGroupIdList.value.replace(id + ",", "");
     }
   }
-  function getStringList() {
-    let out = "";
-    idList.forEach((element) => {
-      out += element + ",";
-    });
-    return out;
-  }
+
 
   function showChckBoxes() {
     showChckBoxesTh();

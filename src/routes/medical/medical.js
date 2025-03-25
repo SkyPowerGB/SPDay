@@ -20,5 +20,6 @@ router.post("/Medical/AppointmentsAddEdit",controller.addEditAppointments);
 router.post("/Medical/AppointmentsDelete",controller.deleteAppointments);
 
 
+router.post("/Medical/DataExport",controller.dataExport);
 
 module.exports=router;

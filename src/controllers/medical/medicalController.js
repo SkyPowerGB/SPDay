@@ -84,6 +84,14 @@ console.log(req.body);
  }
 
 
+async function dataExport(req,res,next){
+console.log(req.body);
 
 
-module.exports = { addEditAppoitmentGroup ,loadPage,addEditAppointments,deleteAppointments};
+return res.redirect("/Medical");
+
+}
+
+
+
+module.exports = {dataExport, addEditAppoitmentGroup ,loadPage,addEditAppointments,deleteAppointments};

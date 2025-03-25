@@ -34,4 +34,11 @@ async function deleteAppointment(id) {
     return result;
 }
 
+async function getAllAppointmentsFromToByGroup(groupId,FromDate,ToDate){
+ const querry="call getAllAppointmentsDateFromToByGrpId(?,?,?)";
+ const [result] = await db.execute(querry, [groupId,FromDate,ToDate]);
+ return result[0];
+
+}
+
 module.exports={createNewAppoitment,getAllAppointments,deleteAppointment}

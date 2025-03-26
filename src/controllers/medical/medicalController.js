@@ -4,6 +4,7 @@ const appointGroupModel=require("../../models/medical/appoitment_group");
 const moment = require('moment');
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
+const fillCommonData = require("../../helpers/commonReqData");
 
 
 async function loadPage(req, res, next) {
@@ -26,8 +27,8 @@ async function loadPage(req, res, next) {
           element.inputFormat = moment(dt).format('YYYY-MM-DD HH:mm');
       });
       
-      
-        res.render("medical/medical", { groups: data,appoitmentsData:appoitmentsData }); 
+      console.log(req.spd_userData);
+        res.render("medical/medical", fillCommonData({ groups: data,appoitmentsData:appoitmentsData },req)); 
         
     } catch (error) {
         console.error(error);

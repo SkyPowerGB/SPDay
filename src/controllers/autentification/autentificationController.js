@@ -3,6 +3,7 @@ const sanitize = require("sanitize-html");
 const userModel = require("../../models/user");
 const bcrypt = require("bcrypt");
 
+
 const session = require('express-session');
 async function register(req, res,next) {
   const data = req.body;
@@ -114,8 +115,12 @@ async function authorizeUser(req, res, next) {
     res.status(500).send("Internal Server Error");
   }
 }
+async function logout(req, res) {
 
+  req.session.destroy();
+  res.redirect("/autentification/login.html");
+}
 
 module.exports = {
-  register,authorizeUser
+  register,authorizeUser,logout
 };

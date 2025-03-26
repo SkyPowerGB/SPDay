@@ -1,3 +1,4 @@
+
 <div class="navbar-div-container">
     <div class="navbar-logo">
      
@@ -38,9 +39,27 @@
         </li>
 
     </ul>
+    <div>
+
+    </div>
+    
+    <div id="userInfoNm" class="navbar-user-info">
+    <h3 ><%= locals.username %></h3>
+    </div>
 
     <div class="navbar-hamburger">
         <button>☰</button>
       </div>
 
+</div>
+
+<div id="userMenuDropdown" class="user-info-dropdown hidden">
+    <div class="user-info-dropdown-item">
+        <a href="userAccount/Settings">Postavke</a>
+     
+    </div>
+    <div class="user-info-dropdown-item">
+        <a href="/autentification/logout">Odjava</a>
+     
+    </div>
 </div>

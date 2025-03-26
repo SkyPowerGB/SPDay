@@ -11,6 +11,7 @@ const registerRoute=require("./routes/autentification/register");
 const loginRoute=require("./routes/autentification/login");
 const homeRoute=require("./routes/home/home");
 const medicalRoute=require("./routes/medical/medical");
+const logoutRoute=require("./routes/autentification/logout"); 
 
 
 app.use(session({
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/autentification', registerRoute);
 app.use('/autentification',loginRoute);
+app.use('/autentification',logoutRoute);
 app.use('/',medicalRoute);
 app.use("/",homeRoute);
 

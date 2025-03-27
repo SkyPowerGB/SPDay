@@ -156,7 +156,7 @@ font-size: xx-large;
 
 
 
-.content-row-container{
+.content-column-container{
  
     display: flex;
       flex:1;
@@ -230,3 +230,4 @@ font-size: large;   box-shadow: none;
 .table-data-delete-td button:hover{
     background-color: rgb(255, 237, 237);
 }
+

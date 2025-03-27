@@ -1,0 +1,67 @@
+/*---ROWS -SECTIONS  -FINANCIAL */
+
+.section-container{
+width: 100%;
+}
+.section-container h1{
+    text-align: center;
+}
+
+.content-scrollable-row{
+    overflow-x:scroll;
+    overflow-y: hidden;
+    height: auto;
+    min-height: 33vh;
+}
+
+.content-row{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(217, 247, 237);
+    
+}
+
+.content-row-card{
+    min-height: 33vh;
+    height: 100%;
+    width: 300px;
+    margin: 5px;
+    margin-left: 15px;
+    margin-right: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(171, 255, 172);
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+}
+.content-column-container{
+    background-color: rgb(165, 211, 197);
+}
+.bottom-button{
+    min-height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.bottom-button button{
+    width: 90%;
+    height: 50px;
+  border: none;
+  cursor: pointer;
+ background-color: rgb(146, 245, 195);
+ border-radius: 15px;
+}
+.bottom-button button:hover{
+    width: 95%;
+    height: 55px;
+    font-size: larger;
+    border: 5px solid rgb(146, 245, 195);
+
+    background-color: rgb(196, 251, 223);
+}

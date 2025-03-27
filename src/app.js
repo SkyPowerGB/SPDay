@@ -12,7 +12,7 @@ const loginRoute=require("./routes/autentification/login");
 const homeRoute=require("./routes/home/home");
 const medicalRoute=require("./routes/medical/medical");
 const logoutRoute=require("./routes/autentification/logout"); 
-
+const financialRoute=require("./routes/financial/financial");
 
 app.use(session({
     secret: 'fddkdo3i3o219',  
@@ -32,6 +32,7 @@ app.use('/autentification',loginRoute);
 app.use('/autentification',logoutRoute);
 app.use('/',medicalRoute);
 app.use("/",homeRoute);
+app.use("/",financialRoute);
 
 
 app.get("/",(req,res)=>{

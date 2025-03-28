@@ -5,7 +5,11 @@ const sessionMidleware=require("../../middleware/sessionMidleware");
 
 router.get("/",sessionMidleware.authenticateSession,controller.loadPage);
 
-router.post("/newFinAccount",sessionMidleware.authenticateSession,controller.addEditNewFinAccount,(req,res,next)=>{});
+router.post("/newFinAccount",sessionMidleware.authenticateSession,controller.addEditNewFinAccount,(req,res)=>{});
+
+router.post("/finAccDetails",sessionMidleware.authenticateSession,(req,res)=>{
+res.render("home/home");
+})
 
 module.exports = router;
 

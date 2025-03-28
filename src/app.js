@@ -18,7 +18,7 @@ app.use(session({
     secret: 'fddkdo3i3o219',  
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: false }  
+    cookie: { secure: false,httpOnly: true,   maxAge: 1000 * 60 * 60 * 24 }  
   }));
 
 app.set('view engine','ejs');
@@ -32,7 +32,7 @@ app.use('/autentification',loginRoute);
 app.use('/autentification',logoutRoute);
 app.use('/',medicalRoute);
 app.use("/",homeRoute);
-app.use("/",financialRoute);
+app.use("/Financial",financialRoute);
 
 
 app.get("/",(req,res)=>{

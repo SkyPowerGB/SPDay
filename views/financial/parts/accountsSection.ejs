@@ -1,29 +1,93 @@
 <div class="section-container">
-    <h1>Računi</h1>
+  <h1>Računi</h1>
 
-    <div class="content-scrollable-row">
-      <div class="content-row">
-        <div class="content-row-card">
+  <div class="content-scrollable-row">
+    <div class="content-row">
+      <div class="content-row-card">
+        <button id="newFinAccShwFormBtn" class="new-item-button hidden">
+          Kreiraj novi račun +
+        </button>
 
-          <button class="">Kreiraj novi račun +</button>
-          <form class="hidden">
-            <input />
-            <select></select>
-            <button>Dodaj</button>
-          </form>
-        </div>
+        <form method="POST" action="newFinAccount" id="newFinAccForm" class="">
+          <h1>Kreiraj novi račun</h1>
+          <input type="hidden" name="fAccId" value="0">
 
-        <div class="content-row-card">
-          <h2>Račun 1</h2>
-
-          <div>
-            <h3>Stanje: 1000</h3>
+          <div class="form-part-item">
+            <div class="form-part-column">
+              <label>Naziv</label>
+              <input name="finAccountName">
+            </div>
           </div>
 
-          <div class="bottom-button">
-            <button>Detalji</button>
+          <div class="form-part-item">
+            <div class="form-part-column">
+              <label>Vrsta</label>
+             
+              <select name="finAccountType">
+                <% if (finAccTypes) { %>
+                  <% finAccTypes.forEach(element => { %> 
+                    <option value=<%=element.fin_account_type_id   %> ><%= element.fin_account_type %></option>
+                  <% }); %>
+                <% } %>
+              </select>
+            </div>
           </div>
-        </div>
+
+
+          <div class="form-part-item">
+            <div class="form-part-column">
+              <label>Valuta</label>
+             
+              <select name="finCurrType">
+                <% if (CurrencyTypes) { %>
+                  <% CurrencyTypes.forEach(element => { %> 
+                    <option value=<%=element.currency_type_id   %> ><%= element.currency_name %></option>
+                  <% }); %>
+                <% } %>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-part-item">
+            <div class="form-part-column">
+              <label>Stanje</label>
+              <input name="finAccBalance">
+            </div>
+          </div>
+
+          <div class="form-part-item">
+            <div class="form-part-row">
+              <div class="form-button-double">
+              <button id="newFinnAccFormCloseBtn" type="button">Odustani</button>
+            </div>
+            <div class="form-button-double">
+              <button>Dodaj</button>
+            </div>
+            </div>
+          </div>
+        </form>
       </div>
+
+
+      <% if (finAccounts) {   } %>
+
+      <% if (finAccounts) { %>
+        <% finAccounts.forEach(element => { %> 
+          <div class="content-row-card">
+            <h2><%=element.fin_account_name %></h2>
+    
+            <div>
+              <h3>Stanje: <%=element.fin_account_balance  %></h3>
+            </div>
+    
+            <div class="bottom-button">
+              <button>Detalji</button>
+            </div>
+            </div>
+          
+        <% }); %>
+      <% } %>
+     
     </div>
   </div>
+</div>

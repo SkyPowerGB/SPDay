@@ -12,6 +12,7 @@ const authenticateSession =async (req, res, next) => {
       req.spd_userData = await user.getUserDataById(req.session.userId);
      
       req.session.returnTo=req.originalUrl;
+
       next();
     } else {
         

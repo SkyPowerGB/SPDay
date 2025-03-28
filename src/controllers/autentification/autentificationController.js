@@ -80,9 +80,6 @@ async function register(req, res,next) {
 async function authorizeUser(req, res, next) {
   try {
     
- 
-
-   
     const user = await userModel.getUserData(req.body.email_username);
     
     if (!user) {

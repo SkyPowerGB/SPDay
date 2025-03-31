@@ -7,9 +7,7 @@ router.get("/",sessionMidleware.authenticateSession,controller.loadPage);
 
 router.post("/newFinAccount",sessionMidleware.authenticateSession,controller.addEditNewFinAccount,(req,res)=>{});
 
-router.post("/finAccDetails",sessionMidleware.authenticateSession,(req,res)=>{
-res.render("home/home");
-})
+router.post("/finAccDetails",sessionMidleware.authenticateSession,controller.loadFinAccPage);
 
 module.exports = router;
 

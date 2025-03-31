@@ -45,4 +45,11 @@ async function addEditNewFinAccount(req,res,next) {
 }
 
 
-module.exports={loadPage,addEditNewFinAccount}
+async function loadFinAccPage(req,res,next){
+
+
+    res.render("financial/finAccView/finAccView",fillCommonData({},req));
+}
+
+
+module.exports={loadPage,addEditNewFinAccount,loadFinAccPage}

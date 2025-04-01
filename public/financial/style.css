@@ -87,35 +87,6 @@ width: 100%;
 
 /*---------------------------------------------------------*/
 
-.form-part-row{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-.form-part-column{
-    display: flex;
-    flex-direction: column;
-}
-.form-part-item{
-    margin-top: 10px;
-}
-
-
-.form-popup-container{
-    width: 50%;
-display: flex;
-flex-direction: column;
-background-color: aquamarine;
-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-
-}
-
-.form-popup{
-    display: flex;
-flex-direction: column;
+.fin-acc-form-popup{
+    background-color: rgb(206, 244, 177);
 }

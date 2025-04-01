@@ -1,46 +1,21 @@
-import { newFinnAccformActions } from './scriptParts/newFinAccForm.js';
+import { newFinnAccformActions, finAccFunctions } from './scriptParts/finAccount.js';
 
-window.addEventListener("load",main);
+window.addEventListener("load", main);
 
-const content=document.getElementById("siteContent");
-function main(){
+function main() {
+    console.log("financial_script_ready");
     newFinnAccformActions.setupEventListeners();
 
-    document.addEventListener("click",(e)=>{
-     
-        if(e.target.classList.contains("fin-acc-details-btn")){
-            const id=e.target.value;
-         
-            finAccOpenDetails(id);
-
-            
+    document.addEventListener("click", (e) => {
+        
+        if (e.target.classList.contains("fin-acc-details-btn")) {
+            const id = e.target.value;
+            console.log("open fin_acc details"+id);
+            finAccFunctions.finAccOpenDetails(id);
         }
+
 
     });
-
-    async function finAccOpenDetails(id) {
-        try {
-           
-            const response = await fetch("/Financial/finAccDetails", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ id: id }), 
-            });
-    
-
-            if (!response.ok) throw new Error("Nešto nije u redu sa serverom");
-    
-            const html = await response.text();
-            content.innerHTML="";
-            content.innerHTML=html;
-           
-        } catch (error) {
-            console.error("Greška:", error);
-        }
-    }
-
-    }
+}
 
 

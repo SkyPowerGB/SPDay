@@ -251,6 +251,7 @@ font-size: large;   box-shadow: none;
 
 .form-popup-container{
     width: 40%;
+
 display: flex;
 flex-direction: column;
 background-color: aquamarine;
@@ -278,6 +279,7 @@ flex-direction: column;
     flex-direction: row;
     justify-content: right;
     align-items: center;
+    margin-bottom: auto;
 }
 
 .form-popup-close-btn-div button{

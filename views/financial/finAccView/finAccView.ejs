@@ -14,12 +14,18 @@
       <button id="newTransactionBtn">+nova Transakcija</button>
     </div>
 
-    <div id="newTransactionForm" class="hidden">
+    <div id="newTransactionFormDiv" class="hidden">
       <div class="form-popup-container fin-acc-form-popup">
         <div class="form-popup-close-btn-div">
           <button id="popupBtnCloseTransactionForm">X</button>
         </div>
-        <form class="form-popup popup-form-inputs">
+
+
+        <form id="formNewTrans" class="form-popup popup-form-inputs">
+
+          <input type="hidden" name="finAccId" >
+          <input type="hidden" name="submitType" value="newTransact">
+
           <div class="popup-form-header">
             <h1>Nova transakcija</h1>
           </div>
@@ -66,12 +72,12 @@
       </div>
     </div>
 
-    <div id="newTransactionGrpForm" class="hidden">
+    <div id="newTransactionGrpFormDiv" class="hidden">
       <div class="form-popup-container fin-acc-form-popup">
         <div class="form-popup-close-btn-div">
           <button id="popupBtnCloseTransactionGrpForm">X</button>
         </div>
-        <form class="form-popup">
+        <form id="formNewTransGrp" class="form-popup">
           <h1>Dodaj novu grupu transakcija</h1>
           <div class="form-part-item popup-form-inputs">
             <div class="form-part-column">

@@ -5,8 +5,8 @@ const newFinnAccformActions = {
         const newFinAccShwFormBtn = document.getElementById("newFinAccShwFormBtn");
         const newFinnAccFormCloseBtn = document.getElementById("newFinnAccFormCloseBtn");
 
-        newFinAccShwFormBtn.addEventListener("click",()=> this.toggleForm);
-        newFinnAccFormCloseBtn.addEventListener("click",()=> this.toggleForm);
+        newFinAccShwFormBtn.addEventListener("click", this.toggleForm);
+        newFinnAccFormCloseBtn.addEventListener("click", this.toggleForm);
     },
 
     toggleForm() {
@@ -40,9 +40,13 @@ let popupBtnCloseTransactionGrpForm=null;
 let popupBtnCloseTransactionForm=null;
 
 
+// popup forms divs
+let newTransactionFormDiv=null;
+let newTransactionGrpFormDiv=null;
+
 // popup forms
-let newTransactionForm=null;
-let newTransactionGrpForm=null;
+let formNewTrans;
+let formNewTransGrp;
 
 
 //fin acc page action functions
@@ -50,28 +54,28 @@ let newTransactionGrpForm=null;
 
 // trans form
 function showNewTransactionForm(){
-    if(newTransactionForm.classList.contains("hidden")){
-        newTransactionForm.classList.remove("hidden");
+    if(newTransactionFormDiv.classList.contains("hidden")){
+        newTransactionFormDiv.classList.remove("hidden");
     }
 }
 
 function hideNewTransactionForm(){
-    if(!newTransactionForm.classList.contains("hidden")){
-        newTransactionForm.classList.add("hidden");
+    if(!newTransactionFormDiv.classList.contains("hidden")){
+        newTransactionFormDiv.classList.add("hidden");
     }
 }
 //----------------------------------------------------------
 // trans group form
 function showNewTranasactionGrpForm(){
-    if(newTransactionGrpForm.classList.contains("hidden")){
-        newTransactionGrpForm.classList.remove("hidden");
+    if(newTransactionGrpFormDiv.classList.contains("hidden")){
+        newTransactionGrpFormDiv.classList.remove("hidden");
     }
 
 }
 
 function hideNewTransactionGrpForm(){
-    if(!newTransactionGrpForm.classList.contains("hidden")){
-        newTransactionGrpForm.classList.add("hidden");
+    if(!newTransactionGrpFormDiv.classList.contains("hidden")){
+        newTransactionGrpFormDiv.classList.add("hidden");
     }
 
 }
@@ -85,7 +89,7 @@ function hideNewTransactionGrpForm(){
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ id: id }),
+                body: JSON.stringify({ finAccId: id, submitType: "loadPage" }),
             });
 
             if (!response.ok) throw new Error("Nešto nije u redu sa serverom");
@@ -112,7 +116,7 @@ function hideNewTransactionGrpForm(){
         popupBtnCloseTransactionForm=document.getElementById("popupBtnCloseTransactionForm");
 
         //form
-        newTransactionForm=document.getElementById("newTransactionForm");
+        newTransactionFormDiv=document.getElementById("newTransactionFormDiv");
 
         //events
         btnNewTransaction.addEventListener("click",showNewTransactionForm);
@@ -127,7 +131,7 @@ function hideNewTransactionGrpForm(){
         popupBtnCloseTransactionGrpForm=document.getElementById("popupBtnCloseTransactionGrpForm");
 
         //form
-        newTransactionGrpForm=document.getElementById("newTransactionGrpForm");
+        newTransactionGrpFormDiv=document.getElementById("newTransactionGrpFormDiv");
 
         //events
         btnNewTransactionGrp.addEventListener("click",showNewTranasactionGrpForm);

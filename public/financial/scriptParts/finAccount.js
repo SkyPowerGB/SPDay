@@ -115,8 +115,11 @@ function hideNewTransactionGrpForm(){
         btnCloseTransactionForm=document.getElementById("btnCloseTransactionForm");  
         popupBtnCloseTransactionForm=document.getElementById("popupBtnCloseTransactionForm");
 
-        //form
+        //formDIV
         newTransactionFormDiv=document.getElementById("newTransactionFormDiv");
+
+        //form
+        formNewTrans=document.getElementById("formNewTrans");
 
         //events
         btnNewTransaction.addEventListener("click",showNewTransactionForm);
@@ -130,8 +133,11 @@ function hideNewTransactionGrpForm(){
         btnCloseTransactionGrpForm=document.getElementById("btnCloseTransactionGrpForm");
         popupBtnCloseTransactionGrpForm=document.getElementById("popupBtnCloseTransactionGrpForm");
 
-        //form
+        //formDiv
         newTransactionGrpFormDiv=document.getElementById("newTransactionGrpFormDiv");
+
+        //form
+        formNewTransGrp=document.getElementById("formNewTransGrp");
 
         //events
         btnNewTransactionGrp.addEventListener("click",showNewTranasactionGrpForm);
@@ -140,6 +146,32 @@ function hideNewTransactionGrpForm(){
         popupBtnCloseTransactionGrpForm.addEventListener("click",hideNewTransactionGrpForm);
 
 
+
+        formNewTrans.addEventListener("submit",async(e)=>{
+            e.preventDefault();
+            console.log("form prevented");
+            const formData = new FormData(formNewTrans); 
+             
+    try {
+        // Using async/await with fetch
+        const response = await fetch('your-endpoint-url', {
+          method: 'POST',
+          body: formData 
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+  
+        const html = await response.text(); 
+        console.log('Success:', data);
+        
+      } catch (error) {
+        console.error('Error:', error);
+       
+      }
+
+        })
 
 
       

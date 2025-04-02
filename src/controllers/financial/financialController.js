@@ -47,7 +47,7 @@ async function addEditNewFinAccount(req,res,next) {
 
 async function loadFinAccPage(req,res,next){
 
-
+    
     res.render("financial/finAccView/finAccView",fillCommonData({},req));
 }
 

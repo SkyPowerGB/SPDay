@@ -1,0 +1,27 @@
+<div id="newTransactionGrpFormDiv" class="hidden">
+    <div class="form-popup-container fin-acc-form-popup">
+      <div class="form-popup-close-btn-div">
+        <button id="popupBtnCloseTransactionGrpForm">X</button>
+      </div>
+      <form  id="formNewTransGrp" method="POST" action="/Financial/finAccDetails"  class="form-popup">
+
+        <input type="hidden" name="finAccId" >
+        <input type="hidden" name="submitType" value="newTransactGrp">
+
+        <h1>Dodaj novu grupu transakcija</h1>
+        <div class="form-part-item popup-form-inputs">
+          <div class="form-part-column">
+            <label>Naziv</label>
+            <input />
+          </div>
+        </div>
+
+        <div class="form-part-item">
+          <div class="form-part-row popup-control-buttons">
+            <button id="btnCloseTransactionGrpForm" class="popup-left-btn" type="button">Odustani</button>
+            <button class="popup-right-btn">Dodaj</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

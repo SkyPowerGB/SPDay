@@ -1,4 +1,5 @@
 
+
 // new Fin account form
 const newFinnAccformActions = {
     setupEventListeners() {
@@ -29,14 +30,14 @@ const contentElementId="siteContent";
 
 // ASIGMENT VARS
 let btnNewTransaction=null;
-let btnNewTransactionGrp=null;
+
 
 //forms buttons
-let btnCloseTransactionGrpForm=null;
+
 let btnCloseTransactionForm=null;
 
 // popup btns
-let popupBtnCloseTransactionGrpForm=null;
+
 let popupBtnCloseTransactionForm=null;
 
 
@@ -46,7 +47,7 @@ let newTransactionGrpFormDiv=null;
 
 // popup forms
 let formNewTrans;
-let formNewTransGrp;
+
 
 
 //fin acc page action functions
@@ -63,21 +64,6 @@ function hideNewTransactionForm(){
     if(!newTransactionFormDiv.classList.contains("hidden")){
         newTransactionFormDiv.classList.add("hidden");
     }
-}
-//----------------------------------------------------------
-// trans group form
-function showNewTranasactionGrpForm(){
-    if(newTransactionGrpFormDiv.classList.contains("hidden")){
-        newTransactionGrpFormDiv.classList.remove("hidden");
-    }
-
-}
-
-function hideNewTransactionGrpForm(){
-    if(!newTransactionGrpFormDiv.classList.contains("hidden")){
-        newTransactionGrpFormDiv.classList.add("hidden");
-    }
-
 }
 
 // fin acc page main function
@@ -106,6 +92,16 @@ function hideNewTransactionGrpForm(){
  // SETUP VARS ADD E-listeners  (LOAD ACC Details script-part)
     addAccDetailsEvents() {
 
+        // transaction group select
+        new TomSelect('#transactionGroupSelect', {
+            create: true,    
+            maxItems: 1,     
+            sortField: {
+                field: 'text',
+                direction: 'asc'
+            }
+        });
+
         console.log("add acc detail events");
 
         // TRANSACTION -----------------------------------------------------------------------------
@@ -127,26 +123,7 @@ function hideNewTransactionGrpForm(){
         btnCloseTransactionForm.addEventListener("click",hideNewTransactionForm);
         popupBtnCloseTransactionForm.addEventListener("click",hideNewTransactionForm);
 
-        // TRANSACTION GROUP -----------------------------------------------------------------------------
-        //buttons
-        btnNewTransactionGrp=document.getElementById("newTransactionGrpBtn");
-        btnCloseTransactionGrpForm=document.getElementById("btnCloseTransactionGrpForm");
-        popupBtnCloseTransactionGrpForm=document.getElementById("popupBtnCloseTransactionGrpForm");
-
-        //formDiv
-        newTransactionGrpFormDiv=document.getElementById("newTransactionGrpFormDiv");
-
-        //form
-        formNewTransGrp=document.getElementById("formNewTransGrp");
-
-        //events
-        btnNewTransactionGrp.addEventListener("click",showNewTranasactionGrpForm);
-
-        btnCloseTransactionGrpForm.addEventListener("click",hideNewTransactionGrpForm);
-        popupBtnCloseTransactionGrpForm.addEventListener("click",hideNewTransactionGrpForm);
-
-
-
+   
         formNewTrans.addEventListener("submit",async(e)=>{
             e.preventDefault();
             console.log("form prevented");
@@ -154,7 +131,7 @@ function hideNewTransactionGrpForm(){
              
     try {
         // Using async/await with fetch
-        const response = await fetch('your-endpoint-url', {
+        const response = await fetch('/Financial/newTransaction', {
           method: 'POST',
           body: formData 
         });
@@ -164,6 +141,7 @@ function hideNewTransactionGrpForm(){
         }
   
         const html = await response.text(); 
+     
         console.log('Success:', data);
         
       } catch (error) {
@@ -173,6 +151,7 @@ function hideNewTransactionGrpForm(){
 
         })
 
+       
 
       
     }

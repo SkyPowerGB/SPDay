@@ -9,5 +9,8 @@ router.post("/newFinAccount",sessionMidleware.authenticateSession,controller.add
 
 router.post("/finAccDetails",sessionMidleware.authenticateSession,controller.loadFinAccPage);
 
+
+router.post("/newTransaction",sessionMidleware.authenticateSession,controller.addNewTransaction,(req,res)=>{});
+
 module.exports = router;
 

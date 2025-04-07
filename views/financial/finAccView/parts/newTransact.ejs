@@ -5,7 +5,7 @@
       </div>
 
 
-      <form id="formNewTrans" method="POST" action="/Financial/finAccDetails" class="form-popup popup-form-inputs">
+      <form id="formNewTrans" method="POST" action="/Financial/newTransaction" class="form-popup popup-form-inputs">
 
         <input type="hidden" name="finAccId" >
         <input type="hidden" name="submitType" value="newTransact">
@@ -17,21 +17,21 @@
         <div class="form-part-item popup-form-inputs">
           <div class="form-part-column">
             <label>Datum:</label>
-            <input type="date" />
+            <input name="transDate" type="date" />
           </div>
         </div>
 
         <div class="form-part-item popup-form-inputs">
           <div class="form-part-column">
             <label>Iznos:</label>
-            <input />
+            <input name="transValue" />
           </div>
         </div>
 
         <div class="form-part-item popup-form-inputs">
           <div class="form-part-column">
             <label>Opis</label>
-            <textarea></textarea>
+            <textarea name="transDesc"></textarea>
           </div>
         </div>
 
@@ -42,7 +42,7 @@
        
             </div>
 
-            <select  id="transactionGroupSelect" placeholder="Select or type a group"></select>
+            <select  name="transGrpNm" id="transactionGroupSelect" placeholder="Select or type a group"></select>
           </div>
         </div>
 

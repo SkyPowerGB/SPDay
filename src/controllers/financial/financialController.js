@@ -51,14 +51,11 @@ async function loadFinAccPage(req,res,next){
     res.render("financial/finAccView/finAccView",fillCommonData({},req));
 }
 
-async function addNewTransGrp(req,res,next){
 
-
-}
 
 async function addNewTransaction(req,res,next){
-
+console.log(req.body);
 }
 
 
-module.exports={loadPage,addEditNewFinAccount,loadFinAccPage,addNewTransGrp,addNewTransaction}
+module.exports={loadPage,addEditNewFinAccount,loadFinAccPage,addNewTransaction}

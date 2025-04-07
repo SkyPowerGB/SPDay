@@ -82,7 +82,7 @@ function hideNewTransactionForm(){
 
             const html = await response.text();
             document.getElementById(contentElementId).innerHTML = html;
-            this.addAccDetailsEvents();
+            this.addAccDetailsEvents(id);
         } catch (error) {
             console.error("Greška:", error);
         }
@@ -90,7 +90,7 @@ function hideNewTransactionForm(){
 
 
  // SETUP VARS ADD E-listeners  (LOAD ACC Details script-part)
-    addAccDetailsEvents() {
+    addAccDetailsEvents(id) {
 
         // transaction group select
         new TomSelect('#transactionGroupSelect', {
@@ -123,11 +123,11 @@ function hideNewTransactionForm(){
         btnCloseTransactionForm.addEventListener("click",hideNewTransactionForm);
         popupBtnCloseTransactionForm.addEventListener("click",hideNewTransactionForm);
 
-   
-        formNewTrans.addEventListener("submit",async(e)=>{
+      formNewTrans.addEventListener("submit",async(e)=>{
             e.preventDefault();
             console.log("form prevented");
             const formData = new FormData(formNewTrans); 
+      
              
     try {
         // Using async/await with fetch
@@ -140,7 +140,7 @@ function hideNewTransactionForm(){
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
   
-        const html = await response.text(); 
+        finAccOpenDetails(id);
      
         console.log('Success:', data);
         

@@ -12,7 +12,7 @@ async function createEditFinAccount(
 ) {
   // SQL procedura
   const sql = "call addEditFinAcc(?,?,?,?,?,?)";
-  console.log("create new fin acc:", { id, uid, accNm, balance, currTypeId, finAccTypeId });
+  
   const output = await db.execute(sql, [
     id,
     uid,

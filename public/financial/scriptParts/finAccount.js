@@ -127,19 +127,23 @@ function hideNewTransactionForm(){
             e.preventDefault();
             console.log("form prevented");
             const formData = new FormData(formNewTrans); 
-      
+            const data = Object.fromEntries(formData.entries());
              
     try {
         // Using async/await with fetch
         const response = await fetch('/Financial/newTransaction', {
           method: 'POST',
-          body: formData 
+          headers: {
+            'Content-Type': 'application/json', 
+          },
+          body: JSON.stringify(data) 
         });
   
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
   
+        hideNewTransactionForm();
         finAccOpenDetails(id);
      
         console.log('Success:', data);

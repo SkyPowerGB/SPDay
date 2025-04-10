@@ -7,7 +7,10 @@
 
       <form id="formNewTrans" method="POST" action="/Financial/newTransaction" class="form-popup popup-form-inputs">
 
-        <input type="hidden" name="finAccId" >
+        <input type="hidden" name="id" value="0">
+
+        <input type="hidden" name="finAccId" value=<%= locals.finAccId %>>
+    
         <input type="hidden" name="submitType" value="newTransact">
 
         <div class="popup-form-header">

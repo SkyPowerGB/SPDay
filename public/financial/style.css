@@ -90,3 +90,78 @@ width: 100%;
 .fin-acc-form-popup{
     background-color: rgb(206, 244, 177);
 }
+
+/*---------------------------------------------------------*/
+.fin-acc-view-title-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+.fin-acc-view-account-details{
+    flex:1;
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+   
+}
+
+
+
+.fin-acc-row-wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+ 
+    
+}
+
+.fin-acc-edit-btn:hover{
+    border:2px solid rgb(95, 95, 95);
+}
+
+.fin-acc-edit-btn{
+   
+    height: 100%;
+   
+   border: none;
+   color: gray;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: x-large;
+    font-weight: bolder;
+
+}
+
+.fin-acc-new-trans-btn{
+    margin-right: 50px;
+    height: 40px;
+    font-size: large;
+    background: none;
+    border: dotted 2px gray;
+}
+.fin-acc-new-trans-btn:hover{
+    cursor: pointer;
+    border:solid 2px gray;
+}
+
+.table-container-fin-acc{
+   
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.table-container-fin-acc table{
+    width: 100%;
+    margin: 20px;
+    text-align: center;
+
+}

@@ -1,0 +1,46 @@
+<div class="table-container-fin-acc">
+<table class="table-display-data">
+
+    <thead class="table-display-data ">
+        <tr class="table-display-data-hader-row">
+
+            <th>Transaction desc</th>
+            <th>Transaction ammount</th>
+            <th>Transaction date</th>
+            <th>Transaction Group</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+
+
+    </thead>
+
+<tbody>
+<% if (locals.transactionRows) { %>
+ 
+    <% transactionRows.forEach(row => { %>
+
+        <tr class="table-display-data-body-row">
+            <td><%= row.transaction_desc %></td>
+            <td><%= row.transaction_amount %></td>
+            <td><%= row.transaction_date %></td>
+            <td><%= row.transaction_group_id %></td>
+            <td ><button class=" fin-acc-edit-btn">✎</button></td>
+            <td class=" table-data-edit-td  "><button >Uredi</button></td>
+            <td class="table-data-delete-td "><button >Izbriši</button></td>
+        </tr>
+     
+    <% }) %>
+
+
+
+
+
+<% } %>
+ 
+
+</tbody>
+</table>
+
+</div>

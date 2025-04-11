@@ -1,28 +1,33 @@
 <div class="content-columns-container">
   <div class="content-column-container">
-    <div>
-      <h1>Title</h1>
-      <button>Uredi</button>
+    <div class="fin-acc-view-title-header">
+      <div class="fin-acc-view-account-details">
+
+        <div class="fin-acc-row-wrapper">
+          <h1>Title</h1>
+          <button class="fin-acc-edit-btn">✎</button>
+        </div>
+
+
+        <h4>AccType: Bank</h4>
+        <h3>Balance: 100</h3>
+      </div>
+
+   
     </div>
-    <h4>AccType: Bank</h4>
-    <p>Balance: 100</p>
 
     <div></div>
 
-    <div>
+    <div class="fin-acc-row-wrapper">
       <h1>Transactions:</h1>
-      <button id="newTransactionBtn">+nova Transakcija</button>
+      <button class="fin-acc-new-trans-btn" id="newTransactionBtn">+nova Transakcija</button>
     </div>
 
     <%- include("parts/newTransact")%>
 
-  
-   
+    <div><%- include("parts/transactionsDisplay.ejs")%></div>
 
-
-
-
-
+    <%- include("parts/editAccount")%>
 
   </div>
 </div>

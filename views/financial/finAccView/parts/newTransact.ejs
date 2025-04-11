@@ -7,11 +7,11 @@
 
       <form id="formNewTrans" method="POST" action="/Financial/newTransaction" class="form-popup popup-form-inputs">
 
-        <input type="hidden" name="id" value="0">
+        <input id="formNewTransIdInput" type="hidden" name="id" value="0">
 
-        <input type="hidden" name="finAccId" value=<%= locals.finAccId %>>
+        <input id="formNewTransFinAccIdInput" type="hidden" name="finAccId" value=<%= locals.finAccId %>>
     
-        <input type="hidden" name="submitType" value="newTransact">
+        <input  type="hidden" name="submitType" value="newTransact">
 
         <div class="popup-form-header">
           <h1>Nova transakcija</h1>
@@ -20,21 +20,21 @@
         <div class="form-part-item popup-form-inputs">
           <div class="form-part-column">
             <label>Datum:</label>
-            <input name="transDate" type="date" />
+            <input id="formNewTransTransDateInput" name="transDate" type="date" />
           </div>
         </div>
 
         <div class="form-part-item popup-form-inputs">
           <div class="form-part-column">
             <label>Iznos:</label>
-            <input name="transValue" />
+            <input id="formNewTransTransValueInput" name="transValue" />
           </div>
         </div>
 
         <div class="form-part-item popup-form-inputs">
           <div class="form-part-column">
             <label>Opis</label>
-            <textarea name="transDesc"></textarea>
+            <textarea id="formNewTransTransDescInput" name="transDesc"></textarea>
           </div>
         </div>
 
@@ -45,7 +45,7 @@
        
             </div>
 
-            <select  name="transGrpNm" id="transactionGroupSelect" placeholder="Select or type a group">
+            <select id="formNewTransGrpNmInput"  name="transGrpNm" id="transactionGroupSelect" placeholder="Select or type a group">
               
             </select>
           </div>
@@ -54,7 +54,7 @@
         <div class="form-part-item">
           <div class="form-part-row popup-control-buttons">
             <button id="btnCloseTransactionForm" class="popup-left-btn" type="button">Odustani</button>
-            <button class="popup-right-btn">Dodaj Transkaciju</button>
+            <button id="btnSubmitCreateNewTransact" class="popup-right-btn">Dodaj Transkaciju</button>
           </div>
         </div>
       </form>

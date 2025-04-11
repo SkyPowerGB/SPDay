@@ -14,6 +14,38 @@ function main() {
             finAccFunctions.finAccOpenDetails(id);
         }
 
+        if(e.target.classList.contains("fin-trans-edit-btns")){
+           console.log("element clicked"+e.target.value);
+           const id = e.target.value;
+     
+          const editBtn= document.getElementById("finTransTableEditTd_"+id);
+          const deleteBtn= document.getElementById("finTransTableDeleteTd_"+id);
+          if(editBtn.classList.contains("hidden")){
+            editBtn.classList.remove("hidden");
+            deleteBtn.classList.remove("hidden");
+        }else{
+            editBtn.classList.add("hidden");
+            deleteBtn.classList.add("hidden");
+        }
+
+        
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    }
+
+
+
+    
+
+
 
     });
 }

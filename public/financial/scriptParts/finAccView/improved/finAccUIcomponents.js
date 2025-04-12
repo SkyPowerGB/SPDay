@@ -63,7 +63,7 @@ const newTransactFormItems= {
 const transactionTableItems={
 
     
-    dateTdId:"finTransTableDateTd_",
+    dateTdId:"finTransTableDateTdInput_",
     amountTdId:"finTransTableAmountTd_",
     descriptionTdId:"finTransTableDescTd_",
     groupIdTdId:"finTransTableGrpIdTd_"

@@ -30,6 +30,14 @@ return rows;
   
 }
 
+async function deleteTransactionById(id){
+    const query="delete from fin_transaction where id=?";
+    const output=db.execute(query,[id]);
+    return output;
+}
+
+
+
 
 
 function validateTransDesc(transDesc){

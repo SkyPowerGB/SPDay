@@ -3,6 +3,9 @@ const finAccTypeModel=require("../../models/financial/fin_acccount_type");
 const finCurrTypeModel=require("../../models/financial/fin_acc_currency");
 const finAccModel=require("../../models/financial/fin_account");
 const finTransModel=require("../../models/financial/fin_transaction");
+const moment = require("moment");
+const dateDisplayFormat="DD MM YYYY";
+const dateInputFormat="YYYY-MM-DD";
 
 const session=require("express-session");
 const sanitize = require("sanitize-html");
@@ -53,6 +56,10 @@ async function loadFinAccPage(req,res,next){
     console.log(req.body);
     const finAccId=req.body.finAccId;
     const transactionRows=await finTransModel.getFinTransByAccountIdV1(finAccId);
+    transactionRows.forEach(e => {
+     e.transOuputDateFormat=   moment(e.transaction_date).format(dateDisplayFormat);
+     e.inputDateFormat=moment(e.transaction_date).format(dateInputFormat);
+    });
 
     res.render("financial/finAccView/finAccView",fillCommonData({finAccId,transactionRows},req));
 

@@ -30,8 +30,11 @@
             <td id=<%= "finTransTableAmountTd_"+row.fin_transaction_id%>>
                 <%= row.transaction_amount %></td>
 
-            <td id=<%= "finTransTableDateTd_"+row.fin_transaction_id%>>
-                <%= row.transaction_date %></td>
+            <td >
+                <%= row.transOuputDateFormat %> <input 
+                id=<%= "finTransTableDateTdInput_"+row.fin_transaction_id%>
+                type="hidden" value=  <%= row.inputDateFormat %>>
+            </td>
 
                 
             <td id=<%= "finTransTableGrpIdTd_"+row.fin_transaction_id%>>

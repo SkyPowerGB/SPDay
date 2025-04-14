@@ -1,15 +1,35 @@
-<div>
-    <div>
-        <button>X</button>
-    </div>
-    <div>
-        <h1>MSG</h1>
-        <form>
-            <input type="hidden" name="deleteElementId" value="0" />
-            <input type="hidden" name="deleteElementType" value="0" />
-            <button type="button">Odustani</button>
-            <button>Izbriši</button>
-        </form>
-       
-    </div>
+<div class="hidden">
+<div class="form-popup-container">
+  <div class="form-popup-close-btn-div">
+    <button>X</button>
+  </div>
+  
+   
+    <form class="form-popup popup-form-inputs">
+        <div class="popup-form-header">
+        <h1>Jeste li sigurni da želite obrisati ovu stavku?</h1>
+        </div>
+        <div class="form-part-item">
+            <div class="form-part-column">
+            <p></p>
+            </div>
+
+        </div>
+     
+   
+
+      <input type="hidden" name="deleteElementId" value="0" />
+      <input type="hidden" name="deleteElementType" value="0" />
+
+      <div class="form-part-item">
+        <div class="form-part-column">
+          <div class="form-part-row popup-control-buttons">
+            <button  class="popup-left-btn" type="button">Odustani</button>
+            <button class="popup-right-btn">Izbriši</button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+</div>
 </div>

@@ -82,7 +82,7 @@ function hideNewTransactionForm(){
 
             const html = await response.text();
             document.getElementById(contentElementId).innerHTML = html;
-            this.addAccDetailsEvents(id);
+      
         } catch (error) {
             console.error("Greška:", error);
         }

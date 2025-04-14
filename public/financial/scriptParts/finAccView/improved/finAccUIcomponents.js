@@ -1,4 +1,3 @@
-import doc, { fill } from "pdfkit";
 
 const finAccountUIv2={
 
@@ -34,7 +33,29 @@ const finAccountUIv2={
    
     },
     toggleAddTransForm(btnTxt){
-        getElementById(newTransactFormItems.submitBtnId).innerText=btnTxt;
+        // set btn text (add or edit)
+        document.getElementById(newTransactFormItems.submitBtnId).innerHTML=btnTxt;
+        const form=document.getElementById(newTransactFormItems.formDivId);
+        
+        if(form.classList.contains("hidden")){
+            form.classList.remove("hidden")}
+        else{
+            form.classList.add("hidden");
+            }
+
+    }
+    ,toogleAddTransFormD(){
+        const form=document.getElementById(newTransactFormItems.formDivId);
+        
+        if(form.classList.contains("hidden")){
+            form.classList.remove("hidden")}
+        else{
+            form.classList.add("hidden");
+            }
+    }
+    ,toogleEditTransForm(id){
+
+
     }
   
 
@@ -44,6 +65,7 @@ const finAccountUIv2={
 // form items ids (new transaction form)
 // ? fin acc id is probably unnecesary
 const newTransactFormItems= {
+    formDivId:"newTransactionFormDiv",
 
     accountIdInputId:"formNewTransFinAccIdInput",
 
@@ -58,7 +80,7 @@ const newTransactFormItems= {
 
 };
 // transaciton table item ids (add id for row)  
-// TODO: group name has id needs to be updated to contain name of the group
+// TODO: group name has id needs to be updated to contain name of the group 
 // Warning: date input needs to be reformated
 const transactionTableItems={
 
@@ -97,3 +119,5 @@ function fillTransForm(id){
    
 
 }
+
+export{finAccountUIv2}

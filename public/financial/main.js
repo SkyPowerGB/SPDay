@@ -1,4 +1,5 @@
 import { newFinnAccformActions, finAccFunctions } from './scriptParts/finAccount.js';
+import {finAccountUIv2} from './scriptParts/finAccView/improved/finAccUIcomponents.js';
 
 window.addEventListener("load", main);
 
@@ -15,18 +16,51 @@ function main() {
         }
 
         if(e.target.classList.contains("fin-trans-edit-btns")){
-           console.log("element clicked"+e.target.value);
+
            const id = e.target.value;
-     
-          const editBtn= document.getElementById("finTransTableEditTd_"+id);
-          const deleteBtn= document.getElementById("finTransTableDeleteTd_"+id);
-          if(editBtn.classList.contains("hidden")){
-            editBtn.classList.remove("hidden");
-            deleteBtn.classList.remove("hidden");
-        }else{
-            editBtn.classList.add("hidden");
-            deleteBtn.classList.add("hidden");
+             finAccountUIv2.toggleEditDeleteBtns(id);
         }
+
+        if(e.target.id==="finAccEditBtn"){
+ 
+            finAccountUIv2.toggleEditAccForm();
+        }
+
+
+        if(e.target.id==="editFinAccPopupCloseBtn"){
+            finAccountUIv2.toggleEditAccForm();
+        }
+
+        if(e.target.id=="editFinAccPopupClsBtn") 
+        {
+            finAccountUIv2.toggleEditAccForm();
+        }
+
+        if(e.target.id=="newTransactionBtn"){
+            finAccountUIv2.toggleAddTransForm("Nova transakcija");
+       
+        }
+
+
+        if(e.target.id=="popupBtnCloseTransactionForm"){
+            finAccountUIv2.toogleAddTransFormD();
+        }
+
+        if(e.target.id=="btnCloseTransactionForm"){
+            finAccountUIv2.toogleAddTransFormD();
+        }
+
+        if(e.target.classList.contains("finTransTableEditBtns")){
+            finAccountUIv2.toggleAddTransForm("Uredi transakciju");
+        }
+
+
+        
+
+
+
+
+
 
         
     
@@ -39,7 +73,7 @@ function main() {
     
     
     
-    }
+    
 
 
 

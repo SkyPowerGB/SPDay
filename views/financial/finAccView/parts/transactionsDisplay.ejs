@@ -44,9 +44,14 @@
 
             <td  ><button value= <%=row.fin_transaction_id%> class=" fin-acc-edit-btn  fin-trans-edit-btns" >✎</button></td>
             <td class="hidden table-data-edit-td " id=<%= "finTransTableEditTd_"+row.fin_transaction_id%>  >
-                <button id=<%= "finTransTableEditBtn_"+row.fin_transaction_id%> value=<%= row.fin_transaction_id %>  >Uredi</button></td>
-            <td class="hidden table-data-delete-td " id=<%= "finTransTableDeleteTd_"+row.fin_transaction_id%> >
-                <button  id=<%= "finTransTableDeleteBtn_"+row.fin_transaction_id%> value=<%= row.fin_transaction_id %>  >Izbriši</button></td>
+                
+                <button class="finTransTableEditBtns"
+                 id=<%= "finTransTableEditBtn_"+row.fin_transaction_id%> value=<%= row.fin_transaction_id %>  >Uredi</button></td>
+        
+        
+                <td class="hidden table-data-delete-td " id=<%= "finTransTableDeleteTd_"+row.fin_transaction_id%> >
+                <button class="finTransTableDeleteBtns" 
+                 id=<%= "finTransTableDeleteBtn_"+row.fin_transaction_id%> value=<%= row.fin_transaction_id %>  >Izbriši</button></td>
         </tr>
      
     <% }) %>

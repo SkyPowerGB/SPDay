@@ -19,7 +19,9 @@ sendFormData(callback);
 },
 showForm(){},
 hideForm(){},
-fillFormEditV(id){}
+fillFormEditV(id){},
+handleClicksEvent(target,callback){},
+setupEvents(){}
 
 
 

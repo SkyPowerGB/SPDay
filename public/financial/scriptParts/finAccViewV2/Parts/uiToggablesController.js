@@ -3,36 +3,101 @@
  import {deleteConfirmForm} from "./deleteConfirmForm.js";
 
  // SETUP UI TOGGABLES --------------------------------------
+ // toggalbe elements ids (some are dynamic)
 const toggableElementIds={ 
-
+    // need id to function to toggle
+   transTableEditPartial:" finTransTableEditTd_",
+   transTableDeletePartial:"finTransTableDeleteTd_"
 
 
 }
-// click events ids/classes
+// click events ids/classes 
+// classes for dynamic elements 
 const clickElementClasses={
+    finTransTabToggleEditBtns:"fin-trans-edit-btns",
+    finTransTabEditBtns:"finTransTableEditBtns",
+    finTransTabDeleteBtns:"finTransTableDeleteBtns",
 
 
 }
+
+// ids for static elements
 const clickElementIds={
-    finAccEditBtn:"finAccEditBtn",
+    finAccOpenEditForm:"finAccEditBtn",
     editFinAccPopupCloseBtn:"editFinAccPopupCloseBtn",
     editFinAccPopupClsBtn:"editFinAccPopupClsBtn",
+    newTransactionBtn:"newTransactionBtn",
+    popupBtnCloseTransactionForm:"popupBtnCloseTransactionForm",
+    btnCloseTransactionForm:"btnCloseTransactionForm",
+    confirmDeleteCloseBtn:"confirmDeleteCloseBtn",
+    confirmDeleteCloseBtnT:"confirmDeleteCloseBtnT",
 }
 const hiddenClass="hidden";
 //------------------------------------------------------------
 
 function toggableHandleClickEvents(e,reloadCallback){
+
     
 const target=e.target;
 const targetId=target.id;
 const targetValue=target.value;
 
 
+  switch(target.id){
+    case clickElementIds.finAccOpenEditForm:
+        editAccountForm.showForm();
+     break;
+    case clickElementIds.editFinAccPopupCloseBtn:
+        editAccountForm.hideForm();
+     break;
+    case clickElementIds.editFinAccPopupClsBtn:
+        editAccountForm.hideForm();
+        break;  
+    case clickElementIds.newTransactionBtn:
+        editTransactionForm.showForm();
+        break;
+    case clickElementIds.popupBtnCloseTransactionForm:
+        editTransactionForm.hideForm();
+        break;
+    case clickElementIds.btnCloseTransactionForm:
+        editTransactionForm.hideForm();
+        break;
+    case clickElementIds.confirmDeleteCloseBtn:
+        deleteConfirmForm.hideForm();
+        break;
+    case clickElementIds.confirmDeleteCloseBtnT:
+        deleteConfirmForm.hideForm();
+        break;
+  
+
+}
+
+   // open edit/delete buttons for transaction table
+  if(target.classList.contains(clickElementClasses.finTransTabToggleEditBtns)){
+  
+    toggle(toggableElementIds.transTableEditPartial+targetValue);
+    toggle(toggableElementIds.transTableDeletePartial+targetValue);
+
+  }
+
+  // show edit transact form
+  if(target.classList.contains(clickElementClasses.finTransTabEditBtns)){
+
+  }
+  // show delete transact form
+  if(target.classList.contains(clickElementClasses.finTransTabDeleteBtns)){
+
+  }
 
 
 
 
 }
+
+
+
+
+// click events handlers
 function toggle(elementId){
     const element=document.getElementById(elementId);
     if(element.classList.contains(hiddenClass)){  
@@ -41,7 +106,11 @@ function toggle(elementId){
        element.classList.add(hiddenClass)
     }
 }
+function setupFormsEvents(callback){
+    editTransactionForm.setupEvents(callback);
+    editAccountForm.setupEvents(callback);
+    deleteConfirmForm.setupEvents(callback);
+}
 
 
-
-export { toggableHandleClickEvents };
+export { toggableHandleClickEvents,setupFormsEvents };

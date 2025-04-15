@@ -1,13 +1,34 @@
-const formContainerId="";
-const formId="";
+const formContainerId="newTransactionFormDiv";
+const formId="formNewTrans";
 const deleteCaseE="deleteTransaction";
 // elements to be filled
-const formPartsIds={
-    "formContainerId": formContainerId,
+const formInputsIds={
+    // 0 DEFAULT ELSE: EDIT
+    formNewTransIdInput:"formNewTransIdInput",
+
+    // items 
+    // (ref to financial account)
+    finAccIdinput: "formNewTransFinAccIdInput",
+    // transaction date
+    transDateInput:"formNewTransTransDateInput",
+    // transaction amount
+    transAmountInput:"formNewTransTransAmountInput",
+    // transaction description
+    transDescInput:"formNewTransTransDescInput",
+    // transaction group
+    transGroupInput:"formNewTransTransGroupInput",
+  
 }
+const formLablesIds={
+
+}
+const formLabelsDefaultTxts={}
+
 
 // table / displaied data (need id for item)
-const dataHoldingItemIds={}
+const dataHoldingItemIds={
+
+}
 
 
 
@@ -19,7 +40,10 @@ sendFormData(callback);
 },
 showForm(){},
 hideForm(){},
-fillFormEditV(id){}
+fillFormEditV(id){},
+handleClicksEvent(target,callback){
+},
+setupEvents(callback){}
 
 
 

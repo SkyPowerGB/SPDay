@@ -1,3 +1,4 @@
+import { toggableHandleClickEvents,setupFormsEvents } from "./Parts/uiToggablesController";
 let globalId;
 const contentElementId = "siteContent";
 // starting funciton for opening partial view
@@ -27,6 +28,7 @@ const callBacks={
  async function loadContent(){
     
         try {
+           
             const response = await fetch("/Financial/finAccDetails", {
                 method: "POST",
                 headers: {
@@ -39,6 +41,7 @@ const callBacks={
 
             const html = await response.text();
             document.getElementById(contentElementId).innerHTML = html;
+            setupFormsEvents(callBacks.reloadPage);
       
         } catch (error) {
             console.error("Greška:", error);

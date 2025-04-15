@@ -43,7 +43,7 @@ let popupBtnCloseTransactionForm=null;
 
 // popup forms divs
 let newTransactionFormDiv=null;
-let newTransactionGrpFormDiv=null;
+
 
 // popup forms
 let formNewTrans;
@@ -87,78 +87,6 @@ function hideNewTransactionForm(){
             console.error("Greška:", error);
         }
     },
-
-
- // SETUP VARS ADD E-listeners  (LOAD ACC Details script-part)
-    addAccDetailsEvents(id) {
-
-        // transaction group select
-        new TomSelect('#transactionGroupSelect', {
-            create: true,    
-            maxItems: 1,     
-            sortField: {
-                field: 'text',
-                direction: 'asc'
-            }
-        });
-
-        console.log("add acc detail events");
-
-        // TRANSACTION -----------------------------------------------------------------------------
-
-        //buttons
-        btnNewTransaction=document.getElementById("newTransactionBtn");
-        btnCloseTransactionForm=document.getElementById("btnCloseTransactionForm");  
-        popupBtnCloseTransactionForm=document.getElementById("popupBtnCloseTransactionForm");
-
-        //formDIV
-        newTransactionFormDiv=document.getElementById("newTransactionFormDiv");
-
-        //form
-        formNewTrans=document.getElementById("formNewTrans");
-
-        //events
-        btnNewTransaction.addEventListener("click",showNewTransactionForm);
-      
-        btnCloseTransactionForm.addEventListener("click",hideNewTransactionForm);
-        popupBtnCloseTransactionForm.addEventListener("click",hideNewTransactionForm);
-
-      formNewTrans.addEventListener("submit",async(e)=>{
-            e.preventDefault();
-            console.log("form prevented");
-            const formData = new FormData(formNewTrans); 
-            const data = Object.fromEntries(formData.entries());
-             
-    try {
-        // Using async/await with fetch
-        const response = await fetch('/Financial/newTransaction', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json', 
-          },
-          body: JSON.stringify(data) 
-        });
-  
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-  
-        hideNewTransactionForm();
-        finAccOpenDetails(id);
-     
-        console.log('Success:', data);
-        
-      } catch (error) {
-        console.error('Error:', error);
-       
-      }
-
-        })
-
-       
-
-      
-    }
 
 
 };

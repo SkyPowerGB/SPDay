@@ -1,4 +1,9 @@
 
+const formsIds={
+    confirmDeleteFormId:"deleteConfirmForm",
+    newEditTransFormId:"newTransactionFormDiv",
+
+}
 const finAccountUIv2={
 
      toggleEditDeleteBtns(id){
@@ -45,22 +50,68 @@ const finAccountUIv2={
 
     }
     ,toogleAddTransFormD(){
-        const form=document.getElementById(newTransactFormItems.formDivId);
-        
-        if(form.classList.contains("hidden")){
-            form.classList.remove("hidden")}
-        else{
-            form.classList.add("hidden");
-            }
-    }
-    ,toogleEditTransForm(id){
-
-
+       toggleElement(formsIds.newEditTransFormId);
     }
   
+    ,
+     fillTransForm(id){
+        const accountIdInputE=document.getElementById(newTransactFormItems.accountIdInputId);
+        const transIdInputE=document.getElementById(newTransactFormItems.transIdInputId);
+        const dateInputE=document.getElementById(newTransactFormItems.dateInputId);
+        const amountInputE=document.getElementById(newTransactFormItems.amountInputId);
+        const descriptionInputE=document.getElementById(newTransactFormItems.descriptionInputId);
+        const groupNameInputE=document.getElementById(newTransactFormItems.groupNameInpuIdt);
+    
+    
+        const dateTdE=document.getElementById(transactionTableItems.dateTdId+id);
+        const amountTdE=document.getElementById(transactionTableItems.amountTdId+id);
+        const descriptionTdE=document.getElementById(transactionTableItems.descriptionTdId+id);
+        const groupIdTdE=document.getElementById(transactionTableItems.groupIdTdId+id);
+    
+    
+      
+            transIdInputE.value=id;
+            accountIdInputE.value=accountIdInputE.value;
+            dateInputE.value=dateTdE.value;
+            amountInputE.value=amountTdE.innerText;
+            descriptionInputE.value=descriptionTdE.innerText;
+       
+    
+       
+    
+    }
+    ,toggleFinTransDeleteForm(id){
+        toggleElement(formsIds.confirmDeleteFormId);
+
+
+    }
+    
+   
 
 
 }
+
+function toggleElement(elementId){
+ const element=document.getElementById(elementId);
+ if(element.classList.contains("hidden")){  
+    element.classList.remove("hidden")
+ }else{
+    element.classList.add("hidden")
+ }
+}
+
+function showElement(elementId){ž
+ const   element=document.getElementById(elementId);
+    if(element.classList.contains("hidden")){
+        element.classList.remove("hidden")}
+}
+function hideElement(elementId){
+  const  element=document.getElementById(elementId);
+    if(!element.classList.contains("hidden")){
+        element.classList.add("hidden")}
+}
+
+
 
 // form items ids (new transaction form)
 // ? fin acc id is probably unnecesary
@@ -93,31 +144,5 @@ const transactionTableItems={
 
 }
 
-function fillTransForm(id){
-    const accountIdInputE=document.getElementById(newTransactFormItems.accountIdInputId);
-    const transIdInputE=document.getElementById(newTransactFormItems.transIdInputId);
-    const dateInputE=document.getElementById(newTransactFormItems.dateInputId);
-    const amountInputE=document.getElementById(newTransactFormItems.amountInputId);
-    const descriptionInputE=document.getElementById(newTransactFormItems.descriptionInputId);
-    const groupNameInputE=document.getElementById(newTransactFormItems.groupNameInpuIdt);
-
-
-    const dateTdE=document.getElementById(transactionTableItems.dateTdId+id);
-    const amountTdE=document.getElementById(transactionTableItems.amountTdId+id);
-    const descriptionTdE=document.getElementById(transactionTableItems.descriptionTdId+id);
-    const groupIdTdE=document.getElementById(transactionTableItems.groupIdTdId+id);
-
-
-  
-        transIdInputE.value=id;
-        accountIdInputE.value=accountIdInputE.value;
-      
-        amountInputE.value=amountTdE.innerText;
-        descriptionInputE.value=descriptionTdE.innerText;
-   
-
-   
-
-}
 
 export{finAccountUIv2}

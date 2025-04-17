@@ -1,4 +1,4 @@
-import { toggableHandleClickEvents,setupFormsEvents } from "./Parts/uiToggablesController";
+import { toggableHandleClickEvents,setupFormsEvents } from "./Parts/uiToggablesController.js";
 let globalId;
 const contentElementId = "siteContent";
 // starting funciton for opening partial view
@@ -12,7 +12,7 @@ contentElement.addEventListener("click", events);
 // main function for fin acc partial view
 function events(e){
 
-
+toggableHandleClickEvents(e,callBacks.reloadPage);
 }
 
 // callback obj for fin acc page actions
@@ -50,6 +50,6 @@ const callBacks={
 
 }
 
-
+export { finAccViewMain };
 
 

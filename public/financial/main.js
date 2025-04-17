@@ -1,12 +1,15 @@
-import { newFinnAccformActions, finAccFunctions } from './scriptParts/finAccount.js';
-import {finAccountUIv2} from './scriptParts/finAccView/improved/finAccUIcomponents.js';
-import {finAccFormsMain} from './scriptParts/finAccView/improved/finAccForms.js'
+//import { newFinnAccformActions, finAccFunctions } from './scriptParts/finAccount.js';
+//import {finAccountUIv2} from './scriptParts/finAccView/improved/finAccUIcomponents.js';
+//import {finAccFormsMain} from './scriptParts/finAccView/improved/finAccForms.js'
+import {finAccViewMain} from "./scriptParts/finAccViewV2/finAccViewMain.js"
 
 window.addEventListener("load", main);
 
 function main() {
+
+ 
     console.log("financial_script_ready");
-    newFinnAccformActions.setupEventListeners();
+//    newFinnAccformActions.setupEventListeners();
 
     document.addEventListener("click", (e) => {
 
@@ -14,10 +17,14 @@ function main() {
 
         if (e.target.classList.contains("fin-acc-details-btn")) {
             const id = e.target.value;
+       
             console.log("open fin_acc details"+id);
-            finAccFunctions.finAccOpenDetails(id);
+            finAccViewMain(id);
+
+       //     finAccFunctions.finAccOpenDetails(id);
         }
 
+        /*
         // FIN ACC EDIT BTN
 
         if(e.target.id==="finAccEditBtn"){
@@ -87,8 +94,7 @@ function main() {
 
         
 
-
-
+*/
 
 
 
@@ -112,6 +118,8 @@ function main() {
 
 
     });
+
+
 }
 
 

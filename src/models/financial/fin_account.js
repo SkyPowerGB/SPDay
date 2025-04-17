@@ -36,4 +36,17 @@ async function deleteFinAcc(id){
 
 }
 
-module.exports={getAllFinAccFromUid,createEditFinAccount}
+async function getFinAccountData(id){
+const query="call getFinAccountData(?)"; 
+const [results] =await db.execute(query,[id]);
+console.log("getFinAccData: ",results[0][0] ,"// ");
+return results[0][0];
+}
+
+
+async function getAccountsUidPaginated(uid, page, limit) {
+
+}
+
+
+module.exports={getAllFinAccFromUid,createEditFinAccount,getFinAccountData}

@@ -6,7 +6,7 @@
  // toggalbe elements ids (some are dynamic)
 const toggableElementIds={ 
     // need id to function to toggle
-   transTableEditPartial:" finTransTableEditTd_",
+   transTableEditPartial:"finTransTableEditTd_",
    transTableDeletePartial:"finTransTableDeleteTd_"
 
 
@@ -23,12 +23,17 @@ const clickElementClasses={
 
 // ids for static elements
 const clickElementIds={
+    // fin account form 
     finAccOpenEditForm:"finAccEditBtn",
     editFinAccPopupCloseBtn:"editFinAccPopupCloseBtn",
     editFinAccPopupClsBtn:"editFinAccPopupClsBtn",
+
+    // transaction form
     newTransactionBtn:"newTransactionBtn",
     popupBtnCloseTransactionForm:"popupBtnCloseTransactionForm",
     btnCloseTransactionForm:"btnCloseTransactionForm",
+   
+    // delete confirm form
     confirmDeleteCloseBtn:"confirmDeleteCloseBtn",
     confirmDeleteCloseBtnT:"confirmDeleteCloseBtnT",
 }
@@ -42,8 +47,7 @@ const target=e.target;
 const targetId=target.id;
 const targetValue=target.value;
 
-
-  switch(target.id){
+  switch(targetId){
     case clickElementIds.finAccOpenEditForm:
         editAccountForm.showForm();
      break;
@@ -74,32 +78,32 @@ const targetValue=target.value;
 
    // open edit/delete buttons for transaction table
   if(target.classList.contains(clickElementClasses.finTransTabToggleEditBtns)){
-  
-    toggle(toggableElementIds.transTableEditPartial+targetValue);
-    toggle(toggableElementIds.transTableDeletePartial+targetValue);
+      console.log(target.value);
+      const value=target.value;
+      
+    toggle((toggableElementIds.transTableEditPartial)+value);
+    toggle((toggableElementIds.transTableDeletePartial)+value);
 
   }
 
   // show edit transact form
   if(target.classList.contains(clickElementClasses.finTransTabEditBtns)){
-
+     editTransactionForm.fillFormEditV(targetValue);
   }
   // show delete transact form
   if(target.classList.contains(clickElementClasses.finTransTabDeleteBtns)){
-
+       deleteConfirmForm.showForm(targetValue,editTransactionForm.delete);
   }
 
-
-
+   
 
 }
 
-
-
-
 // click events handlers
 function toggle(elementId){
+    console.log("toggle",elementId);
     const element=document.getElementById(elementId);
+
     if(element.classList.contains(hiddenClass)){  
        element.classList.remove(hiddenClass)
     }else{

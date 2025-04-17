@@ -8,4 +8,6 @@ obj.username=req.spd_userData.username;
   return obj;
 }
 
+
+
 module.exports=fillCommonData;

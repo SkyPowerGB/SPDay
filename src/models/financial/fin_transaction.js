@@ -22,7 +22,7 @@ uid
 }
 
 
-async function getFinTransByAccountIdV1(id){
+async function getAllFinTransByAccountIdV1(id){
 const query="select * from fin_transaction where fin_account_id=?";
    const [rows] = await db.query(query, [id]); 
 return rows; 
@@ -30,13 +30,19 @@ return rows;
   
 }
 
-async function deleteTransactionById(id){
+async function deleteTransactionsById(id){
     const query="delete from fin_transaction where id=?";
     const output=db.execute(query,[id]);
     return output;
 }
 
-
+async function getAllFinAccountTransactions(id){
+    const procedure="call getFinAccountTransactions(?)";
+    const [results] = await db.query(procedure, [id]);
+    console.log("Results of get transactions:", results[0]);
+    return results[0];
+}
+async function getFinAccountTransactionsPaginated(id, page, limit){}
 
 
 
@@ -64,5 +70,6 @@ module.exports={
     validateTransAmm,
     validateTransGrpNm,
     addEditNewFinTransctionV2,
-    getFinTransByAccountIdV1
+    
+    getAllFinAccountTransactions
 }

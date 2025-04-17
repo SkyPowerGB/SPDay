@@ -1,39 +1,42 @@
 <div id="editFinAcc" class="hidden">
 
   <div class="form-popup-container fin-acc-form-popup">
+
     <div class="form-popup-close-btn-div">
       <button id="editFinAccPopupCloseBtn">X</button>
     </div>
 
-    <form>
-      <input type="hidden" name="id" value="0" />
+    <form id="finAccEditFormForm "
+    class="form-popup popup-form-inputs"
+    >
+      <input  type="hidden" name="finAccEditFormAccIdInput" value="0" />
       <div class="popup-form-header"><h1>Uredi Račun</h1></div>
-
+       
       <div class="form-part-item popup-form-inputs">
         <div class="form-part-column">
           <label>Ime:</label>
-          <input />
+          <input id="finAccEditFormNameInput" />
         </div>
       </div>
 
       <div class="form-part-item popup-form-inputs">
         <div class="form-part-column">
           <label>Stanje:</label>
-          <input />
+          <input id="finAccEditFormBalance" />
         </div>
       </div>
 
       <div class="form-part-item popup-form-inputs">
         <div class="form-part-column">
           <label>Valuta:</label>
-          <select></select>
+          <select id="finAccEditFormCurrencyInput"></select>
         </div>
       </div>
 
       <div class="form-part-item popup-form-inputs">
         <div class="form-part-column">
           <label>Vrsta Računa:</label>
-          <select></select>
+          <select id="finAccEditFormAccType"></select>
         </div>
       </div>
 

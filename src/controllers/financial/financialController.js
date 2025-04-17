@@ -3,6 +3,9 @@ const finAccTypeModel=require("../../models/financial/fin_acccount_type");
 const finCurrTypeModel=require("../../models/financial/fin_acc_currency");
 const finAccModel=require("../../models/financial/fin_account");
 const finTransModel=require("../../models/financial/fin_transaction");
+const finTransGroupModel=require("../../models/financial/trans_group");
+
+
 const moment = require("moment");
 const dateDisplayFormat="DD MM YYYY";
 const dateInputFormat="YYYY-MM-DD";
@@ -55,13 +58,19 @@ async function loadFinAccPage(req,res,next){
 
     console.log(req.body);
     const finAccId=req.body.finAccId;
-    const transactionRows=await finTransModel.getFinTransByAccountIdV1(finAccId);
+
+    const transactionRows=await finTransModel.getAllFinAccountTransactions(finAccId);
+
+    const transGroupRows=await finTransGroupModel.getAllTransGroupFromUid(req.session.userId);
+
+    const finAccData= await finAccModel.getFinAccountData(finAccId);
+
     transactionRows.forEach(e => {
-     e.transOuputDateFormat=   moment(e.transaction_date).format(dateDisplayFormat);
-     e.inputDateFormat=moment(e.transaction_date).format(dateInputFormat);
+     e.transOuputDateFormat=   moment(e.finTransDate).format(dateDisplayFormat);
+     e.inputDateFormat=moment(e.finTransDate).format(dateInputFormat);
     });
 
-    res.render("financial/finAccView/finAccView",fillCommonData({finAccId,transactionRows},req));
+    res.render("financial/finAccView/finAccView",fillCommonData({finAccId,transactionRows,transGroupRows,finAccData},req));
 
 }
 
@@ -85,7 +94,7 @@ async function addNewTransaction(req,res,next){
     valid=finTransModel.validateTransAmm(transAmm);
     valid=finTransModel.validateTransDesc(transDesc);
     valid=finTransModel.validateTransGrpNm(transGrpNm);
-    valid=isNumeric(finAccId);
+   
 
     if(valid){
 
@@ -96,6 +105,7 @@ async function addNewTransaction(req,res,next){
             console.log("attempt to add new transaction");
         const res=await finTransModel.addEditNewFinTransctionV2(0,finAccId,transDesc,transAmm,transDate,transGrpNm,uid);
         console.log(res);
+       ;
          
         }catch(err){
             console.log(err);
@@ -107,7 +117,7 @@ async function addNewTransaction(req,res,next){
     }
 
 
-
+    res.json({OK:1})
 }
 
 

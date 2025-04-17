@@ -22,36 +22,42 @@
     <% transactionRows.forEach(row => { %>
 
         <tr class="table-display-data-body-row">
-            <td ><%= row.fin_transaction_id %></td>
+            <td id= <%= "transactTabIdTd_"+ row.finTransId %>>
+             <%= row.finTransId %>
+            </td>
+            
 
-            <td id=<%= "finTransTableDescTd_"+row.fin_transaction_id%>>
-                <%= row.transaction_desc %></td>
-
-            <td id=<%= "finTransTableAmountTd_"+row.fin_transaction_id%>>
-                <%= row.transaction_amount %></td>
+            <td id= <%= "finTransTableDescTd_"+row.finTransId%>>
+                <%= row.finTransDesc %>
+            </td>
+                   
+                
+            <td id=<%= "finTransTableAmountTd_"+row.finTransId%>>
+                <%= row.finTransAmount %>
+            </td>
 
             <td >
                 <%= row.transOuputDateFormat %> <input 
-                id=<%= "finTransTableDateTdInput_"+row.fin_transaction_id%>
+                id=<%= "finTransTableDateTdInput_"+row.finTransId%>
                 type="hidden" value=  <%= row.inputDateFormat %>>
             </td>
 
                 
-            <td id=<%= "finTransTableGrpIdTd_"+row.fin_transaction_id%>>
-                <%= row.transaction_group_id %></td>
+            <td id=<%= "finTransTableGrpIdTd_"+row.finTransId%>>
+                <%= row.finTransGrpNm %></td>
 
 
 
-            <td  ><button value= <%=row.fin_transaction_id%> class=" fin-acc-edit-btn  fin-trans-edit-btns" >✎</button></td>
-            <td class="hidden table-data-edit-td " id=<%= "finTransTableEditTd_"+row.fin_transaction_id%>  >
+            <td  ><button value= <%=row.finTransId%> class=" fin-acc-edit-btn  fin-trans-edit-btns" >✎</button></td>
+            <td class="hidden table-data-edit-td " id=<%= "finTransTableEditTd_"+row.finTransId%>  >
                 
                 <button class="finTransTableEditBtns"
-                 id=<%= "finTransTableEditBtn_"+row.fin_transaction_id%> value=<%= row.fin_transaction_id %>  >Uredi</button></td>
+                 id=<%= "finTransTableEditBtn_"+row.finTransId%> value=<%= row.finTransId %>  >Uredi</button></td>
         
         
-                <td class="hidden table-data-delete-td " id=<%= "finTransTableDeleteTd_"+row.fin_transaction_id%> >
+                <td class="hidden table-data-delete-td " id=<%= "finTransTableDeleteTd_"+row.finTransId%> >
                 <button class="finTransTableDeleteBtns" 
-                 id=<%= "finTransTableDeleteBtn_"+row.fin_transaction_id%> value=<%= row.fin_transaction_id %>  >Izbriši</button></td>
+                 id=<%= "finTransTableDeleteBtn_"+row.finTransId%> value=<%= row.finTransId %>  >Izbriši</button></td>
         </tr>
      
     <% }) %>

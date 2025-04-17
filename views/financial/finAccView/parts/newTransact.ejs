@@ -1,64 +1,88 @@
 <div id="newTransactionFormDiv" class="hidden">
-    <div class="form-popup-container fin-acc-form-popup">
-      <div class="form-popup-close-btn-div">
-        <button id="popupBtnCloseTransactionForm">X</button>
+  <div class="form-popup-container fin-acc-form-popup">
+    <div class="form-popup-close-btn-div">
+      <button id="popupBtnCloseTransactionForm">X</button>
+    </div>
+
+    <form
+      id="formNewTrans"
+      method="POST"
+      action="/Financial/newTransaction"
+      class="form-popup popup-form-inputs"
+    >
+      <input id="formNewTransIdInput" type="hidden" name="id" value="0" />
+
+      <input
+        id="formNewTransFinAccIdInput"
+        type="hidden"
+        name="finAccId"
+        value="<%=locals.finAccId%>"
+        input
+        type="hidden"
+        name="submitType"
+        value="newTransact"
+      />
+
+      <div class="popup-form-header">
+        <h1>Nova transakcija</h1>
       </div>
 
-
-      <form id="formNewTrans" method="POST" action="/Financial/newTransaction" class="form-popup popup-form-inputs">
-
-        <input id="formNewTransIdInput" type="hidden" name="id" value="0">
-
-        <input id="formNewTransFinAccIdInput" type="hidden" name="finAccId" value=<%= locals.finAccId %>>
-    
-        <input  type="hidden" name="submitType" value="newTransact">
-
-        <div class="popup-form-header">
-          <h1>Nova transakcija</h1>
+      <div class="form-part-item popup-form-inputs">
+        <div class="form-part-column">
+          <label>Datum:</label>
+          <input id="formNewTransTransDateInput" name="transDate" type="date" />
         </div>
+      </div>
 
-        <div class="form-part-item popup-form-inputs">
-          <div class="form-part-column">
-            <label>Datum:</label>
-            <input id="formNewTransTransDateInput" name="transDate" type="date" />
+      <div class="form-part-item popup-form-inputs">
+        <div class="form-part-column">
+          <label>Iznos:</label>
+          <input id="formNewTransTransValueInput" name="transValue" />
+        </div>
+      </div>
+
+      <div class="form-part-item popup-form-inputs">
+        <div class="form-part-column">
+          <label>Opis</label>
+          <textarea id="formNewTransTransDescInput" name="transDesc"></textarea>
+        </div>
+      </div>
+
+      <div class="form-part-item popup-form-inputs">
+        <div class="form-part-column">
+          <div class="form-part-row">
+            <label>Grupa</label>
           </div>
-        </div>
 
-        <div class="form-part-item popup-form-inputs">
-          <div class="form-part-column">
-            <label>Iznos:</label>
-            <input id="formNewTransTransValueInput" name="transValue" />
-          </div>
+          <select
+            id="formNewTransGrpNmInput"
+            name="transGrpNm"
+            id="transactionGroupSelect"
+            placeholder="Select or type a group"
+          >
+            <% if(locals.transGroupRows){ transGroupRows.forEach(row => { %>
+            <option value="<%= row.transaction_group_name %>">
+              <%= row.transaction_group_name %>
+            </option>
+            <% }); } %>
+          </select>
         </div>
+      </div>
 
-        <div class="form-part-item popup-form-inputs">
-          <div class="form-part-column">
-            <label>Opis</label>
-            <textarea id="formNewTransTransDescInput" name="transDesc"></textarea>
-          </div>
+      <div class="form-part-item">
+        <div class="form-part-row popup-control-buttons">
+          <button
+            id="btnCloseTransactionForm"
+            class="popup-left-btn"
+            type="button"
+          >
+            Odustani
+          </button>
+          <button id="btnSubmitCreateNewTransact" class="popup-right-btn">
+            Dodaj Transkaciju
+          </button>
         </div>
-
-        <div class="form-part-item popup-form-inputs">
-        
-          <div class="form-part-column">
-            <div class="form-part-row">
-              <label>Grupa</label>
-       
-            </div>
-       
-            <select id="formNewTransGrpNmInput"  name="transGrpNm" id="transactionGroupSelect" placeholder="Select or type a group">
-              
-            </select>
-            </div>
-         
-        </div>
-
-        <div class="form-part-item">
-          <div class="form-part-row popup-control-buttons">
-            <button id="btnCloseTransactionForm" class="popup-left-btn" type="button">Odustani</button>
-            <button id="btnSubmitCreateNewTransact" class="popup-right-btn">Dodaj Transkaciju</button>
-          </div>
-        </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
+</div>

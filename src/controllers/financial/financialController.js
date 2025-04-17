@@ -75,16 +75,16 @@ async function loadFinAccPage(req,res,next){
 }
 
 
-
+// TODO :remove console logs 
 async function addNewTransaction(req,res,next){
-   let{id,finAccId,transDesc,transAmm,transDate,transGrpNm}=req.body;
+   let{id,finAccId,transDesc,transValue,transDate,transGrpNm}=req.body;
     const uid=req.session.userId;
     let valid=true;
 
     id=sanitize(id);
     finAccId=sanitize(finAccId);
     transDesc=sanitize(transDesc);
-    transAmm=sanitize(transAmm);
+    transAmm=sanitize(transValue);
     transDate=sanitize(transDate);
     transGrpNm=sanitize(transGrpNm);
 
@@ -97,6 +97,8 @@ async function addNewTransaction(req,res,next){
     valid=finTransModel.validateTransAmm(transAmm);
     valid=finTransModel.validateTransDesc(transDesc);
     valid=finTransModel.validateTransGrpNm(transGrpNm);
+
+    
    
 
     if(valid){

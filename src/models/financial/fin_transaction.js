@@ -44,6 +44,9 @@ async function getAllFinAccountTransactions(id){
 }
 async function getFinAccountTransactionsPaginated(id, page, limit){}
 
+async function getTransactionAmount(transId){
+    
+}
 
 
 function validateTransDesc(transDesc){
@@ -64,6 +67,8 @@ function validateTransGrpNm(transGrpNm){
     }
     return false;
 }
+
+
 
 module.exports={
     validateTransDesc,

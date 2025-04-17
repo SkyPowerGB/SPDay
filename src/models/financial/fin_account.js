@@ -48,5 +48,30 @@ async function getAccountsUidPaginated(uid, page, limit) {
 
 }
 
+async function updateFinAccBalance(accId,amount){
+  const querry= "select updateFinAccBalance(?,?);";
+  const [results] = await db.execute(querry,[accId,amount]);
+}
+async function getFinAccBalance(accId){
+const querry="select getFinAccBalance(?) as output;"
+const [results] = await db.execute(querry,[accId]);
+return results[0][0].output;
 
-module.exports={getAllFinAccFromUid,createEditFinAccount,getFinAccountData}
+}
+// TODO remove Logs
+async function transactionBalanceUpdate(accId,amount){
+  console.log("transactionBalanceUpdate: ",accId,amount);
+  const curr= await getFinAccBalance(accId);
+  const newBalance=curr+amount;
+  await updateFinAccBalance(accId,newBalance);
+}
+
+
+
+module.exports={
+  getAllFinAccFromUid,
+  createEditFinAccount,
+  getFinAccountData,
+  updateFinAccBalance,
+  transactionBalanceUpdate
+}

@@ -88,7 +88,10 @@ async function addNewTransaction(req,res,next){
     transDate=sanitize(transDate);
     transGrpNm=sanitize(transGrpNm);
 
-    
+    console.log("-----------------------------------------------------------");
+    console.log("ADD/EDIT TRANSACTION");
+    console.log(id,finAccId,transDesc,transAmm,transDate,transGrpNm);
+    console.log("-----------------------------------------------------------");
 
 
     valid=finTransModel.validateTransAmm(transAmm);
@@ -102,9 +105,9 @@ async function addNewTransaction(req,res,next){
         transAmm=parseFloat(transAmm);
         id=parseInt(id);
         try{
-            console.log("attempt to add new transaction");
-        const res=await finTransModel.addEditNewFinTransctionV2(0,finAccId,transDesc,transAmm,transDate,transGrpNm,uid);
-        console.log(res);
+        
+        const res=await finTransModel.addEditNewFinTransctionV2(id,finAccId,transDesc,transAmm,transDate,transGrpNm,uid);
+      
        ;
          
         }catch(err){

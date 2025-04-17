@@ -91,6 +91,7 @@ function fillFormEditV(id){
    const descTd= document.getElementById(dataHoldingItemIds.desc+id);
    const grpTd= document.getElementById(dataHoldingItemIds.group+id);
 
+   console.log("Editing transaction with id:",id);
    idInput.value=idTd.innerText.trim();
     dateInput.value=dateTd.value;
     amountInput.value=amountTd.innerText.trim();

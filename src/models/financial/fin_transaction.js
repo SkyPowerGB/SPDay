@@ -13,7 +13,7 @@ transDate,
 transGrpNm,
 uid
 ){
-
+   
     const query="call addEditFinTransV2(?,?,?,?,?,?,?)";
     const output=db.execute(query,[id,fAccId,transDesc,transAmm,transDate,transGrpNm,uid]);
 

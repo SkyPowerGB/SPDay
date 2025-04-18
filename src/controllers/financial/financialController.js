@@ -98,18 +98,44 @@ async function addNewTransaction(req,res,next){
     valid=finTransModel.validateTransDesc(transDesc);
     valid=finTransModel.validateTransGrpNm(transGrpNm);
 
+  
     
    
-
+     // TODO REMOVE LOGS
     if(valid){
 
         finAccId=parseInt(finAccId);
         transAmm=parseFloat(transAmm);
+        let succes=true;
+
+        let change=transAmm;
+        try{
+        if(id!=0){
+            // editing transaction
+            // get old transaction amount
+            const oldTransAmount=await finTransModel.getTransactionAmount(id);
+            console.log("oldTransAmount: ",oldTransAmount);
+            change=transAmm-oldTransAmount;
+            console.log("change: ",change);
+
+
+        
+        }
+        // update account balance
+         const currAccBalance= await  finAccModel.getFinAccBalance(finAccId);
+         const newAccBalance=currAccBalance+change;
+       await finAccModel.updateFinAccBalance(finAccId,newAccBalance);  
+
+    }catch(err){
+       succes=false;
+        console.log("Error updating account balance: ",err);
+    }
+
         id=parseInt(id);
         try{
-        
+        if(succes){
         const res=await finTransModel.addEditNewFinTransctionV2(id,finAccId,transDesc,transAmm,transDate,transGrpNm,uid);
-      
+        }
        ;
          
         }catch(err){
@@ -125,5 +151,14 @@ async function addNewTransaction(req,res,next){
     res.json({OK:1})
 }
 
+// TODO: remove console logs
+async function deleteTransactionsById(req,res,next) {
+    const id=req.body.id;
+    console.log("Deleting transaction with id: ",id);
+    await finTransModel.deleteTransactionsById(id);
+    res.json({OK:1});
+    
+}
 
-module.exports={loadPage,addEditNewFinAccount,loadFinAccPage,addNewTransaction}
+
+module.exports={loadPage,addEditNewFinAccount,loadFinAccPage,addNewTransaction,deleteTransactionsById}

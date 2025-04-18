@@ -39,13 +39,17 @@ async function deleteTransactionsById(id){
 async function getAllFinAccountTransactions(id){
     const procedure="call getFinAccountTransactions(?)";
     const [results] = await db.query(procedure, [id]);
-    console.log("Results of get transactions:", results[0]);
+   
     return results[0];
 }
 async function getFinAccountTransactionsPaginated(id, page, limit){}
 
+// todo remove logs
 async function getTransactionAmount(transId){
-    
+    const query="select getTransactionAmount(?) as output";
+    const [rows] = await db.execute(query,[transId]);
+    console.log("getting transaction amount: ",rows[0].output);
+    return rows[0].output;
 }
 
 
@@ -76,5 +80,6 @@ module.exports={
     validateTransGrpNm,
     addEditNewFinTransctionV2,
     
-    getAllFinAccountTransactions
+    getAllFinAccountTransactions,
+    getTransactionAmount
 }

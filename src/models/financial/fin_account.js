@@ -36,6 +36,7 @@ async function deleteFinAcc(id){
 
 }
 
+//TODO remove Logs
 async function getFinAccountData(id){
 const query="call getFinAccountData(?)"; 
 const [results] =await db.execute(query,[id]);
@@ -52,20 +53,16 @@ async function updateFinAccBalance(accId,amount){
   const querry= "select updateFinAccBalance(?,?);";
   const [results] = await db.execute(querry,[accId,amount]);
 }
-async function getFinAccBalance(accId){
-const querry="select getFinAccBalance(?) as output;"
-const [results] = await db.execute(querry,[accId]);
-return results[0][0].output;
 
-}
 // TODO remove Logs
-async function transactionBalanceUpdate(accId,amount){
-  console.log("transactionBalanceUpdate: ",accId,amount);
-  const curr= await getFinAccBalance(accId);
-  const newBalance=curr+amount;
-  await updateFinAccBalance(accId,newBalance);
-}
+async function getFinAccBalance(accId){
+  console.log("getting fin account balance");
+const querry="select getFinAccBalance(?) as output;"
+const [rows] = await db.execute(querry,[accId]);
 
+return rows[0].output;
+
+}
 
 
 module.exports={
@@ -73,5 +70,5 @@ module.exports={
   createEditFinAccount,
   getFinAccountData,
   updateFinAccBalance,
-  transactionBalanceUpdate
+  getFinAccBalance
 }

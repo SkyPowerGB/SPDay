@@ -5,6 +5,8 @@ const finAccModel=require("../../models/financial/fin_account");
 const finTransModel=require("../../models/financial/fin_transaction");
 const finTransGroupModel=require("../../models/financial/trans_group");
 
+const deleteConfrimForm=require("../../helpers/forms/deleteConfrimFormConfig");
+
 
 const moment = require("moment");
 const dateDisplayFormat="DD MM YYYY";
@@ -152,13 +154,84 @@ async function addNewTransaction(req,res,next){
 }
 
 // TODO: remove console logs
-async function deleteTransactionsById(req,res,next) {
-    const id=req.body.id;
-    console.log("Deleting transaction with id: ",id);
-    await finTransModel.deleteTransactionsById(id);
-    res.json({OK:1});
+async function deleteTransaction(req,res,next) {
+    let accBalance;
+    let row;
+    let transAmount;
+    let finAccId;
+    let transactId;
+    
+    const type=req.body[deleteConfrimForm.paramNames.type];
+    if(type!=deleteConfrimForm.deleteTypes.finTrans){
+       console.log("fin trans delete cancel other thing:");
+       next();
+       
+    }
+
+     transactId=req.body[deleteConfrimForm.paramNames.id];
+
+    console.log("----------STARTING DELETE OPERATION-------------------------------------------------");
+
+    try{
+         row=await finTransModel.getFinTransRow(transactId);
+          
+    }catch(err){
+        deleteUnssuceful(res);
+        return;
+    }
+   
+
+    
+
+      finAccId=row[finTransModel.transactTabColNms.finAccId];
+      transAmount=row[finTransModel.transactTabColNms.transAmount];
+     try{
+        console.log("getting account balance for id: ",finAccId);
+      accBalance=await finAccModel.getFinAccBalance(finAccId);
+     }
+     catch(err){
+        console.log("Error getting balance data");
+        deleteUnssuceful(res);
+        return;
+     }
+
+     const newAccBalance=accBalance-transAmount;
+     console.log("new acc balance ready ");
+   
+    
+    console.log("Deleting transaction with id: ",transactId);
+    try{
+    await finTransModel.deleteTransactionById(transactId);
+    
+    
+    }
+    catch(err){
+         deleteUnssuceful(res);
+         console.log("Error deleting transaction: ");
+         return;
+    }
+
+    try{
+        await finAccModel.updateFinAccBalance(finAccId,newAccBalance);
+        console.log("updating account balance done ");
+        res.status(200).json({OK:1});
+    
+    
+        }catch(err){
+           console.log("Error updating account balance");
+           deleteUnssuceful(res);
+           return;
+        }
+      
+    
+}
+function deleteUnssuceful(res){
+    res.status(500).json({OK:0});
+}
+
+async function deleteFinAcc(req,res,next) {
     
 }
 
 
-module.exports={loadPage,addEditNewFinAccount,loadFinAccPage,addNewTransaction,deleteTransactionsById}
+module.exports={loadPage,addEditNewFinAccount,loadFinAccPage,addNewTransaction,deleteTransaction,deleteFinAcc}

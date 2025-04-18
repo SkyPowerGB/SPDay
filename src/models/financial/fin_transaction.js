@@ -30,8 +30,8 @@ return rows;
   
 }
 
-async function deleteTransactionsById(id){
-    const query="delete from fin_transaction where id=?";
+async function deleteTransactionById(id){
+    const query="delete from fin_transaction where fin_transaction_id=?";
     const output=db.execute(query,[id]);
     return output;
 }
@@ -52,6 +52,17 @@ async function getTransactionAmount(transId){
     return rows[0].output;
 }
 
+async function getFinTransRow(transactId) {
+const querry="CALL getFinTransData(?)";
+const [rows] = await db.execute(querry,[transactId]);
+return rows[0][0];
+}
+
+async function getFinAccId(transId){
+ const querry="SELECT getTransactionFinnAccountId(?) as output";
+ const [rows] = await db.execute(querry,[transId]); 
+return rows[0].output;
+}
 
 function validateTransDesc(transDesc){
     if(transDesc.length>0 && transDesc.length<255){
@@ -72,14 +83,27 @@ function validateTransGrpNm(transGrpNm){
     return false;
 }
 
+const transactTabColNms={
+    id:"fin_transaction_id",
+    finAccId:"fin_account_id",
+    transDesc:"transaction_desc",
+    transAmount:"transaction_amount",
+    transDate:"transaction_date",
+    transactionGrp_id:"transaction_group_id",
+}
 
 
 module.exports={
+    transactTabColNms,
     validateTransDesc,
     validateTransAmm,
     validateTransGrpNm,
     addEditNewFinTransctionV2,
     
     getAllFinAccountTransactions,
-    getTransactionAmount
+    getTransactionAmount,
+    getFinAccId,
+    getFinTransRow,
+
+    deleteTransactionById
 }

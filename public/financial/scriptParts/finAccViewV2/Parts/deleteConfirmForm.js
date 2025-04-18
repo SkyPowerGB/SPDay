@@ -7,9 +7,6 @@ const formPartsIds={
     deleteWhatInput:"deleteWhatInput",
 }
 
-// table / displaied data (need id for item)
-const dataHoldingItemIds={}
-
 
 
 const deleteConfirmForm={
@@ -21,13 +18,24 @@ sendFormData(callback);
 showForm(id,type){ showForm(id,type);},
 hideForm(){ hideForm();},
 
-setupEvents(){setup();}
+setupEvents(callback){setup(callback);}
 
 
 
 }
-function setup(){
+function setup(callback){
+const form=document.getElementById(formId);
+form.addEventListener("submit",function(event){
+    event.preventDefault();
+   const formData=new FormData(form);
+   const formDataObj={};
+   formData.forEach((value,key)=>{
+       formDataObj[key]=value;
+   });
+   
+    sendFormData(callback,formDataObj);
 
+});
 }
 
 function fillFormEditV(id,type){
@@ -52,10 +60,39 @@ function hideForm(){
 }
 
 
+// remove logging
+async function sendFormData(callback,obj) {
+    try {
+        const response = await fetch("finAccView/finAccViewDeleteActions", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(obj),
+        });
+    
+     
+        if (response.ok) {
+       
+            const responseData = await response.json();
+        
+            console.log("Response Data:", responseData);
+            
+        
+            if (responseData && responseData.OK === 1) {
+                callback();  
+            } else {
+                console.log("Server error:", responseData);  
+            }
+        } else {
+            console.log("Error: ", response.statusText);  
+        }
+    
+    } catch (error) {
+        console.log("Error sending delete form: ", error);  
+    }
 
-async function sendFormData(callback) {
-
-
-    callback(); }
+    
+}
 
 export {deleteConfirmForm}

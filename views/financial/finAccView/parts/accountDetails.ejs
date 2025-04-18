@@ -1,13 +1,21 @@
 <div class="fin-acc-view-account-details">
 
     <div class="fin-acc-row-wrapper">
-      <h1><%= locals.finAccData.finAccName %></h1>
+      <h1 id="finAccNameDatDisp"><%= locals.finAccData.finAccName %></h1>
       <button id="finAccEditBtn" class="fin-acc-edit-btn">✎</button>
     </div>
 
 
     <h2>Vrsta računa: <%=locals.finAccData.accType %></h2>
+
+ 
     <h2>Stanje: <%=locals.finAccData.balance %> <%=locals.finAccData.currency %> </h2>
+
+    <input type="hidden" id="finAccIdDatDispInput" value="<%=locals.finAccData.finAccId %>">
+    <input id="finAccAccTypeDatDispInput" type="hidden" value="<%=locals.finAccData.accType %>">
+    <input id="finAccBalanceDatDispInput" type="hidden" value="<%=locals.finAccData.balance %>">
+    <input id="finAccCurrencyDatDispInput" type="hidden" value="<%=locals.finAccData.currency %>">
+
   </div>
 
 

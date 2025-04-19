@@ -58,7 +58,7 @@ async function addEditNewFinAccount(req,res,next) {
 async function loadFinAccPage(req,res,next){
 
 
-    console.log(req.body);
+  
     const finAccId=req.body.finAccId;
 
     const transactionRows=await finTransModel.getAllFinAccountTransactions(finAccId);
@@ -67,12 +67,18 @@ async function loadFinAccPage(req,res,next){
 
     const finAccData= await finAccModel.getFinAccountData(finAccId);
 
+    const currencies=await finCurrTypeModel.getAllCurrencyTypes();
+    const currencyColNm=finCurrTypeModel.currencyColNm;
+    const finAccTypeColNm=finAccTypeModel.accTypeColNm;
+    const finAccTypes=await finAccTypeModel.getAllAccountTypes();
+
     transactionRows.forEach(e => {
      e.transOuputDateFormat=   moment(e.finTransDate).format(dateDisplayFormat);
      e.inputDateFormat=moment(e.finTransDate).format(dateInputFormat);
     });
 
-    res.render("financial/finAccView/finAccView",fillCommonData({finAccId,transactionRows,transGroupRows,finAccData},req));
+    res.render("financial/finAccView/finAccView",fillCommonData(
+        {finAccId,transactionRows,transGroupRows,finAccData,currencies,finAccTypes,currencyColNm,finAccTypeColNm},req));
 
 }
 
@@ -233,5 +239,13 @@ async function deleteFinAcc(req,res,next) {
     
 }
 
+async function updateFinAcc(req,res,next){
+    const data=req.body;
+    console.log(data);
+   
 
-module.exports={loadPage,addEditNewFinAccount,loadFinAccPage,addNewTransaction,deleteTransaction,deleteFinAcc}
+    res.json({OK:1});
+}
+
+
+module.exports={loadPage,addEditNewFinAccount,loadFinAccPage,addNewTransaction,deleteTransaction,deleteFinAcc,updateFinAcc}

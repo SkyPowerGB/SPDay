@@ -7,4 +7,10 @@ async function getAllAccountTypes() {
     const [rows] = await db.execute(query); 
     return rows;
 }
-module.exports={getAllAccountTypes};
+
+const accTypeColNm={
+    id:"fin_account_type_id",
+    name:"fin_account_type",  
+}
+
+module.exports={getAllAccountTypes,accTypeColNm};

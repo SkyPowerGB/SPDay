@@ -36,11 +36,10 @@ async function deleteFinAcc(id){
 
 }
 
-//TODO remove Logs
 async function getFinAccountData(id){
 const query="call getFinAccountData(?)"; 
 const [results] =await db.execute(query,[id]);
-console.log("getFinAccData: ",results[0][0] ,"// ");
+
 return results[0][0];
 }
 

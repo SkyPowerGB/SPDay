@@ -6,7 +6,7 @@
       <button id="editFinAccPopupCloseBtn">X</button>
     </div>
 
-    <form id="finAccEditFormForm "
+    <form id="finAccEditFormForm"
     class="form-popup popup-form-inputs"
     >
       <input id="finAccEditFormAccIdInput" type="hidden" name="finAccEditFormAccIdInput" value="0" />
@@ -15,28 +15,53 @@
       <div class="form-part-item popup-form-inputs">
         <div class="form-part-column">
           <label>Ime:</label>
-          <input id="finAccEditFormNameInput" />
+          <input name="finAccEditFormNameInput" id="finAccEditFormNameInput" />
         </div>
       </div>
 
       <div class="form-part-item popup-form-inputs">
         <div class="form-part-column">
           <label>Stanje:</label>
-          <input id="finAccEditFormBalance" />
+          <input name="finAccEditFormBalance" id="finAccEditFormBalance" />
         </div>
       </div>
 
       <div class="form-part-item popup-form-inputs">
         <div class="form-part-column">
           <label>Valuta:</label>
-          <select id="finAccEditFormCurrencyInput"></select>
+          <select name="finAccEditFormCurrencyInput" id="finAccEditFormCurrencyInput">
+             <%if (locals.currencies) { %>
+              <% locals.currencies.forEach(row => {%>
+
+                <option value="<%= row[currencyColNm.name] %>"><%= row[currencyColNm.name] %></option>
+
+
+                <%
+              });
+              
+              } %>
+
+          </select>
         </div>
       </div>
 
       <div class="form-part-item popup-form-inputs">
         <div class="form-part-column">
           <label>Vrsta Računa:</label>
-          <select id="finAccEditFormAccType"></select>
+          <select name="finAccEditFormAccType" id="finAccEditFormAccType">
+            <%if (locals.finAccTypes) { %>
+              <% locals.finAccTypes.forEach(row => {%>
+
+                <option value="<%= row[finAccTypeColNm.name] %>"><%= row[finAccTypeColNm.name] %></option>
+
+
+                <%
+              });
+              
+              } %>
+
+
+          </select>
         </div>
       </div>
 

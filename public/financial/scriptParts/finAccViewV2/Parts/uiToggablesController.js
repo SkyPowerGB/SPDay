@@ -40,7 +40,7 @@ const clickElementIds={
 const hiddenClass="hidden";
 //------------------------------------------------------------
 
-function toggableHandleClickEvents(e,reloadCallback){
+function toggableHandleClickEvents(e,reloadCallback,finAccId){
 
     
 const target=e.target;
@@ -49,7 +49,7 @@ const targetValue=target.value;
 
   switch(targetId){
     case clickElementIds.finAccOpenEditForm:
-        editAccountForm.showForm();
+        editAccountForm.showForm(finAccId);
      break;
     case clickElementIds.editFinAccPopupCloseBtn:
         editAccountForm.hideForm();

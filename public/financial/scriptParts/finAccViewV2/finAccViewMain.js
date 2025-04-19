@@ -12,7 +12,7 @@ contentElement.addEventListener("click", events);
 // main function for fin acc partial view
 function events(e){
 
-toggableHandleClickEvents(e,callBacks.reloadPage);
+toggableHandleClickEvents(e,callBacks.reloadPage,globalId);
 }
 
 // callback obj for fin acc page actions

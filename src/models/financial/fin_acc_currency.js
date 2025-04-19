@@ -4,4 +4,11 @@ async function getAllCurrencyTypes() {
     const [rows] = await db.execute(query); 
     return rows;
 }
-module.exports={getAllCurrencyTypes};
+
+const currencyColNm={
+    id:"currency_type_id",
+    name:"currency_name",
+    symbol:"currency_sign",
+
+}
+module.exports={getAllCurrencyTypes,currencyColNm};

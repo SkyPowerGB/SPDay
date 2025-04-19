@@ -15,5 +15,7 @@ router.post("/newTransaction",sessionMidleware.authenticateSession,controller.ad
 router.delete("/finAccView/finAccViewDeleteActions",sessionMidleware.authenticateSession,
     controller.deleteTransaction,controller.deleteFinAcc,(req,res)=>{});
 
+router.patch("/finAccView/finAccEdit",sessionMidleware.authenticateSession,
+    controller.updateFinAcc,(req,res)=>{});    
 module.exports = router;
 

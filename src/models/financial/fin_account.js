@@ -32,9 +32,9 @@ async function getAllFinAccFromUid(uid) {
 }
 
 async function deleteFinAcc(id){
-  const sql="call deleteFinAcc(?)";
+  const sql="select deleteFinAcc(?) as output";
   const [results] = await db.execute(sql,[id]);
-  return results[0][0];
+  return results;
 }
 
 async function getFinAccountData(id){

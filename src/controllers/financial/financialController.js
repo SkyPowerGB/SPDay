@@ -161,13 +161,16 @@ async function addNewTransaction(req,res,next){
 
 // TODO: remove console logs
 async function deleteTransaction(req,res,next) {
+    console.log("delete fin transaction enter:",req.body);
     let accBalance;
     let row;
     let transAmount;
     let finAccId;
     let transactId;
+
     
     const type=req.body[deleteConfrimForm.paramNames.type];
+    console.log("delete type: ",type);
     if(type!=deleteConfrimForm.deleteTypes.finTrans){
        console.log("fin trans delete cancel other thing:");
        next();
@@ -232,22 +235,36 @@ async function deleteTransaction(req,res,next) {
       
     
 }
+
+
 function deleteUnssuceful(res){
     res.status(500).json({OK:0});
 }
 
+// TODO: remove console logs
 async function deleteFinAcc(req,res,next) {
-  
+  console.log("delete fin acc: ",req.body);
     
     const type=req.body[deleteConfrimForm.paramNames.type];
-   
+    console.log("delete type: ",type);
     if(type!=deleteConfrimForm.deleteTypes.finAcc){
         console.log("fin acc delete cancel other thing:");
         next();   
+        return;
      }
      console.log("delete fin acc: ",req.body[deleteConfrimForm.paramNames.id]);
+     
+    
+    const finAccId=req.body[deleteConfrimForm.paramNames.id];
 
+    const result= await finAccModel.deleteFinAcc(finAccId);
+
+    res.status(200).json({OK:1, Redirect:"/Financial"});
+    return;
 }
+
+
+
 
 
 // TODO: remove console logs

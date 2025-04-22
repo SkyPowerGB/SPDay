@@ -13,7 +13,7 @@ router.post("/finAccDetails",sessionMidleware.authenticateSession,controller.loa
 router.post("/newTransaction",sessionMidleware.authenticateSession,controller.addNewTransaction,(req,res)=>{});
 
 router.delete("/finAccView/finAccViewDeleteActions",sessionMidleware.authenticateSession,
-    controller.deleteTransaction,controller.deleteFinAcc,(req,res)=>{});
+    controller.deleteTransaction,controller.deleteFinAcc);
 
 router.patch("/finAccView/finAccEdit",sessionMidleware.authenticateSession,
     controller.updateFinAcc,(req,res)=>{});    

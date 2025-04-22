@@ -1,13 +1,12 @@
 const paramNames = {
     id:"deleteElementId",
-    type:"deleteType",
+    type:"deleteElementType",
    
-
 }
 
 const deleteTypes={
-    finAcc:"finAcc",
-    finTrans:"finTrans",
+    finAcc:"deleteFinAcc",
+    finTrans:"deleteTransaction",
     finTransGroup:"finTransGroup",
 
 }

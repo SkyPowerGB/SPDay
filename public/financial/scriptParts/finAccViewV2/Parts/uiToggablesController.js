@@ -86,7 +86,7 @@ const targetValue=target.value;
         break;
 
     case clickElementIds.finAccDeleteBtn:
-        deleteConfirmForm.showForm(finAccId,editAccountForm.delete);
+        deleteConfirmForm.showForm(finAccId,editAccountForm.deleteCaseE);
         break;
 
 }

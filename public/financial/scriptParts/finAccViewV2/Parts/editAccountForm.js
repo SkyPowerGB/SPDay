@@ -20,6 +20,7 @@ const dataHoldingItemIds = {
 };
 
 const editAccountForm = {
+  deleteCaseE: deleteCaseE,
   sendForm(callback) {
     sendFormData(callback);
   },

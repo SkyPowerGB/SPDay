@@ -77,7 +77,9 @@ async function sendFormData(callback,obj) {
             const responseData = await response.json();
         
             console.log("Response Data:", responseData);
-            
+            if(responseData.Redirect) {
+                window.location.href = responseData.Redirect;  
+            }
         
             if (responseData && responseData.OK === 1) {
                 callback();  

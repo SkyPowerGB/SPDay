@@ -32,8 +32,9 @@ async function getAllFinAccFromUid(uid) {
 }
 
 async function deleteFinAcc(id){
-
-
+  const sql="call deleteFinAcc(?)";
+  const [results] = await db.execute(sql,[id]);
+  return results[0][0];
 }
 
 async function getFinAccountData(id){
@@ -69,5 +70,6 @@ module.exports={
   createEditFinAccount,
   getFinAccountData,
   updateFinAccBalance,
-  getFinAccBalance
+  getFinAccBalance,
+  deleteFinAcc,
 }

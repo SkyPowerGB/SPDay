@@ -87,7 +87,7 @@ function hideForm() {
 }
 
 async function sendFormData(callback, formDataObj) {
-  const result = fetch("finAccView/finAccEdit", {
+  const result = await fetch("finAccView/finAccEdit", {
     method: "PATCH",
     body: JSON.stringify(formDataObj),
     headers: {

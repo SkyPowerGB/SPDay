@@ -236,16 +236,65 @@ function deleteUnssuceful(res){
 }
 
 async function deleteFinAcc(req,res,next) {
-    
+    const id=req.body[deleteConfrimForm.paramNames.id];
+    const type=req.body[deleteConfrimForm.paramNames.type];
+
+    if(type!=deleteConfrimForm.deleteTypes.finAcc){
+        console.log("fin acc delete cancel other thing:");
+        next();
+    }
+
+   const result=await finAccModel.deleteFinAcc(id);
+
+
+
 }
 
+
+// TODO: remove console logs
 async function updateFinAcc(req,res,next){
+
     const data=req.body;
     console.log(data);
-   
+    let id=data.finAccEditFormAccIdInput;
+    let accNm=data.finAccEditFormNameInput;
+    let accTy=data.finAccEditFormAccType;
+    let accCt=data.finAccEditFormCurrencyInput;
+    let accBalance=data.finAccEditFormBalance;
+    const uid=req.session.userId;
 
-    res.json({OK:1});
+    let valid=true;
+    console.log(uid);
+    if(!isDecimal(accBalance)){valid=false;}
+
+    accBalance=parseFloat(accBalance);
+    accNm=sanitize(accNm);
+    accTy=sanitize(accTy);
+    accCt=sanitize(accCt);
+
+
+    
+    id=parseInt(id);
+    if(id<0){
+        valid=false;
+        console.log("invalid id: ",id);
+    }
+
+    const accTyId=await finAccTypeModel.getAccountTypeIdByName(accTy.trim());
+    const accCtId=await finCurrTypeModel.getCurrencyIdByName(accCt.trim());
+
+    if(accTyId==0 || accCtId==0){valid=false; console.log("invalid account type or currency type",accTyId,accCtId );}
+ 
+    if(valid){
+   await finAccModel.createEditFinAccount(id,uid,accNm,accBalance,accTyId,accCtId); 
+    res.status(200).json({OK:1});
+    return;
+    }
+
+    res.status(500).json({OK:0});
 }
+
+
 
 
 module.exports={loadPage,addEditNewFinAccount,loadFinAccPage,addNewTransaction,deleteTransaction,deleteFinAcc,updateFinAcc}

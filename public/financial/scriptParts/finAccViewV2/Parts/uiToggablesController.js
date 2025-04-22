@@ -7,8 +7,8 @@
 const toggableElementIds={ 
     // need id to function to toggle
    transTableEditPartial:"finTransTableEditTd_",
-   transTableDeletePartial:"finTransTableDeleteTd_"
-
+   transTableDeletePartial:"finTransTableDeleteTd_",
+   finAccActionsBtns:"finAccActionsBtns",
 
 }
 // click events ids/classes 
@@ -36,6 +36,11 @@ const clickElementIds={
     // delete confirm form
     confirmDeleteCloseBtn:"confirmDeleteCloseBtn",
     confirmDeleteCloseBtnT:"confirmDeleteCloseBtnT",
+
+    // add edit btns fin acc
+    finAccActionsBtn:"finAccActionsBtn",
+
+    
 }
 const hiddenClass="hidden";
 //------------------------------------------------------------
@@ -72,7 +77,9 @@ const targetValue=target.value;
     case clickElementIds.confirmDeleteCloseBtnT:
         deleteConfirmForm.hideForm();
         break;
-  
+    case clickElementIds.finAccActionsBtn:
+        toggle(toggableElementIds.finAccActionsBtns);
+        break;
 
 }
 

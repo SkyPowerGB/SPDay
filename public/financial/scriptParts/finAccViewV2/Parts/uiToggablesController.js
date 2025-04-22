@@ -23,6 +23,12 @@ const clickElementClasses={
 
 // ids for static elements
 const clickElementIds={
+    // add edit btns fin acc
+    finAccActionsBtn:"finAccActionsBtn",
+
+    // DELETE fIN ACC
+    finAccDeleteBtn:"finAccDeleteBtn",
+   
     // fin account form 
     finAccOpenEditForm:"finAccEditBtn",
     editFinAccPopupCloseBtn:"editFinAccPopupCloseBtn",
@@ -37,9 +43,7 @@ const clickElementIds={
     confirmDeleteCloseBtn:"confirmDeleteCloseBtn",
     confirmDeleteCloseBtnT:"confirmDeleteCloseBtnT",
 
-    // add edit btns fin acc
-    finAccActionsBtn:"finAccActionsBtn",
-
+ 
     
 }
 const hiddenClass="hidden";
@@ -79,6 +83,10 @@ const targetValue=target.value;
         break;
     case clickElementIds.finAccActionsBtn:
         toggle(toggableElementIds.finAccActionsBtns);
+        break;
+
+    case clickElementIds.finAccDeleteBtn:
+        deleteConfirmForm.showForm(finAccId,editAccountForm.delete);
         break;
 
 }

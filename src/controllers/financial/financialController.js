@@ -171,6 +171,7 @@ async function deleteTransaction(req,res,next) {
     if(type!=deleteConfrimForm.deleteTypes.finTrans){
        console.log("fin trans delete cancel other thing:");
        next();
+       return;
        
     }
 
@@ -236,17 +237,15 @@ function deleteUnssuceful(res){
 }
 
 async function deleteFinAcc(req,res,next) {
-    const id=req.body[deleteConfrimForm.paramNames.id];
+  
+    
     const type=req.body[deleteConfrimForm.paramNames.type];
-
+   
     if(type!=deleteConfrimForm.deleteTypes.finAcc){
         console.log("fin acc delete cancel other thing:");
-        next();
-    }
-
-   const result=await finAccModel.deleteFinAcc(id);
-
-
+        next();   
+     }
+     console.log("delete fin acc: ",req.body[deleteConfrimForm.paramNames.id]);
 
 }
 

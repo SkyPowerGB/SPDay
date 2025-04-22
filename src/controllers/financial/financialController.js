@@ -264,9 +264,6 @@ async function deleteFinAcc(req,res,next) {
 }
 
 
-
-
-
 // TODO: remove console logs
 async function updateFinAcc(req,res,next){
 
@@ -310,7 +307,20 @@ async function updateFinAcc(req,res,next){
     res.status(500).json({OK:0});
 }
 
+async function openFinGrpPage(req,res,next){
+    res.render("financial/finTransactGrpsView/finTransGrpView",fillCommonData({title:"Financial"},req));
+}
 
 
 
-module.exports={loadPage,addEditNewFinAccount,loadFinAccPage,addNewTransaction,deleteTransaction,deleteFinAcc,updateFinAcc}
+
+module.exports={
+    loadPage,
+    addEditNewFinAccount,
+    loadFinAccPage,
+    addNewTransaction,
+    deleteTransaction,
+    deleteFinAcc,
+    updateFinAcc,
+    openFinGrpPage
+}

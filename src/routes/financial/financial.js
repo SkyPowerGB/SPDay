@@ -19,3 +19,6 @@ router.patch("/finAccView/finAccEdit",sessionMidleware.authenticateSession,
     controller.updateFinAcc,(req,res)=>{});    
 module.exports = router;
 
+
+router.get("/TransactionGroupManager",sessionMidleware.authenticateSession,controller.openFinGrpPage);
+

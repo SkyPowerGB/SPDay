@@ -1,11 +1,58 @@
-¨<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <link href="../../commonStyles.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include("../../partials/navbar") %>
+
+    <div class="spd-commonv2-content-container">
+      <div class="spd-commonv2-sidebar-container">
+        <div class="spd-commonv2-sidebar-item-container">
+          <a>Back</a>
+        </div>
+      </div>
+
+      <div class="spd-commonv2-center-container">
+        <div  class="spd-new-tranact-grp-container">
+          <form method="POST">
+            <input name="transactGrpName" />
+            <button>Add</button>
+          </form>
+        </div>
+
+        <div class="spd-transact-grp-items-container">
+
+          <div class="spd-transact-grp-item-container">
+            <div id="transactionGrpDisplay_1" class="spd-transact-grp-item-display">
+              <h1 id="transactGrpName_1">Transaction Group</h1>
+              <button id="transactGrpEditBtn_1" value="1">✎</button>
+            </div>
+
+
+            <div id="transactionGrpForms_1" class="spd-transact-grp-item-display">
+              <form id="transactGrpEditForm_1" class="spd-transact-grp-form">
+                <input name="transactGrpName" />
+             
+                <button  name="transactGrpId">Save</button>
+              </form>
+
+              <form id="transactGrpDeleteForm_1" class="spd-transact-grp-form">
+        
+                <button  name="transactGrpId">Delete</button>
+              </form>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../commonScript.js"></script>
+    <script type="module" src="transactGrpManagerScript.js"></script>
+  </body>
 </html>

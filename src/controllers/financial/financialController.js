@@ -7,6 +7,10 @@ const finTransGroupModel=require("../../models/financial/trans_group");
 
 const deleteConfrimForm=require("../../helpers/forms/deleteConfrimFormConfig");
 
+const transactGrpFormParamNms=require("../Config/transactGrpFormParams");
+
+
+
 
 const moment = require("moment");
 const dateDisplayFormat="DD MM YYYY";
@@ -308,10 +312,37 @@ async function updateFinAcc(req,res,next){
 }
 
 async function openFinGrpPage(req,res,next){
-    res.render("financial/finTransactGrpsView/finTransGrpView",fillCommonData({title:"Financial"},req));
+    const finGrpsRows=await finTransGroupModel.getAllTransGroupFromUid(req.session.userId);
+    const transGrpRowNames=finTransGroupModel.rowNames; 
+    res.render("financial/finTransactGrpsView/finTransGrpView",fillCommonData({title:"Financial",finGrpsRows,transGrpRowNames},req));
 }
 
+async function addNewTransactionGroup(req,res,next){
+    const data=req.body;
+    const paramNames=transactGrpFormParamNms.formParamNames;
+    
+    console.log("new transact grp",data);  
 
+    finTransGroupModel.createNewTransactGroup(req.session.userId,data[paramNames.name]);
+
+    res.redirect("/Financial/TransactionGroupManager");
+    return;
+}
+async function deleteTransactionGroup(req,res,next){
+    const data=req.body;
+    console.log("delete transact grp",data); 
+    finTransGroupModel.deleteTransactGroup(data[transactGrpFormParamNms.formParamNames.id]);
+    res.redirect("/Financial/TransactionGroupManager");
+    return; 
+}   
+async function editTransactionGroup(req,res,next){
+    const data=req.body;
+    console.log("edit transact grp",data);  
+    finTransGroupModel.updateTransactGrp(data[transactGrpFormParamNms.formParamNames.id],data[transactGrpFormParamNms.formParamNames.name]);
+    res.redirect("/Financial/TransactionGroupManager");
+    
+    return;
+}
 
 
 module.exports={
@@ -322,5 +353,8 @@ module.exports={
     deleteTransaction,
     deleteFinAcc,
     updateFinAcc,
-    openFinGrpPage
+    openFinGrpPage,
+    addNewTransactionGroup,
+    deleteTransactionGroup,
+    editTransactionGroup
 }

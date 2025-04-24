@@ -19,7 +19,7 @@
 
       <div class="spd-commonv2-center-container">
         <div  class="spd-new-tranact-grp-container">
-          <form method="POST">
+          <form action="TransactionGroupManager/newTransactionGroup" method="POST">
             <input name="transactGrpName" />
             <button>Add</button>
           </form>
@@ -27,26 +27,33 @@
 
         <div class="spd-transact-grp-items-container">
 
+          <% if(locals.finGrpsRows&&locals.transGrpRowNames){ %>
+            <% finGrpsRows.forEach(row => { %>
+        
           <div class="spd-transact-grp-item-container">
             <div id="transactionGrpDisplay_1" class="spd-transact-grp-item-display">
-              <h1 id="transactGrpName_1">Transaction Group</h1>
-              <button id="transactGrpEditBtn_1" value="1">✎</button>
+            
+              <h1 ><%=row[transGrpRowNames.name] %></h1>
+              <button class="transactGrpToggleEditBtnsA" id= "<%="transactGrpEditBtn_"+row[transGrpRowNames.id]%>" %>" value="<%=row[transGrpRowNames.id] %>">✎</button>
             </div>
 
 
-            <div id="transactionGrpForms_1" class="spd-transact-grp-item-display">
-              <form id="transactGrpEditForm_1" class="spd-transact-grp-form">
-                <input name="transactGrpName" />
-             
-                <button  name="transactGrpId">Save</button>
+            <div id="<%="transactGrpDeleteForm_"+row[transGrpRowNames.id]%>"  class="spd-transact-grp-item-display">
+              <form class="transactGrpEditFormA" id="<%="transactGrpEditForm_"+row[transGrpRowNames.id]%>" class="spd-transact-grp-form">
+                <input value="<%=row[transGrpRowNames.name] %>" name="transactGrpName" />
+                 <input type="hidden"  name="transactGrpId" value="<%=row[transGrpRowNames.id] %>">
+                <button  >Save</button>
               </form>
 
-              <form id="transactGrpDeleteForm_1" class="spd-transact-grp-form">
-        
-                <button  name="transactGrpId">Delete</button>
+              <form class="transactGrpDeleteFormA" id="<%="transactGrpDeleteForm_"+row[transGrpRowNames.id] %>"class="spd-transact-grp-form">
+                <input type="hidden"  name="transactGrpId" value="<%=row[transGrpRowNames.id] %>">
+                <button >Delete</button>
               </form>
             </div>
-
+            
+          </div>
+            <%        
+          });} %>
 
           </div>
         </div>

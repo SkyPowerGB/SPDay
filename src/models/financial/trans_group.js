@@ -8,11 +8,29 @@ const [rows] = await db.query(query, [uid]);
 return rows; 
 }
 
+const rowNames={
+    id:"transaction_group_id",
+    name:"transaction_group_name",
+    uid:"user_account_id",
+}
+
+
 async function createEditTransGroup(id,uid,transGroupName) {
 
 }
 
-async function deleteTransGroup(id) {
+async function deleteTransactGroup(id) {
+const query="select deleteTransactGroup(?);"
+const result=await db.query(query,[id]);
+}
+async function updateTransactGrp(id,gname) {
+    const query="select updateTransactGrp(?,?);"
+const result=await db.query(query,[id,gname]);
+}
+
+async function createNewTransactGroup(uid,gname) {
+    const query="select createNewTransactGroup(?,?);"
+    const result=await db.query(query,[uid,gname]);
 
 }
 
@@ -22,9 +40,17 @@ async function getTransGroupByUidPaginated(uid,limit,offset) {
     return rows;
 }
 
+
+
+
 module.exports = {
     getAllTransGroupFromUid,
     createEditTransGroup,
-    deleteTransGroup,
-    getTransGroupByUidPaginated
+    deleteTransactGroup,
+    getTransGroupByUidPaginated,
+    createNewTransactGroup,
+    rowNames,
+
+    updateTransactGrp,
+    
 };

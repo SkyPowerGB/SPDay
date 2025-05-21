@@ -35,6 +35,8 @@ This learning project implements a range of features, though some remain incompl
 - Input sanitization is incomplete — potential security risks
 - No protection against Cross-Site Request Forgery (CSRF)
 - Security mainly relies on sessions and basic sanitization only
+- Missing financial analytics and reporting features
+- PDF generation formatting is basic and could be improved
 - **Not safe for public deployment**
 ---
 

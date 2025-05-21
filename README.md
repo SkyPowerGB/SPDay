@@ -33,8 +33,9 @@ This learning project implements a range of features, though some remain incompl
 - No user account management features beyond registration/login
 - No roles or permissions system
 - Input sanitization is incomplete — potential security risks
+- No protection against Cross-Site Request Forgery (CSRF)
+- Security mainly relies on sessions and basic sanitization only
 - **Not safe for public deployment**
-
 ---
 
 ## 🧩 Technologies & Libraries

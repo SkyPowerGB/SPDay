@@ -2,7 +2,7 @@
 
 > ⚠️ **[Warning]** This project is no longer actively maintained.
 
-A simple web app built with Express.js for managing personal medical appointments and financial accounts.
+A web app built with Express.js for managing personal medical appointments and financial accounts.
 
 ---
 

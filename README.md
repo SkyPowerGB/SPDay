@@ -2,7 +2,7 @@
 
 > ⚠️ **[Warning]** This project is no longer actively maintained.
 
-A mid-level web application built with Express.js and EJS templating for managing personal medical appointments and financial accounts.
+A web application built with Express.js and EJS templating for managing personal medical appointments and financial accounts.
 
 This learning project implements a range of features, though some remain incomplete or partially implemented.
 

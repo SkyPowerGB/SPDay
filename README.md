@@ -46,7 +46,6 @@ This learning project implements a range of features, though some remain incompl
 - [EJS](https://ejs.co/) — templating engine
 - Session management with express-session
 - PDF generation with pdfkit
-- Validation with express-validator
 - Other dependencies as listed in `package.json`
 
 ---

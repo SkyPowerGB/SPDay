@@ -6,6 +6,8 @@ A web application built with Express.js and EJS templating for managing personal
 
 This learning project implements a range of features, though some remain incomplete or partially implemented.
 
+The database was lost during migration to new PC
+
 ---
 
 ## ✨ Features

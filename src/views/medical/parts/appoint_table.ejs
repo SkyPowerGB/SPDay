@@ -16,33 +16,51 @@
     <tbody>
       <% if (appoitmentsData && appoitmentsData.length > 0) { %>
         <% appoitmentsData.forEach(function(appointment) { %>
-          <tr  class="table-display-data-body-row" id="<%= 'appointmentTableRow_' + appointment.appointment_id %>">
+
           
-            <td id="<%= 'appointmentTableRow_descData_' + appointment.appointment_id %>">
-              <%= appointment.appointment_desc %>
+          <tr  class="table-display-data-body-row" id="<%= 'appointmentTableRow_' + appointment.appointId %>">
+          
+            <td id="<%= 'appointmentTableRow_descData_' + appointment.appointId %>">
+              <%= appointment.appointDesc %>
             </td>
-            <td>
+
+
+
+            <td id="<%= 'appointmentTableRow_dateData_' + appointment.appointId %>">
               <%= appointment.formatted_date %>
               <div style="display: none;">
-                <input id="<%= 'appointmentTableRow_dateData_' + appointment.appointment_id %>" 
+                <input id="<%= 'appointmentTableRow_dateData_' + appointment.appointId %>" 
                   value="<%= appointment.inputFormat %>" type="hidden">
               </div>
             </td>
-            <td id="<%= 'appointmentTableRow_groupData_' + appointment.appointment_id %>">
-              <%= appointment.appointment_group %>
+
+
+            <td id="<%= 'appointmentTableRow_groupData_' + appointment.appointId %>">
+              <%= appointment.groupName %>
             </td>
+
+
+
             <td class="table-data-edit-td">
-              <button value="<%= appointment.appointment_id %>" 
+              <button value="<%= appointment.appointId %>" 
                 class="btn-table-edit btn-appointment-table-edit hidden">
                 uredi
               </button>
             </td>
+
+           
+
             <td class="table-data-delete-td">
-              <button value="<%= appointment.appointment_id %>" 
+              <button value="<%= appointment.appointId %>" 
                 class="btn-table-edit btn-appointment-table-delete hidden">
                 izbrisi
               </button>
             </td>
+      
+      
+      
+      
+      
           </tr>
         <% }); %>
       <% } %>

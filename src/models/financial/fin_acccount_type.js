@@ -19,8 +19,8 @@ async function getAccountTypeIdByName(name) {
 }
 
 const accTypeColNm={
-    id:"fin_account_type_id",
-    name:"fin_account_type",  
+    id:"id",
+    name:"acc_type",  
 }
 
 module.exports={getAllAccountTypes,accTypeColNm,getAccountTypeIdByName};

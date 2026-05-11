@@ -1,4 +1,5 @@
 const db=require("../../config/db");
+
 async function getAllCurrencyTypes() {
     const query = "SELECT * FROM currency_type";
     const [rows] = await db.execute(query); 
@@ -13,9 +14,9 @@ async function getCurrencyIdByName(name) {
 }
 
 const currencyColNm={
-    id:"currency_type_id",
-    name:"currency_name",
-    symbol:"currency_sign",
+    id:"id",
+    name:"currencyName",
+    symbol:"currencySign",
 
 }
 module.exports={getAllCurrencyTypes,currencyColNm,getCurrencyIdByName};

@@ -16,18 +16,18 @@ async function loadPage(req, res, next) {
 
         const data = await appointGroupModel.getGroups(userId); 
         const appoitmentsData=await appointmentModel.getAllAppointments(userId);
-        
+       
         appoitmentsData.forEach(element => {
-          let dt = element.appointment_date_time;
-      
+          let dt = element.appointDate;
+
           
           element.formatted_date = moment(dt).format('DD.MM.YYYY HH:mm'); 
       
 
           element.inputFormat = moment(dt).format('YYYY-MM-DD HH:mm');
       });
-      
-      console.log(req.spd_userData);
+     
+
         res.render("medical/medical", fillCommonData({ groups: data,appoitmentsData:appoitmentsData },req)); 
         
     } catch (error) {
@@ -42,7 +42,7 @@ async function addEditAppoitmentGroup(req, res, next) {
     let data=req.body.groupName;
 
     if(gid==0){
-    const restult = await appointGroupModel.addGroup(
+    const result = await appointGroupModel.addGroup(
       req.session.userId,
       data
     
@@ -56,22 +56,25 @@ async function addEditAppoitmentGroup(req, res, next) {
   next();
 }
 
+
 async function addEditAppointments(req,res,next){
-console.log(req.body);
-res.redirect("/Medical");
+
+console.log("==========================================================================================")
+console.log("adding new appointment for user"+req.session.userId)
+
 let appointId=req.body.appointmentId;
 let date=req.body.appointmentDate;
 let desc=req.body.appointmentDesc;
+desc=desc.trim();
 let groupId=req.body.appointmentGroup;
 
 appointmentModel.createNewAppoitment(appointId,date,desc,groupId,  req.session.userId);
 
-
+res.redirect("/Medical");
 }
 
 
 async function deleteAppointments(req,res,next){ 
-console.log(req.body);
  let result=req.body;
  let id=result.deleteElementId;
  let type=result.deleteElementType;
@@ -89,13 +92,14 @@ console.log(req.body);
 
 
 async function dataExport(req,res,next){
-  console.log("Data Export");
-console.log(req.body);
+  
+
 data= req.body;
 const grpIdList=data.inputGroupIdList;
 const FromDate=data.inputDateFrom;
 const ToDate=data.inputDateTo;
 let pdfName=data.inputPDFname;
+
 const doc = new PDFDocument();
 doc.pipe(res);
 res.setHeader('Content-Type', 'application/pdf');
@@ -110,18 +114,19 @@ for(i=0;i<grpIdList.length;i++){
     continue;
   }
 
+ 
   let grpId=parseInt(grpIdList[i]);
   let result=await appointmentModel.getAllAppointmentsFromToByGroup(parseInt(grpId),FromDate,ToDate);
   result.forEach(element => {
     doc.fontSize(16).text(`Grupa ID: ${grpId}`, { underline: true });
-    let formattedDate = moment(element.appointment_date_time).format(
+    let formattedDate = moment(element.appointDate).format(
       "DD.MM.YYYY HH:mm"
     );
-    doc.fontSize(12).text(`Termin: ${element.appointment_desc} - Datum: ${formattedDate}`)
+    doc.fontSize(12).text(`Termin: ${element.appointDesc} - Datum: ${formattedDate}`)
 
   });
 
-  console.log(result);
+
 
 }
   doc.end();

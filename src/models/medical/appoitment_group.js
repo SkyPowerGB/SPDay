@@ -2,7 +2,7 @@ const db=require("../../config/db");
 const sanitize = require("sanitize-html");
 
 async function addGroup(uid,groupname){
-    const query="insert into appointment_group(appointment_group,user_account_id) values(?,?)"
+    const query="insert into appointment_group(groupName,fkUserId) values(?,?)"
 
      let groupName=sanitize(groupname);
 
@@ -13,20 +13,20 @@ async function addGroup(uid,groupname){
 }
 
 async function getGroups(uid) {
-    const query = "SELECT * FROM appointment_group WHERE user_account_id = ?;";
+    const query = "SELECT * FROM appointment_group WHERE fkUserId = ?;";
     const [rows] = await db.execute(query, [uid]);
     return rows; 
 }
 
 async function updateGroup(gid,data){
-    const query="update appointment_group set appointment_group=? where appointment_group_id=?;";
+    const query="update appointment_group set groupName=? where appointGroupId=?;";
  
     const [result] = await db.execute(query, [data,gid]);
     return result;
 }
 
 async function deleteGroup(gid){
-    const query="delete from appointment_group where appointment_group_id=?";
+    const query="delete from appointment_group where appointGroupId=?";
     const [result] = await db.execute(query, [gid]);
         return result; 
 }

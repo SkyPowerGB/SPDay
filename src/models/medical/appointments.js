@@ -7,13 +7,10 @@ const moment = require('moment');
 
 async function createNewAppoitment(appointId,date,desc,group,uid){
 
-//  appointId INT,  appointDesc TEXT, appointDate DATETIME, groupID INT, userId INT    
-    const querry="select createEditAppointments(?,?,?,?,?);";
+    const querry="SELECT createEditAppointments(?,?,?,?,?);";
     console.log(`dateinput: ${date}`);
-
- 
-
-
+    console.log(`appointId: ${appointId}`);
+   
     const [result] = await db.execute(querry, [appointId,desc,date,group,uid]);
     return result; 
 };
@@ -30,7 +27,7 @@ async function  getAllAppointments(userId) {
 }
 
 async function deleteAppointment(id) {
-    sql="delete from appointments where appointment_id=?";
+    sql="delete from appointments where appointId=?";
     const [result] = await db.execute(sql, [id]);
     return result;
 }

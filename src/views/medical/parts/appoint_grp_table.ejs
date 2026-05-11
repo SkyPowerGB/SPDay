@@ -16,10 +16,10 @@
       { %>
       <tr  class="table-display-data-body-row">
        
-        <td id="<%= 'appointGrpData-name' + group.appointment_group_id %>"> <%= group.appointment_group %>  </td>
+        <td id="<%= 'appointGrpData-name' + group.appointGroupId %>"> <%= group.groupName %>  </td>
         <td class="table-data-edit-td">
           <button
-            value="<%= group.appointment_group_id %>"
+            value="<%= group.appointGroupId %>"
             class="btn-table-edit btn-appointment-grp-table-edit hidden"
           >
             uredi
@@ -27,14 +27,14 @@
         </td>
         <td class="table-data-delete-td">
           <button
-            value="<%= group.appointment_group_id %>"
+            value="<%= group.appointGroupId %>"
             class="btn-table-edit btn-appointment-grp-table-delete hidden"
           >
             izbrisi
           </button>
         </td>
-        <td id="<%= 'appointGrpDatExporChckBx-' + group.appointment_group_id %>" class="table-dat-exoport-select-group-td  hidden">
-          <input type="checkbox" value="<%= group.appointment_group_id %>" class="table-checkbox ">
+        <td id="<%= 'appointGrpDatExporChckBx-' + group.appointGroupId %>" class="table-dat-exoport-select-group-td  hidden">
+          <input type="checkbox" value="<%= group.appointGroupId %>" class="table-checkbox ">
         </td>
       </tr>
       <% }); %> <% } %>

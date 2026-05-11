@@ -21,7 +21,9 @@ app.use(session({
     cookie: { secure: false,httpOnly: true,   maxAge: 1000 * 60 * 60 * 24 }  
   }));
 
+  app.set('views', 'src/views');
 app.set('view engine','ejs');
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 

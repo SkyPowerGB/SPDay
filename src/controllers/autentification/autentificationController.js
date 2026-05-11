@@ -52,6 +52,8 @@ async function register(req, res,next) {
   if (valid) {
     try {
          console.log("validation succesful");
+         console.log("password:")
+         console.log(password)
         const salt = await bcrypt.genSalt(10); 
         
    
@@ -87,15 +89,17 @@ async function authorizeUser(req, res, next) {
       return res.redirect("/autentification/login.html"); 
     }
 
+    console.log("password:"+ user.passwordHash)
    
-    const isPasswordValid = await bcrypt.compare(req.body.password, user.password_hash);
+   
+    const isPasswordValid = await bcrypt.compare(req.body.password, user.passwordHash);
 
     if (!isPasswordValid) {
         console.log("incorect password");
       return res.redirect("/autentification/login.html");
     }else{
-
-      req.session.userId=user.user_account_id;
+      console.log("password correct")
+      req.session.userId=user.userId;
       const redirectUrl = req.session.returnTo || '/home'; 
       delete req.session.returnTo; 
     

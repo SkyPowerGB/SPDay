@@ -83,6 +83,7 @@ window.addEventListener("load", (e) => {
 
   Array.from(appointmentGrpTabEditBtns).forEach((btn) => {
     btn.addEventListener("click", () => {
+      console.log("edit clicked!")
       console.log(btn.value);
       const appointGrpId = btn.value;
       const appointGrpData = document.getElementById(
@@ -110,17 +111,23 @@ window.addEventListener("load", (e) => {
     "btn-appointment-table-delete"
   );
 
+// SETUP EVENTS EDIT FOR TABLE OF APPOINTMENTS
+
   Array.from(appointmentTableEditButtons).forEach((btn) => {
     btn.addEventListener("click", () => {
+      console.log("button clicked")
+      console.log("appoint id:" +btn.value)
       let desc = document.getElementById(
         "appointmentTableRow_descData_" + btn.value
       ).innerHTML;
       let date = document.getElementById(
         "appointmentTableRow_dateData_" + btn.value
-      ).value;
+      ).innerHTML;
       let groupNm = document.getElementById(
         "appointmentTableRow_groupData_" + btn.value
       ).innerHTML;
+
+      console.log(date)
       picker.setDate(date);
 
       appointFormIdInput.value = btn.value;
@@ -133,11 +140,14 @@ window.addEventListener("load", (e) => {
         }
       }
 
-      appointFormDescInput.value = desc;
+      appointFormDescInput.value = desc.trim();
 
       showAppoitmentForm();
     });
   });
+
+   
+
   Array.from(appointmentTableDeleteButtons).forEach((btn) => {
     btn.addEventListener("click", () => {
       showDeletePopup(
@@ -147,6 +157,8 @@ window.addEventListener("load", (e) => {
       );
     });
   });
+
+
 
   const btnAppointToggle = document.getElementById("btnAppointToggle");
   const btnGroupsToggle = document.getElementById("btnGroupsToggle");
